@@ -1,0 +1,61 @@
+
+name: Monitor Rádio Graciosa
+
+on:
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "*/5 * * * *"
+
+
+jobs:
+
+  monitor:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+      - name: Verificar stream da Rádio Graciosa
+        run: |
+
+          STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
+
+          echo "======================================"
+          echo "MONITORAMENTO DA RÁDIO"
+          echo "Posto: Posto Graciosa"
+          echo "Stream: $STREAM"
+          echo "======================================"
+
+          echo ""
+          echo "Testando conexão..."
+
+          HTTP_CODE=$(curl \
+            -L \
+            -s \
+            -o /dev/null \
+            -w "%{http_code}" \
+            --max-time 20 \
+            "$STREAM")
+
+          echo ""
+          echo "Resposta HTTP: $HTTP_CODE"
+
+          if [ "$HTTP_CODE" = "200" ]; then
+
+            echo ""
+            echo "STATUS: ONLINE"
+            echo "Stream acessível."
+
+          else
+
+            echo ""
+            echo "STATUS: OFFLINE"
+            echo "Stream não respondeu corretamente."
+
+            exit 1
+
+          fi
+
