@@ -2,27 +2,20 @@ name: Monitor Rádio Graciosa
 
 on:
 workflow_dispatch:
-
 schedule:
 - cron: "* * * * *"
 
 jobs:
-
 monitor:
-
-
 runs-on: ubuntu-latest
 
-steps:
 
+steps:
   - name: Verificar stream da Rádio Graciosa
     shell: bash
     run: |
-
       STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
-
       APPS_SCRIPT="https://script.google.com/macros/s/AKfycbyTJwiUpNO1a3-u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec"
-
       POSTO="POSTO GRACIOSA"
 
       DATA=$(date '+%d/%m/%Y')
@@ -35,12 +28,13 @@ steps:
       echo "Horário: $HORA"
       echo "======================================"
 
+      TEMP_FILE=$(mktemp)
+      ERROR_FILE=$(mktemp)
+
       echo ""
       echo "Conectando ao stream..."
 
-      TEMP_FILE=$(mktemp)
-
-      HTTP_CODE=$(curl \
+      curl \
         -L \
         -sS \
         --connect-timeout 10 \
@@ -48,13 +42,14 @@ steps:
         -r 0-65535 \
         -o "$TEMP_FILE" \
         -w "%{http_code}" \
-        "$STREAM" 2>/tmp/curl_error.txt)
+        "$STREAM" \
+        2>"$ERROR_FILE" > /tmp/http_code.txt
 
       CURL_EXIT=$?
 
+      HTTP_CODE=$(cat /tmp/http_code.txt 2>/dev/null || echo "000")
       BYTES=$(wc -c < "$TEMP_FILE")
-
-      CURL_ERROR=$(cat /tmp/curl_error.txt)
+      CURL_ERROR=$(cat "$ERROR_FILE" 2>/dev/null || true)
 
       echo ""
       echo "Código CURL: $CURL_EXIT"
@@ -76,23 +71,24 @@ steps:
          [ "$HTTP_CODE" = "200" ] && \
          [ "$BYTES" -gt 1024 ]; then
 
-          STATUS="online"
+        STATUS="online"
 
-          echo ""
-          echo "🟢 STATUS: ONLINE"
-          echo "Stream respondeu corretamente."
-          echo "Dados recebidos: $BYTES bytes"
+        echo ""
+        echo "🟢 STATUS: ONLINE"
+        echo "Stream respondeu corretamente."
+        echo "Dados recebidos: $BYTES bytes"
 
       else
 
-          echo ""
-          echo "🔴 STATUS: OFFLINE"
-          echo "Não foi possível confirmar a entrega do stream."
+        echo ""
+        echo "🔴 STATUS: OFFLINE"
+        echo "Não foi possível confirmar a entrega do stream."
 
       fi
 
       rm -f "$TEMP_FILE"
-      rm -f /tmp/curl_error.txt
+      rm -f "$ERROR_FILE"
+      rm -f /tmp/http_code.txt
 
       echo ""
       echo "Enviando resultado para o Google Apps Script..."
