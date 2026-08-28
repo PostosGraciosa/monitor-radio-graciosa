@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -21,9 +21,7 @@
         content="#0e6835"
     >
 
-    <title>
-        Rádio | Posto Graciosa
-    </title>
+    <title>Rádio | Posto Graciosa</title>
 
 
     <!-- =========================================
@@ -39,28 +37,17 @@
 
     <style>
 
-        /* =========================================
-           RESET
-        ========================================= */
-
         * {
-
             margin: 0;
-
             padding: 0;
-
             box-sizing: border-box;
-
         }
 
 
         html,
         body {
-
             width: 100%;
-
             min-height: 100%;
-
         }
 
 
@@ -96,7 +83,7 @@
 
         /* =========================================
            PÁGINA
-        ========================================= */
+        ========================================== */
 
         .pagina {
 
@@ -119,7 +106,7 @@
 
         /* =========================================
            CABEÇALHO
-        ========================================= */
+        ========================================== */
 
         .cabecalho {
 
@@ -227,7 +214,7 @@
 
         .status {
 
-            min-width: 155px;
+            min-width: 180px;
 
             padding: 12px 17px;
 
@@ -335,7 +322,7 @@
 
 
         /* =========================================
-           CARDS DE INFORMAÇÃO
+           INFORMAÇÕES
         ========================================== */
 
         .informacoes {
@@ -599,9 +586,7 @@
         @media (max-width: 700px) {
 
             body {
-
                 padding: 10px;
-
             }
 
 
@@ -681,36 +666,27 @@
 
 
                 <div class="icone-radio">
-
                     📻
-
                 </div>
 
 
                 <div>
 
                     <div class="empresa">
-
                         Postos Graciosa
-
                     </div>
 
 
                     <div class="titulo">
-
                         Posto Graciosa
-
                     </div>
 
 
                     <div class="subtitulo">
-
                         Sistema de rádio ambiente
-
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -728,9 +704,7 @@
                 <div class="status-info">
 
                     <span class="status-label">
-
                         Status
-
                     </span>
 
 
@@ -738,9 +712,7 @@
                         id="statusTexto"
                         class="status-texto"
                     >
-
-                        RÁDIO ATIVA
-
+                        CONECTANDO...
                     </span>
 
                 </div>
@@ -767,16 +739,12 @@
                 <div class="info-card">
 
                     <span class="info-label">
-
                         Posto
-
                     </span>
 
 
                     <span class="info-valor">
-
                         Graciosa
-
                     </span>
 
                 </div>
@@ -785,9 +753,7 @@
                 <div class="info-card">
 
                     <span class="info-label">
-
                         Data
-
                     </span>
 
 
@@ -795,9 +761,7 @@
                         id="dataAtual"
                         class="info-valor"
                     >
-
                         --
-
                     </span>
 
                 </div>
@@ -806,9 +770,7 @@
                 <div class="info-card">
 
                     <span class="info-label">
-
                         Horário
-
                     </span>
 
 
@@ -816,9 +778,7 @@
                         id="horaAtual"
                         class="info-valor"
                     >
-
                         --
-
                     </span>
 
                 </div>
@@ -839,16 +799,12 @@
 
 
                     <div class="player-nome">
-
                         📻 Rádio Postos Graciosa
-
                     </div>
 
 
                     <span class="ao-vivo">
-
                         ● Ao vivo
-
                     </span>
 
 
@@ -871,9 +827,7 @@
 
                     allowtransparency="true"
 
-                >
-
-                </iframe>
+                ></iframe>
 
 
             </section>
@@ -888,18 +842,14 @@
 
 
                 <div class="monitor-icone">
-
                     🛡️
-
                 </div>
 
 
                 <div>
 
                     <div class="monitor-titulo">
-
                         Monitoramento 24 horas
-
                     </div>
 
 
@@ -907,10 +857,7 @@
                         id="monitoramentoTexto"
                         class="monitor-texto"
                     >
-
-                        Sistema preparado para acompanhar
-                        continuamente a rádio.
-
+                        Iniciando teste real do stream...
                     </div>
 
                 </div>
@@ -929,21 +876,15 @@
 
         <footer class="rodape">
 
-
             <span>
-
                 Postos Graciosa
-
             </span>
 
 
             <span>
-
                 Monitoramento:
                 <strong>24 horas</strong>
-
             </span>
-
 
         </footer>
 
@@ -952,11 +893,30 @@
 
 
 
+    <!-- =========================================
+         TESTE REAL DO STREAM
+         
+         Este áudio NÃO substitui o player visual.
+         Ele serve exclusivamente para verificar
+         se o servidor da rádio está entregando
+         áudio.
+    ========================================== -->
+
+    <audio
+        id="streamMonitor"
+        preload="auto"
+        autoplay
+        muted
+        playsinline
+    ></audio>
+
+
+
     <script>
 
         /* =========================================
            CONFIGURAÇÃO
-        ========================================= */
+        ========================================== */
 
         const CONFIG = {
 
@@ -972,8 +932,27 @@
             stream:
                 "https://servidor33-2.brlogic.com:7200/live?source=7074",
 
-            tempoConfirmacao:
-                120000
+            /*
+
+               Tempo que o stream pode ficar sem
+               progresso antes de ser considerado
+               uma possível interrupção.
+
+               30 segundos nesta fase de teste.
+
+            */
+
+            limiteSemDados:
+                30000,
+
+            /*
+
+               Intervalo entre testes.
+
+            */
+
+            intervaloTeste:
+                10000
 
         };
 
@@ -981,7 +960,7 @@
 
         /* =========================================
            ELEMENTOS
-        ========================================= */
+        ========================================== */
 
         const dataAtual =
             document.getElementById(
@@ -1013,10 +992,37 @@
             );
 
 
+        const streamMonitor =
+            document.getElementById(
+                "streamMonitor"
+            );
+
+
+
+        /* =========================================
+           VARIÁVEIS DO MONITOR
+        ========================================== */
+
+        let ultimoProgresso =
+            Date.now();
+
+
+        let streamFuncionando =
+            false;
+
+
+        let verificando =
+            true;
+
+
+        let primeiraConexao =
+            true;
+
+
 
         /* =========================================
            RELÓGIO
-        ========================================= */
+        ========================================== */
 
         function atualizarRelogio() {
 
@@ -1059,8 +1065,8 @@
 
 
         /* =========================================
-           STATUS
-        ========================================= */
+           STATUS VISUAL
+        ========================================== */
 
         function definirStatus(
             status
@@ -1078,7 +1084,7 @@
             ) {
 
                 statusTexto.textContent =
-                    "RÁDIO ATIVA";
+                    "RÁDIO ONLINE";
 
             }
 
@@ -1108,7 +1114,7 @@
                 );
 
                 statusTexto.textContent =
-                    "RÁDIO PAUSADA";
+                    "RÁDIO OFFLINE";
 
             }
 
@@ -1117,134 +1123,111 @@
 
 
         /* =========================================
-           STATUS INICIAL
-        ========================================= */
+           DATA/HORA DO ÚLTIMO SINAL
+        ========================================== */
 
-        definirStatus(
-            "online"
+        function registrarSinal() {
+
+            ultimoProgresso =
+                Date.now();
+
+        }
+
+
+
+        /* =========================================
+           EVENTO: STREAM COMEÇOU A TOCAR
+        ========================================== */
+
+        streamMonitor.addEventListener(
+            "playing",
+            function () {
+
+                registrarSinal();
+
+                streamFuncionando =
+                    true;
+
+                verificando =
+                    false;
+
+                definirStatus(
+                    "online"
+                );
+
+
+                monitoramentoTexto.innerHTML =
+
+                    "🟢 <strong>Stream conectado.</strong> " +
+
+                    "O servidor da rádio está " +
+                    "entregando áudio normalmente.";
+
+                console.log(
+                    "STREAM ONLINE"
+                );
+
+            }
         );
 
 
 
         /* =========================================
-           REGISTRO DE INTERRUPÇÃO
-        ========================================= */
+           EVENTO: TEMPO DE ÁUDIO AVANÇOU
+        ========================================== */
 
-        function registrarInterrupcao() {
+        streamMonitor.addEventListener(
+            "timeupdate",
+            function () {
 
-            const agora =
-                new Date();
+                registrarSinal();
 
+                if (
+                    !streamFuncionando
+                ) {
 
-            const data =
-                agora.toLocaleDateString(
-                    "pt-BR"
-                );
+                    streamFuncionando =
+                        true;
 
+                    verificando =
+                        false;
 
-            const hora =
-                agora.toLocaleTimeString(
-                    "pt-BR"
-                );
+                    definirStatus(
+                        "online"
+                    );
 
+                }
 
-            definirStatus(
-                "offline"
-            );
-
-
-            monitoramentoTexto.innerHTML =
-
-                "🔴 <strong>Rádio pausada.</strong> " +
-
-                "Posto: " +
-                CONFIG.posto +
-                " | " +
-
-                "Data: " +
-                data +
-                " | " +
-
-                "Horário: " +
-                hora;
-
-        }
+            }
+        );
 
 
 
         /* =========================================
-           DADOS DO ALERTA
-        ========================================= */
+           EVENTO: PODE TOCAR
+        ========================================== */
 
-        function prepararAlertaEmail() {
+        streamMonitor.addEventListener(
+            "canplay",
+            function () {
 
-            const agora =
-                new Date();
+                registrarSinal();
 
-
-            return {
-
-                posto:
-                    CONFIG.posto,
-
-                identificador:
-                    CONFIG.identificador,
-
-                email:
-                    CONFIG.email,
-
-                data:
-                    agora.toLocaleDateString(
-                        "pt-BR"
-                    ),
-
-                horario:
-                    agora.toLocaleTimeString(
-                        "pt-BR"
-                    ),
-
-                assunto:
-                    "ALERTA - Rádio pausada | " +
-                    CONFIG.posto,
-
-                status:
-                    "RÁDIO PAUSADA"
-
-            };
-
-        }
-
-
-
-        /* =========================================
-           RECONEXÃO DO PLAYER
-        ========================================= */
-
-        function tentarReconectar() {
-
-            const player =
-                document.getElementById(
-                    "radioPlayer"
+                console.log(
+                    "STREAM DISPONÍVEL"
                 );
 
-
-            const endereco =
-                player.src;
-
-
-            player.src =
-                endereco;
-
-        }
+            }
+        );
 
 
 
         /* =========================================
-           INTERNET
-        ========================================= */
+           EVENTO: ESPERA POR DADOS
+        ========================================== */
 
-        window.addEventListener(
-            "online",
+        streamMonitor.addEventListener(
+            "waiting",
             function () {
 
                 definirStatus(
@@ -1252,19 +1235,391 @@
                 );
 
 
-                monitoramentoTexto.textContent =
-                    "🟡 Internet restabelecida. " +
-                    "Verificando conexão da rádio...";
+                monitoramentoTexto.innerHTML =
 
+                    "🟡 <strong>Stream aguardando dados.</strong> " +
 
-                setTimeout(
-                    function () {
+                    "O monitor está verificando " +
+                    "a continuidade da transmissão.";
 
-                        tentarReconectar();
-
-                    },
-                    3000
+                console.log(
+                    "STREAM WAITING"
                 );
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO: STREAM PAROU DE ENTREGAR DADOS
+        ========================================== */
+
+        streamMonitor.addEventListener(
+            "stalled",
+            function () {
+
+                definirStatus(
+                    "atencao"
+                );
+
+
+                monitoramentoTexto.innerHTML =
+
+                    "🟡 <strong>Stream sem novos dados.</strong> " +
+
+                    "Aguardando confirmação.";
+
+                console.log(
+                    "STREAM STALLED"
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO: ERRO
+        ========================================== */
+
+        streamMonitor.addEventListener(
+            "error",
+            function () {
+
+                streamFuncionando =
+                    false;
+
+
+                definirStatus(
+                    "atencao"
+                );
+
+
+                monitoramentoTexto.innerHTML =
+
+                    "🟡 <strong>Falha na conexão.</strong> " +
+
+                    "O monitor tentará reconectar.";
+
+                console.log(
+                    "ERRO NO STREAM",
+                    streamMonitor.error
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           TESTE INICIAL
+        ========================================== */
+
+        function iniciarTesteStream() {
+
+            console.log(
+                "================================="
+            );
+
+            console.log(
+                "TESTE REAL DO STREAM"
+            );
+
+            console.log(
+                "Posto:",
+                CONFIG.posto
+            );
+
+            console.log(
+                "Stream:",
+                CONFIG.stream
+            );
+
+            console.log(
+                "================================="
+            );
+
+
+            definirStatus(
+                "atencao"
+            );
+
+
+            monitoramentoTexto.innerHTML =
+
+                "🟡 <strong>Conectando ao stream...</strong>";
+
+
+            streamMonitor.src =
+                CONFIG.stream;
+
+
+            streamMonitor.load();
+
+
+            const promessa =
+                streamMonitor.play();
+
+
+            if (
+                promessa !== undefined
+            ) {
+
+                promessa
+                    .then(
+                        function () {
+
+                            console.log(
+                                "Reprodução do monitor iniciada."
+                            );
+
+                        }
+                    )
+                    .catch(
+                        function (erro) {
+
+                            console.log(
+                                "Autoplay do monitor:",
+                                erro
+                            );
+
+                        }
+                    );
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           VERIFICAÇÃO CONTÍNUA
+        ========================================== */
+
+        function verificarStream() {
+
+            const agora =
+                Date.now();
+
+
+            const tempoSemProgresso =
+                agora -
+                ultimoProgresso;
+
+
+            /*
+               Se ainda não recebemos nenhum
+               sinal e passaram 30 segundos,
+               consideramos que o stream não
+               conseguiu iniciar.
+            */
+
+            if (
+                primeiraConexao &&
+                tempoSemProgresso >
+                CONFIG.limiteSemDados
+            ) {
+
+                primeiraConexao =
+                    false;
+
+                streamFuncionando =
+                    false;
+
+                definirStatus(
+                    "offline"
+                );
+
+
+                monitoramentoTexto.innerHTML =
+
+                    "🔴 <strong>Stream não respondeu.</strong> " +
+
+                    "O servidor da rádio não " +
+                    "está entregando áudio ao monitor.";
+
+                console.log(
+                    "STREAM OFFLINE - TESTE INICIAL"
+                );
+
+                return;
+
+            }
+
+
+            /*
+               Depois que já funcionou,
+               verifica se parou de avançar.
+            */
+
+            if (
+                streamFuncionando &&
+                tempoSemProgresso >
+                CONFIG.limiteSemDados
+            ) {
+
+                streamFuncionando =
+                    false;
+
+                definirStatus(
+                    "offline"
+                );
+
+
+                const agoraData =
+                    new Date();
+
+
+                monitoramentoTexto.innerHTML =
+
+                    "🔴 <strong>Stream interrompido.</strong><br>" +
+
+                    "Posto: " +
+                    CONFIG.posto +
+                    "<br>" +
+
+                    "Data: " +
+                    agoraData.toLocaleDateString(
+                        "pt-BR"
+                    ) +
+                    "<br>" +
+
+                    "Horário: " +
+                    agoraData.toLocaleTimeString(
+                        "pt-BR"
+                    );
+
+
+                console.log(
+                    "STREAM OFFLINE"
+                );
+
+            }
+
+        }
+
+
+        setInterval(
+            verificarStream,
+            CONFIG.intervaloTeste
+        );
+
+
+
+        /* =========================================
+           RECONEXÃO AUTOMÁTICA
+        ========================================== */
+
+        function reconectarStream() {
+
+            console.log(
+                "Tentando reconectar stream..."
+            );
+
+
+            streamFuncionando =
+                false;
+
+
+            verificando =
+                true;
+
+
+            ultimoProgresso =
+                Date.now();
+
+
+            definirStatus(
+                "atencao"
+            );
+
+
+            monitoramentoTexto.innerHTML =
+
+                "🟡 <strong>Reconectando...</strong>";
+
+
+            streamMonitor.pause();
+
+
+            streamMonitor.src =
+                "";
+
+
+            setTimeout(
+                function () {
+
+                    streamMonitor.src =
+                        CONFIG.stream;
+
+                    streamMonitor.load();
+
+
+                    const promessa =
+                        streamMonitor.play();
+
+
+                    if (
+                        promessa !== undefined
+                    ) {
+
+                        promessa.catch(
+                            function (erro) {
+
+                                console.log(
+                                    "Reconexão aguardando:",
+                                    erro
+                                );
+
+                            }
+                        );
+
+                    }
+
+                },
+                1500
+            );
+
+        }
+
+
+
+        /* =========================================
+           TENTATIVA DE RECONEXÃO A CADA 60 SEGUNDOS
+        ========================================== */
+
+        setInterval(
+            function () {
+
+                if (
+                    !streamFuncionando
+                ) {
+
+                    reconectarStream();
+
+                }
+
+            },
+            60000
+        );
+
+
+
+        /* =========================================
+           INTERNET
+        ========================================== */
+
+        window.addEventListener(
+            "online",
+            function () {
+
+                console.log(
+                    "INTERNET RESTABELECIDA"
+                );
+
+
+                reconectarStream();
 
             }
         );
@@ -1274,15 +1629,20 @@
             "offline",
             function () {
 
+                streamFuncionando =
+                    false;
+
+
                 definirStatus(
                     "atencao"
                 );
 
 
-                monitoramentoTexto.textContent =
-                    "🟡 Conexão com a internet " +
-                    "interrompida. " +
-                    "Aguardando reconexão.";
+                monitoramentoTexto.innerHTML =
+
+                    "🟡 <strong>Internet desconectada.</strong> " +
+
+                    "Aguardando conexão.";
 
             }
         );
@@ -1291,7 +1651,7 @@
 
         /* =========================================
            WAKE LOCK
-        ========================================= */
+        ========================================== */
 
         let wakeLock =
             null;
@@ -1335,8 +1695,8 @@
 
 
         /* =========================================
-           RETORNO PARA A ABA
-        ========================================= */
+           VOLTA PARA A ABA
+        ========================================== */
 
         document.addEventListener(
             "visibilitychange",
@@ -1357,74 +1717,25 @@
 
 
         /* =========================================
-           RECONEXÃO DE SEGURANÇA
+           INICIALIZAÇÃO
+        ========================================== */
+
+        iniciarTesteStream();
+
+
+
+        /* =========================================
+           RECARGA DE SEGURANÇA
            A CADA 6 HORAS
-        ========================================= */
+        ========================================== */
 
         setInterval(
             function () {
 
-                tentarReconectar();
+                location.reload();
 
             },
             6 * 60 * 60 * 1000
-        );
-
-
-
-        /* =========================================
-           RECARREGAMENTO DIÁRIO
-        ========================================= */
-
-        setInterval(
-            function () {
-
-                window.location.reload();
-
-            },
-            24 * 60 * 60 * 1000
-        );
-
-
-
-        /* =========================================
-           LOG
-        ========================================= */
-
-        console.log(
-            "================================="
-        );
-
-        console.log(
-            "MONITORAMENTO DA RÁDIO"
-        );
-
-        console.log(
-            "================================="
-        );
-
-        console.log(
-            "Posto:",
-            CONFIG.posto
-        );
-
-        console.log(
-            "Identificador:",
-            CONFIG.identificador
-        );
-
-        console.log(
-            "Stream:",
-            CONFIG.stream
-        );
-
-        console.log(
-            "E-mail:",
-            CONFIG.email
-        );
-
-        console.log(
-            "Monitoramento iniciado."
         );
 
     </script>
@@ -1433,4 +1744,4 @@
 </body>
 
 </html>
-
+```
