@@ -13,7 +13,7 @@
 
     <meta
         name="description"
-        content="Monitoramento da Rádio - Posto Graciosa"
+        content="Monitoramento 24 horas da Rádio - Posto Graciosa"
     >
 
     <meta
@@ -224,9 +224,9 @@
 
         .status {
 
-            min-width: 185px;
+            min-width: 195px;
 
-            padding: 12px 17px;
+            padding: 13px 17px;
 
             border-radius: 14px;
 
@@ -241,7 +241,7 @@
 
             align-items: center;
 
-            gap: 10px;
+            gap: 11px;
 
         }
 
@@ -270,7 +270,7 @@
 
             flex-direction: column;
 
-            gap: 2px;
+            gap: 3px;
 
         }
 
@@ -468,32 +468,181 @@
         }
 
 
-        .player {
+        /* =========================================
+           PLAYER PRÓPRIO
+        ========================================== */
 
-            display: block;
+        .player-controles {
 
-            width: 100%;
+            padding: 25px 24px;
 
-            height: 165px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8faf9,
+                    #ffffff
+                );
+
+        }
+
+
+        .player-principal {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+        }
+
+
+        .botao-play {
+
+            width: 64px;
+            height: 64px;
 
             border: 0;
 
-            background: #ffffff;
+            border-radius: 50%;
+
+            background: #0e6835;
+
+            color: #ffffff;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 7px 20px
+                rgba(14,104,53,0.22);
+
+            transition:
+                transform 0.15s ease,
+                background 0.15s ease;
+
+        }
+
+
+        .botao-play:hover {
+
+            background: #095429;
+
+            transform: scale(1.04);
+
+        }
+
+
+        .botao-play.pausado {
+
+            background: #e53935;
+
+        }
+
+
+        .informacao-player {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+
+        .nome-radio {
+
+            font-size: 18px;
+
+            font-weight: 800;
+
+            color: #1f2937;
+
+        }
+
+
+        .descricao-radio {
+
+            margin-top: 5px;
+
+            font-size: 12px;
+
+            color: #737b76;
+
+        }
+
+
+        .controles-volume {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 18px;
+
+        }
+
+
+        .icone-volume {
+
+            font-size: 18px;
+
+            width: 28px;
+
+            text-align: center;
+
+        }
+
+
+        .volume {
+
+            flex: 1;
+
+            height: 5px;
+
+            accent-color: #0e6835;
+
+            cursor: pointer;
+
+        }
+
+
+        .volume-valor {
+
+            width: 42px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #66706a;
+
+            text-align: right;
 
         }
 
 
         /* =========================================
-           BOTÃO DE INÍCIO
+           BOTÃO INICIAR
         ========================================== */
 
-        .inicio-radio {
+        .botao-iniciar {
 
             display: none;
 
             width: 100%;
 
-            margin-top: 14px;
+            margin-top: 18px;
 
             padding: 14px;
 
@@ -505,7 +654,7 @@
 
             color: #ffffff;
 
-            font-size: 14px;
+            font-size: 13px;
 
             font-weight: 800;
 
@@ -514,16 +663,16 @@
         }
 
 
-        .inicio-radio:hover {
+        .botao-iniciar.visivel {
 
-            background: #095429;
+            display: block;
 
         }
 
 
-        .inicio-radio.visivel {
+        .botao-iniciar:hover {
 
-            display: block;
+            background: #095429;
 
         }
 
@@ -583,7 +732,7 @@
 
             font-weight: 800;
 
-            margin-bottom: 4px;
+            margin-bottom: 5px;
 
         }
 
@@ -600,22 +749,14 @@
 
 
         /* =========================================
-           TESTE
+           ÚLTIMO EVENTO
         ========================================== */
 
-        .teste-area {
+        .evento {
 
             margin-top: 15px;
 
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            padding: 14px 18px;
+            padding: 15px 18px;
 
             border-radius: 12px;
 
@@ -627,48 +768,28 @@
         }
 
 
-        .teste-info {
+        .evento-titulo {
 
-            font-size: 11px;
+            font-size: 10px;
 
-            color: #737b76;
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: #7a827d;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
 
         }
 
 
-        .teste-info strong {
+        .evento-texto {
+
+            font-size: 12px;
 
             color: #374151;
-
-        }
-
-
-        .botao-teste {
-
-            border: 0;
-
-            border-radius: 9px;
-
-            padding: 10px 14px;
-
-            background: #0e6835;
-
-            color: #ffffff;
-
-            font-size: 11px;
-
-            font-weight: 800;
-
-            cursor: pointer;
-
-            white-space: nowrap;
-
-        }
-
-
-        .botao-teste:hover {
-
-            background: #095429;
 
         }
 
@@ -751,27 +872,26 @@
             }
 
 
-            .player-cabecalho {
-
-                align-items: flex-start;
-
-                flex-direction: column;
-
-            }
-
-
-            .teste-area {
-
-                flex-direction: column;
+            .player-principal {
 
                 align-items: flex-start;
 
             }
 
 
-            .botao-teste {
+            .botao-play {
 
-                width: 100%;
+                width: 56px;
+                height: 56px;
+
+                font-size: 21px;
+
+            }
+
+
+            .nome-radio {
+
+                font-size: 16px;
 
             }
 
@@ -828,7 +948,7 @@
 
 
                     <div class="subtitulo">
-                        Sistema de rádio ambiente
+                        Monitoramento da rádio ambiente
                     </div>
 
                 </div>
@@ -857,7 +977,7 @@
                         id="statusTexto"
                         class="status-texto"
                     >
-                        VERIFICANDO...
+                        CONECTANDO...
                     </span>
 
                 </div>
@@ -876,7 +996,9 @@
         <section class="conteudo">
 
 
-            <!-- INFORMAÇÕES -->
+            <!-- =================================
+                 INFORMAÇÕES
+            ================================== -->
 
             <div class="informacoes">
 
@@ -944,51 +1066,120 @@
 
 
                     <div class="player-nome">
+
                         📻 Rádio Postos Graciosa
+
                     </div>
 
 
                     <span class="ao-vivo">
-                        ● Ao vivo
+
+                        ● AO VIVO
+
                     </span>
 
 
                 </div>
 
 
-                <iframe
+                <div class="player-controles">
 
-                    id="radioPlayer"
 
-                    class="player"
+                    <div class="player-principal">
 
-                    src="https://public-player-widget.webradiosite.com/?cover=1&current_track=1&schedules=1&link=1&popup=1&share=1&embed=0&auto_play=1&source=7074&theme=light&color=0&identifier=ADM%20Player&info=https%3A%2F%2Fpublic-player-widget.webradiosite.com%2Fapp%2Fplayer%2Finfo%2F254029%3Fhash%3D64003997581a207b40b5673c010bcc7cc044bb7d&locale=pt-br"
 
-                    scrolling="no"
+                        <button
+                            id="botaoPlay"
+                            class="botao-play"
+                            type="button"
+                            title="Reproduzir"
+                        >
 
-                    frameborder="0"
+                            ▶
 
-                    allow="autoplay; clipboard-write"
+                        </button>
 
-                    allowtransparency="true"
 
-                ></iframe>
+                        <div class="informacao-player">
+
+                            <div class="nome-radio">
+
+                                Rádio Postos Graciosa
+
+                            </div>
+
+
+                            <div
+                                id="descricaoRadio"
+                                class="descricao-radio"
+                            >
+
+                                Preparando transmissão...
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="controles-volume">
+
+
+                        <div
+                            id="iconeVolume"
+                            class="icone-volume"
+                        >
+                            🔊
+                        </div>
+
+
+                        <input
+
+                            id="controleVolume"
+
+                            class="volume"
+
+                            type="range"
+
+                            min="0"
+
+                            max="1"
+
+                            step="0.01"
+
+                            value="1"
+
+                        >
+
+
+                        <div
+                            id="volumeValor"
+                            class="volume-valor"
+                        >
+                            100%
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        id="botaoIniciar"
+                        class="botao-iniciar"
+                        type="button"
+                    >
+
+                        ▶ INICIAR RÁDIO
+
+                    </button>
+
+
+                </div>
 
 
             </section>
-
-
-            <!-- BOTÃO DE INÍCIO -->
-
-            <button
-                id="botaoInicio"
-                class="inicio-radio"
-                type="button"
-            >
-
-                ▶ INICIAR RÁDIO
-
-            </button>
 
 
 
@@ -1007,7 +1198,9 @@
                 <div>
 
                     <div class="monitor-titulo">
+
                         Monitoramento 24 horas
+
                     </div>
 
 
@@ -1015,8 +1208,9 @@
                         id="monitoramentoTexto"
                         class="monitor-texto"
                     >
-                        Verificando conexão com o
-                        servidor da rádio...
+
+                        Inicializando monitoramento...
+
                     </div>
 
                 </div>
@@ -1027,34 +1221,27 @@
 
 
             <!-- =================================
-                 TESTE MANUAL
+                 ÚLTIMO EVENTO
             ================================== -->
 
-            <section class="teste-area">
+            <section class="evento">
 
 
-                <div class="teste-info">
+                <div class="evento-titulo">
 
-                    <strong>
-                        Última verificação:
-                    </strong>
-
-                    <span id="ultimaVerificacao">
-                        aguardando...
-                    </span>
+                    Último evento
 
                 </div>
 
 
-                <button
-                    id="botaoTeste"
-                    class="botao-teste"
-                    type="button"
+                <div
+                    id="eventoTexto"
+                    class="evento-texto"
                 >
 
-                    TESTAR STREAM
+                    Sistema iniciado.
 
-                </button>
+                </div>
 
 
             </section>
@@ -1070,8 +1257,11 @@
 
         <footer class="rodape">
 
+
             <span>
+
                 Postos Graciosa
+
             </span>
 
 
@@ -1082,6 +1272,7 @@
 
             </span>
 
+
         </footer>
 
 
@@ -1089,11 +1280,24 @@
 
 
 
+    <!-- =========================================
+         ÁUDIO REAL DA RÁDIO
+    ========================================== -->
+
+    <audio
+        id="radioAudio"
+        preload="none"
+        playsinline
+    ></audio>
+
+
+
     <script>
+
 
         /* =========================================
            CONFIGURAÇÃO
-        ========================================= */
+        ========================================== */
 
         const CONFIG = {
 
@@ -1103,14 +1307,23 @@
             identificador:
                 "GRACIOSA",
 
-            email:
-                "administracao@postosgraciosa.com.br",
+            source:
+                "7074",
 
             stream:
                 "https://servidor33-2.brlogic.com:7200/live?source=7074",
 
-            intervalo:
-                30000
+            email:
+                "administracao@postosgraciosa.com.br",
+
+            intervaloMonitor:
+                10000,
+
+            tempoConfirmacaoOffline:
+                30000,
+
+            tentativasReconexao:
+                3
 
         };
 
@@ -1118,17 +1331,41 @@
 
         /* =========================================
            ELEMENTOS
-        ========================================= */
+        ========================================== */
 
-        const dataAtual =
+        const audio =
             document.getElementById(
-                "dataAtual"
+                "radioAudio"
             );
 
 
-        const horaAtual =
+        const botaoPlay =
             document.getElementById(
-                "horaAtual"
+                "botaoPlay"
+            );
+
+
+        const botaoIniciar =
+            document.getElementById(
+                "botaoIniciar"
+            );
+
+
+        const controleVolume =
+            document.getElementById(
+                "controleVolume"
+            );
+
+
+        const volumeValor =
+            document.getElementById(
+                "volumeValor"
+            );
+
+
+        const iconeVolume =
+            document.getElementById(
+                "iconeVolume"
             );
 
 
@@ -1144,34 +1381,63 @@
             );
 
 
+        const descricaoRadio =
+            document.getElementById(
+                "descricaoRadio"
+            );
+
+
         const monitoramentoTexto =
             document.getElementById(
                 "monitoramentoTexto"
             );
 
 
-        const ultimaVerificacao =
+        const eventoTexto =
             document.getElementById(
-                "ultimaVerificacao"
+                "eventoTexto"
             );
 
 
-        const botaoTeste =
+        const dataAtual =
             document.getElementById(
-                "botaoTeste"
+                "dataAtual"
             );
 
 
-        const botaoInicio =
+        const horaAtual =
             document.getElementById(
-                "botaoInicio"
+                "horaAtual"
             );
 
 
-        const radioPlayer =
-            document.getElementById(
-                "radioPlayer"
-            );
+
+        /* =========================================
+           ESTADO
+        ========================================== */
+
+        let estadoRadio =
+            "iniciando";
+
+
+        let ultimoEstado =
+            "iniciando";
+
+
+        let inicioPossivelOffline =
+            null;
+
+
+        let contadorReconexao =
+            0;
+
+
+        let usuarioPausou =
+            false;
+
+
+        let wakeLock =
+            null;
 
 
 
@@ -1220,47 +1486,85 @@
 
 
         /* =========================================
-           STATUS VISUAL
+           DATA/HORA FORMATADA
+        ========================================== */
+
+        function dataHoraAtual() {
+
+            const agora =
+                new Date();
+
+
+            return (
+                agora.toLocaleDateString(
+                    "pt-BR"
+                ) +
+                " às " +
+                agora.toLocaleTimeString(
+                    "pt-BR"
+                )
+            );
+
+        }
+
+
+
+        /* =========================================
+           ALTERAR STATUS
         ========================================== */
 
         function definirStatus(
-            status
+            novoStatus,
+            mensagem
         ) {
 
+            estadoRadio =
+                novoStatus;
+
+
             statusRadio.classList.remove(
-                "offline",
-                "atencao"
+                "atencao",
+                "offline"
             );
 
 
             if (
-                status ===
+                novoStatus ===
                 "online"
             ) {
 
                 statusTexto.textContent =
                     "RÁDIO ONLINE";
 
+
+                descricaoRadio.textContent =
+                    "Transmissão reproduzindo normalmente.";
+
             }
 
 
-            if (
-                status ===
-                "atencao"
+            else if (
+                novoStatus ===
+                "pausada"
             ) {
 
                 statusRadio.classList.add(
-                    "atencao"
+                    "offline"
                 );
 
+
                 statusTexto.textContent =
-                    "VERIFICANDO";
+                    "RÁDIO PAUSADA";
+
+
+                descricaoRadio.textContent =
+                    "A reprodução foi pausada neste posto.";
 
             }
 
 
-            if (
-                status ===
+            else if (
+                novoStatus ===
                 "offline"
             ) {
 
@@ -1268,8 +1572,40 @@
                     "offline"
                 );
 
+
                 statusTexto.textContent =
                     "RÁDIO OFFLINE";
+
+
+                descricaoRadio.textContent =
+                    "Não foi possível manter a transmissão.";
+
+            }
+
+
+            else {
+
+                statusRadio.classList.add(
+                    "atencao"
+                );
+
+
+                statusTexto.textContent =
+                    "VERIFICANDO";
+
+
+                descricaoRadio.textContent =
+                    "Verificando transmissão...";
+
+            }
+
+
+            if (
+                mensagem
+            ) {
+
+                monitoramentoTexto.innerHTML =
+                    mensagem;
 
             }
 
@@ -1278,155 +1614,241 @@
 
 
         /* =========================================
-           DATA DA VERIFICAÇÃO
+           REGISTRAR EVENTO
         ========================================== */
 
-        function registrarVerificacao() {
+        function registrarEvento(
+            texto
+        ) {
 
-            const agora =
-                new Date();
+            eventoTexto.textContent =
+                texto;
 
 
-            ultimaVerificacao.textContent =
-                agora.toLocaleTimeString(
-                    "pt-BR",
-                    {
-                        hour:
-                            "2-digit",
-
-                        minute:
-                            "2-digit",
-
-                        second:
-                            "2-digit"
-                    }
-                );
+            console.log(
+                "[EVENTO]",
+                texto
+            );
 
         }
 
 
 
         /* =========================================
-           TESTE REAL DO STREAM
-           
-           Faz uma requisição HEAD.
-           
-           IMPORTANTE:
-           Se o servidor não permitir CORS,
-           o navegador poderá bloquear a leitura
-           mesmo que o stream esteja funcionando.
+           CONFIGURAR VOLUME
         ========================================== */
 
-        async function testarStream() {
+        function atualizarVolume() {
 
-            registrarVerificacao();
+            const valor =
+                Number(
+                    controleVolume.value
+                );
 
 
-            definirStatus(
-                "atencao"
+            audio.volume =
+                valor;
+
+
+            volumeValor.textContent =
+                Math.round(
+                    valor * 100
+                ) +
+                "%";
+
+
+            if (
+                valor === 0
+            ) {
+
+                iconeVolume.textContent =
+                    "🔇";
+
+            }
+
+            else if (
+                valor < 0.5
+            ) {
+
+                iconeVolume.textContent =
+                    "🔉";
+
+            }
+
+            else {
+
+                iconeVolume.textContent =
+                    "🔊";
+
+            }
+
+        }
+
+
+        controleVolume.addEventListener(
+            "input",
+            atualizarVolume
+        );
+
+
+        atualizarVolume();
+
+
+
+        /* =========================================
+           DEFINIR ÍCONE DO PLAY
+        ========================================== */
+
+        function atualizarBotaoPlay() {
+
+            if (
+                !audio.paused &&
+                !audio.ended
+            ) {
+
+                botaoPlay.textContent =
+                    "⏸";
+
+                botaoPlay.title =
+                    "Pausar";
+
+                botaoPlay.classList.remove(
+                    "pausado"
+                );
+
+            }
+
+            else {
+
+                botaoPlay.textContent =
+                    "▶";
+
+                botaoPlay.title =
+                    "Reproduzir";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           CARREGAR STREAM
+        ========================================== */
+
+        function carregarStream() {
+
+            console.log(
+                "Carregando stream:",
+                CONFIG.stream
             );
 
 
-            monitoramentoTexto.innerHTML =
+            audio.src =
+                CONFIG.stream;
 
-                "🟡 <strong>Testando stream...</strong>";
+
+            audio.load();
+
+        }
+
+
+
+        /* =========================================
+           INICIAR RÁDIO
+        ========================================== */
+
+        async function iniciarRadio(
+            origem = "sistema"
+        ) {
+
+            usuarioPausou =
+                false;
+
+
+            definirStatus(
+                "verificando",
+                "🟡 <strong>Conectando à rádio...</strong>"
+            );
 
 
             try {
 
-                const resposta =
-                    await fetch(
-                        CONFIG.stream,
-                        {
-                            method:
-                                "GET",
-
-                            mode:
-                                "cors",
-
-                            cache:
-                                "no-store",
-
-                            headers:
-                                {
-                                    "Accept":
-                                        "audio/mpeg,audio/aac,*/*"
-                                }
-                        }
-                    );
-
-
-                console.log(
-                    "Resposta do stream:",
-                    resposta.status,
-                    resposta.statusText
-                );
-
-
                 if (
-                    resposta.ok
+                    !audio.src
                 ) {
 
-                    definirStatus(
-                        "online"
-                    );
-
-
-                    monitoramentoTexto.innerHTML =
-
-                        "🟢 <strong>Stream online.</strong> " +
-
-                        "Servidor respondeu " +
-                        resposta.status +
-                        " " +
-                        resposta.statusText +
-                        ".";
-
-
-                    return true;
+                    carregarStream();
 
                 }
 
 
-                definirStatus(
-                    "offline"
+                await audio.play();
+
+
+                contadorReconexao =
+                    0;
+
+
+                inicioPossivelOffline =
+                    null;
+
+
+                botaoIniciar.classList.remove(
+                    "visivel"
                 );
 
 
-                monitoramentoTexto.innerHTML =
-
-                    "🔴 <strong>Stream offline.</strong> " +
-
-                    "Servidor respondeu " +
-                    resposta.status +
-                    ".";
+                atualizarBotaoPlay();
 
 
-                return false;
+                definirStatus(
+                    "online",
+                    "🟢 <strong>Rádio reproduzindo.</strong> " +
+                    "A transmissão está ativa neste posto."
+                );
+
+
+                registrarEvento(
+                    "Rádio iniciada em " +
+                    dataHoraAtual() +
+                    ". Origem: " +
+                    origem +
+                    "."
+                );
+
+
+                console.log(
+                    "RÁDIO INICIADA"
+                );
 
             }
 
             catch (erro) {
 
-                console.error(
-                    "Erro ao testar stream:",
+                console.warn(
+                    "Não foi possível iniciar automaticamente:",
                     erro
                 );
 
 
                 definirStatus(
-                    "offline"
+                    "verificando",
+                    "🟡 <strong>Aguardando início.</strong> " +
+                    "O navegador bloqueou o início automático com áudio."
                 );
 
 
-                monitoramentoTexto.innerHTML =
-
-                    "🔴 <strong>Não foi possível confirmar o stream.</strong><br>" +
-
-                    "Verifique o Console (F12) para detalhes.";
+                botaoIniciar.classList.add(
+                    "visivel"
+                );
 
 
-                return false;
+                registrarEvento(
+                    "Autoplay bloqueado pelo navegador em " +
+                    dataHoraAtual() +
+                    "."
+                );
 
             }
 
@@ -1435,28 +1857,65 @@
 
 
         /* =========================================
-           TESTE MANUAL
+           BOTÃO PLAY / PAUSE
         ========================================== */
 
-        botaoTeste.addEventListener(
+        botaoPlay.addEventListener(
             "click",
             async function () {
 
-                botaoTeste.disabled =
-                    true;
+                if (
+                    audio.paused
+                ) {
 
-                botaoTeste.textContent =
-                    "TESTANDO...";
+                    await iniciarRadio(
+                        "usuário"
+                    );
+
+                }
+
+                else {
+
+                    usuarioPausou =
+                        true;
 
 
-                await testarStream();
+                    audio.pause();
 
 
-                botaoTeste.disabled =
-                    false;
+                    definirStatus(
+                        "pausada",
+                        "🔴 <strong>Rádio pausada.</strong> " +
+                        "A reprodução foi interrompida neste posto."
+                    );
 
-                botaoTeste.textContent =
-                    "TESTAR STREAM";
+
+                    registrarEvento(
+                        "Rádio pausada manualmente em " +
+                        dataHoraAtual() +
+                        "."
+                    );
+
+
+                    botaoPlay.classList.add(
+                        "pausado"
+                    );
+
+
+                    atualizarBotaoPlay();
+
+                    /*
+                       FUTURO ALERTA:
+
+                       enviarAlertaEmail({
+                           tipo: "PAUSADA",
+                           posto: CONFIG.posto,
+                           dataHora: dataHoraAtual()
+                       });
+
+                    */
+
+                }
 
             }
         );
@@ -1464,64 +1923,436 @@
 
 
         /* =========================================
-           INICIALIZAÇÃO
+           BOTÃO INICIAR
         ========================================== */
 
-        testarStream();
+        botaoIniciar.addEventListener(
+            "click",
+            async function () {
 
+                await iniciarRadio(
+                    "botão iniciar"
+                );
 
-
-        /* =========================================
-           TESTE AUTOMÁTICO
-        ========================================== */
-
-        setInterval(
-            function () {
-
-                testarStream();
-
-            },
-            CONFIG.intervalo
+            }
         );
 
 
 
         /* =========================================
-           BOTÃO PARA INICIAR O PLAYER
+           EVENTO PLAY
         ========================================== */
 
-        botaoInicio.addEventListener(
-            "click",
+        audio.addEventListener(
+            "play",
             function () {
 
+                usuarioPausou =
+                    false;
+
+
+                atualizarBotaoPlay();
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO PLAYING
+        ========================================== */
+
+        audio.addEventListener(
+            "playing",
+            function () {
+
+                inicioPossivelOffline =
+                    null;
+
+                contadorReconexao =
+                    0;
+
+
+                definirStatus(
+                    "online",
+                    "🟢 <strong>Rádio online.</strong> " +
+                    "Áudio sendo recebido normalmente."
+                );
+
+
+                atualizarBotaoPlay();
+
+
+                registrarEvento(
+                    "Rádio reproduzindo normalmente em " +
+                    dataHoraAtual() +
+                    "."
+                );
+
+
+                console.log(
+                    "EVENTO PLAYING"
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO PAUSE
+        ========================================== */
+
+        audio.addEventListener(
+            "pause",
+            function () {
+
+                atualizarBotaoPlay();
+
+
+                if (
+                    usuarioPausou
+                ) {
+
+                    definirStatus(
+                        "pausada",
+                        "🔴 <strong>Rádio pausada.</strong> " +
+                        "A reprodução foi interrompida neste posto."
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO WAITING
+        ========================================== */
+
+        audio.addEventListener(
+            "waiting",
+            function () {
+
+                if (
+                    !usuarioPausou
+                ) {
+
+                    definirStatus(
+                        "verificando",
+                        "🟡 <strong>Stream aguardando dados.</strong> " +
+                        "Verificando continuidade da transmissão."
+                    );
+
+                }
+
+
+                console.log(
+                    "EVENTO WAITING"
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO STALLED
+        ========================================== */
+
+        audio.addEventListener(
+            "stalled",
+            function () {
+
+                if (
+                    !usuarioPausou
+                ) {
+
+                    definirStatus(
+                        "verificando",
+                        "🟡 <strong>Stream sem novos dados.</strong> " +
+                        "Aguardando confirmação."
+                    );
+
+                }
+
+
+                console.log(
+                    "EVENTO STALLED"
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           EVENTO ERRO
+        ========================================== */
+
+        audio.addEventListener(
+            "error",
+            function () {
+
+                if (
+                    usuarioPausou
+                ) {
+
+                    return;
+
+                }
+
+
+                contadorReconexao++;
+
+
+                definirStatus(
+                    "offline",
+                    "🔴 <strong>Falha na transmissão.</strong> " +
+                    "Tentativa de reconexão " +
+                    contadorReconexao +
+                    "."
+                );
+
+
+                if (
+                    !inicioPossivelOffline
+                ) {
+
+                    inicioPossivelOffline =
+                        Date.now();
+
+                }
+
+
+                registrarEvento(
+                    "Falha no stream detectada em " +
+                    dataHoraAtual() +
+                    "."
+                );
+
+
+                console.error(
+                    "ERRO DO ÁUDIO:",
+                    audio.error
+                );
+
+
+                tentarReconectar();
+
+            }
+        );
+
+
+
+        /* =========================================
+           RECONEXÃO
+        ========================================== */
+
+        function tentarReconectar() {
+
+            if (
+                usuarioPausou
+            ) {
+
+                return;
+
+            }
+
+
+            setTimeout(
+                async function () {
+
+                    console.log(
+                        "Tentando reconectar..."
+                    );
+
+
+                    try {
+
+                        audio.src =
+                            "";
+
+                        audio.load();
+
+
+                        audio.src =
+                            CONFIG.stream;
+
+                        audio.load();
+
+
+                        await audio.play();
+
+
+                        contadorReconexao =
+                            0;
+
+
+                        inicioPossivelOffline =
+                            null;
+
+
+                        definirStatus(
+                            "online",
+                            "🟢 <strong>Rádio restabelecida.</strong> " +
+                            "A transmissão voltou."
+                        );
+
+
+                        registrarEvento(
+                            "Rádio restabelecida em " +
+                            dataHoraAtual() +
+                            "."
+                        );
+
+                    }
+
+                    catch (erro) {
+
+                        console.warn(
+                            "Reconexão falhou:",
+                            erro
+                        );
+
+                    }
+
+                },
+                5000
+            );
+
+        }
+
+
+
+        /* =========================================
+           MONITORAMENTO LOCAL
+        ========================================== */
+
+        function verificarEstadoLocal() {
+
+            if (
+                usuarioPausou
+            ) {
+
+                return;
+
+            }
+
+
+            /*
+               Se o áudio deveria estar tocando,
+               mas o elemento está pausado,
+               significa que a reprodução parou.
+            */
+
+            if (
+                audio.paused &&
+                estadoRadio ===
+                "online"
+            ) {
+
+                definirStatus(
+                    "offline",
+                    "🔴 <strong>Rádio interrompida.</strong> " +
+                    "A reprodução parou inesperadamente."
+                );
+
+
+                if (
+                    !inicioPossivelOffline
+                ) {
+
+                    inicioPossivelOffline =
+                        Date.now();
+
+                }
+
+
+                registrarEvento(
+                    "Reprodução interrompida inesperadamente em " +
+                    dataHoraAtual() +
+                    "."
+                );
+
+
+                tentarReconectar();
+
+            }
+
+        }
+
+
+        setInterval(
+            verificarEstadoLocal,
+            CONFIG.intervaloMonitor
+        );
+
+
+
+        /* =========================================
+           VERIFICAÇÃO DE DURAÇÃO DA QUEDA
+        ========================================== */
+
+        function verificarQuedaConfirmada() {
+
+            if (
+                !inicioPossivelOffline
+            ) {
+
+                return;
+
+            }
+
+
+            const tempoOffline =
+                Date.now() -
+                inicioPossivelOffline;
+
+
+            if (
+                tempoOffline >=
+                CONFIG.tempoConfirmacaoOffline
+            ) {
+
                 /*
-                   O iframe pertence a outro domínio.
+                   IMPORTANTE:
 
-                   Portanto não conseguimos executar
-                   diretamente o botão Play interno.
+                   Aqui NÃO enviamos o e-mail ainda.
 
-                   Ao clicar aqui, recarregamos o
-                   player para que o autoplay seja
-                   tentado novamente após uma interação
-                   real do usuário.
+                   Esta função será substituída na próxima
+                   etapa pelo envio real para:
+
+                   administracao@postosgraciosa.com.br
                 */
 
-                radioPlayer.src =
-                    radioPlayer.src;
+                console.warn(
+                    "QUEDA CONFIRMADA"
+                );
 
 
-                botaoInicio.classList.remove(
-                    "visivel"
+                registrarEvento(
+                    "Interrupção confirmada em " +
+                    dataHoraAtual() +
+                    ". Alerta preparado para envio."
                 );
 
 
                 monitoramentoTexto.innerHTML =
 
-                    "🟢 <strong>Player reiniciado.</strong> " +
+                    "🔴 <strong>Interrupção confirmada.</strong> " +
 
-                    "Aguardando reprodução.";
+                    "O sistema está preparado para gerar o alerta.";
 
             }
+
+        }
+
+
+        setInterval(
+            verificarQuedaConfirmada,
+            5000
         );
 
 
@@ -1534,22 +2365,18 @@
             "online",
             function () {
 
-                definirStatus(
-                    "atencao"
+                console.log(
+                    "Internet restabelecida."
                 );
 
 
-                monitoramentoTexto.innerHTML =
+                if (
+                    !usuarioPausou
+                ) {
 
-                    "🟡 <strong>Internet restabelecida.</strong> " +
+                    tentarReconectar();
 
-                    "Testando rádio...";
-
-
-                setTimeout(
-                    testarStream,
-                    2000
-                );
+                }
 
             }
         );
@@ -1559,14 +2386,37 @@
             "offline",
             function () {
 
+                if (
+                    usuarioPausou
+                ) {
+
+                    return;
+
+                }
+
+
                 definirStatus(
-                    "offline"
+                    "offline",
+                    "🔴 <strong>Internet desconectada.</strong> " +
+                    "Aguardando conexão."
                 );
 
 
-                monitoramentoTexto.innerHTML =
+                if (
+                    !inicioPossivelOffline
+                ) {
 
-                    "🔴 <strong>Internet desconectada.</strong>";
+                    inicioPossivelOffline =
+                        Date.now();
+
+                }
+
+
+                registrarEvento(
+                    "Internet desconectada em " +
+                    dataHoraAtual() +
+                    "."
+                );
 
             }
         );
@@ -1576,10 +2426,6 @@
         /* =========================================
            WAKE LOCK
         ========================================== */
-
-        let wakeLock =
-            null;
-
 
         async function ativarWakeLock() {
 
@@ -1593,6 +2439,7 @@
                         await navigator.wakeLock.request(
                             "screen"
                         );
+
 
                     console.log(
                         "Wake Lock ativado."
@@ -1633,8 +2480,6 @@
 
                     await ativarWakeLock();
 
-                    testarStream();
-
                 }
 
             }
@@ -1643,35 +2488,15 @@
 
 
         /* =========================================
-           RECARREGAMENTO DE SEGURANÇA
-           A CADA 6 HORAS
-        ========================================== */
-
-        setInterval(
-            function () {
-
-                location.reload();
-
-            },
-            6 * 60 * 60 * 1000
-        );
-
-
-
-        /* =========================================
-           INFORMAÇÕES NO CONSOLE
+           INICIALIZAÇÃO
         ========================================== */
 
         console.log(
-            "================================="
+            "======================================"
         );
 
         console.log(
             "MONITORAMENTO DA RÁDIO"
-        );
-
-        console.log(
-            "================================="
         );
 
         console.log(
@@ -1685,6 +2510,11 @@
         );
 
         console.log(
+            "Source:",
+            CONFIG.source
+        );
+
+        console.log(
             "Stream:",
             CONFIG.stream
         );
@@ -1695,8 +2525,52 @@
         );
 
         console.log(
-            "Monitoramento iniciado."
+            "======================================"
         );
+
+
+        registrarEvento(
+            "Sistema iniciado em " +
+            dataHoraAtual() +
+            "."
+        );
+
+
+        carregarStream();
+
+
+        /*
+           Tenta iniciar automaticamente.
+
+           Se o Chrome bloquear o autoplay,
+           o botão será exibido.
+        */
+
+        iniciarRadio(
+            "autoplay"
+        );
+
+
+
+        /* =========================================
+           SEGURANÇA
+           RECARREGAMENTO A CADA 6 HORAS
+        ========================================== */
+
+        setInterval(
+            function () {
+
+                console.log(
+                    "Recarregamento preventivo."
+                );
+
+
+                location.reload();
+
+            },
+            6 * 60 * 60 * 1000
+        );
+
 
     </script>
 
@@ -1704,3 +2578,4 @@
 </body>
 
 </html>
+
