@@ -13,7 +13,7 @@
 
     <meta
         name="description"
-        content="Monitoramento 24 horas da Rádio - Posto Graciosa"
+        content="Central de monitoramento das rádios dos Postos Graciosa"
     >
 
     <meta
@@ -22,7 +22,7 @@
     >
 
     <title>
-        Rádio | Posto Graciosa
+        Monitoramento de Rádio | Postos Graciosa
     </title>
 
 
@@ -44,21 +44,16 @@
         ========================================== */
 
         * {
-
             margin: 0;
             padding: 0;
-
             box-sizing: border-box;
-
         }
 
 
         html,
         body {
-
             width: 100%;
             min-height: 100%;
-
         }
 
 
@@ -81,36 +76,22 @@
 
             min-height: 100vh;
 
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 24px;
+            padding: 25px;
 
         }
 
 
         /* =========================================
-           PÁGINA
+           CONTAINER
         ========================================== */
 
-        .pagina {
+        .container {
 
             width: 100%;
 
-            max-width: 960px;
+            max-width: 1250px;
 
-            background: #ffffff;
-
-            border-radius: 22px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 18px 55px
-                rgba(14, 104, 53, 0.14);
+            margin: 0 auto;
 
         }
 
@@ -130,7 +111,13 @@
 
             color: #ffffff;
 
+            border-radius: 22px;
+
             padding: 28px 32px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(14,104,53,0.15);
 
             display: flex;
 
@@ -139,6 +126,8 @@
             justify-content: space-between;
 
             gap: 25px;
+
+            margin-bottom: 22px;
 
         }
 
@@ -154,19 +143,16 @@
         }
 
 
-        .icone-radio {
+        .icone {
 
-            width: 56px;
-            height: 56px;
+            width: 58px;
 
-            border-radius: 16px;
+            height: 58px;
+
+            border-radius: 17px;
 
             background:
                 rgba(255,255,255,0.14);
-
-            border:
-                1px solid
-                rgba(255,255,255,0.20);
 
             display: flex;
 
@@ -174,22 +160,22 @@
 
             justify-content: center;
 
-            font-size: 27px;
+            font-size: 28px;
 
         }
 
 
         .empresa {
 
-            font-size: 12px;
+            font-size: 11px;
 
-            font-weight: 700;
+            font-weight: 800;
 
             text-transform: uppercase;
 
-            letter-spacing: 1.5px;
+            letter-spacing: 1.6px;
 
-            opacity: 0.82;
+            opacity: .75;
 
             margin-bottom: 5px;
 
@@ -198,20 +184,133 @@
 
         .titulo {
 
-            font-size: 28px;
+            font-size: 27px;
 
             font-weight: 800;
-
-            line-height: 1.1;
 
         }
 
 
         .subtitulo {
 
-            font-size: 13px;
+            font-size: 12px;
 
-            opacity: 0.82;
+            margin-top: 6px;
+
+            opacity: .78;
+
+        }
+
+
+        /* =========================================
+           RELÓGIO
+        ========================================== */
+
+        .relogio {
+
+            text-align: right;
+
+        }
+
+
+        .relogio-label {
+
+            display: block;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            opacity: .7;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .hora {
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            font-variant-numeric:
+                tabular-nums;
+
+        }
+
+
+        .data {
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            opacity: .75;
+
+        }
+
+
+        /* =========================================
+           RESUMO
+        ========================================== */
+
+        .resumo {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .resumo-card {
+
+            background: #ffffff;
+
+            border:
+                1px solid #e4ebe6;
+
+            border-radius: 16px;
+
+            padding: 18px 20px;
+
+            box-shadow:
+                0 5px 18px
+                rgba(0,0,0,.035);
+
+        }
+
+
+        .resumo-label {
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: #7b847e;
+
+            font-weight: 700;
+
+        }
+
+
+        .resumo-numero {
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            color: #0e6835;
 
             margin-top: 7px;
 
@@ -219,207 +318,10 @@
 
 
         /* =========================================
-           STATUS
+           TÍTULO SEÇÃO
         ========================================== */
 
-        .status {
-
-            min-width: 195px;
-
-            padding: 13px 17px;
-
-            border-radius: 14px;
-
-            background:
-                rgba(255,255,255,0.12);
-
-            border:
-                1px solid
-                rgba(255,255,255,0.16);
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 11px;
-
-        }
-
-
-        .status-ponto {
-
-            width: 12px;
-            height: 12px;
-
-            border-radius: 50%;
-
-            background: #31dc86;
-
-            box-shadow:
-                0 0 0 5px
-                rgba(49,220,134,0.15);
-
-            flex-shrink: 0;
-
-        }
-
-
-        .status-info {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 3px;
-
-        }
-
-
-        .status-label {
-
-            font-size: 10px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            opacity: 0.72;
-
-        }
-
-
-        .status-texto {
-
-            font-size: 13px;
-
-            font-weight: 800;
-
-        }
-
-
-        .status.atencao .status-ponto {
-
-            background: #e7b91d;
-
-            box-shadow:
-                0 0 0 5px
-                rgba(231,185,29,0.15);
-
-        }
-
-
-        .status.offline .status-ponto {
-
-            background: #e53935;
-
-            box-shadow:
-                0 0 0 5px
-                rgba(229,57,53,0.15);
-
-        }
-
-
-        /* =========================================
-           CONTEÚDO
-        ========================================== */
-
-        .conteudo {
-
-            padding: 32px;
-
-        }
-
-
-        /* =========================================
-           INFORMAÇÕES
-        ========================================== */
-
-        .informacoes {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 15px;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .info-card {
-
-            border:
-                1px solid #e6ebe8;
-
-            background: #f8faf9;
-
-            border-radius: 15px;
-
-            padding: 18px 20px;
-
-        }
-
-
-        .info-label {
-
-            display: block;
-
-            color: #7a827d;
-
-            font-size: 10px;
-
-            font-weight: 700;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        .info-valor {
-
-            color: #0e6835;
-
-            font-size: 20px;
-
-            font-weight: 800;
-
-        }
-
-
-        /* =========================================
-           PLAYER
-        ========================================== */
-
-        .player-area {
-
-            border:
-                1px solid #e3e8e5;
-
-            border-radius: 17px;
-
-            overflow: hidden;
-
-            background: #ffffff;
-
-            box-shadow:
-                0 5px 18px
-                rgba(0,0,0,0.04);
-
-        }
-
-
-        .player-cabecalho {
-
-            padding: 16px 20px;
-
-            border-bottom:
-                1px solid #e9edeb;
+        .titulo-secao {
 
             display: flex;
 
@@ -429,291 +331,106 @@
 
             gap: 15px;
 
+            margin:
+                5px 0 15px;
+
         }
 
 
-        .player-nome {
+        .titulo-secao h2 {
 
-            display: flex;
-
-            align-items: center;
-
-            gap: 9px;
-
-            font-size: 14px;
+            font-size: 18px;
 
             font-weight: 800;
 
         }
 
 
-        .ao-vivo {
+        .titulo-secao span {
 
-            font-size: 10px;
+            font-size: 11px;
 
-            font-weight: 800;
-
-            color: #0e6835;
-
-            background: #e9f6ee;
-
-            padding: 6px 10px;
-
-            border-radius: 20px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.7px;
+            color: #7b847e;
 
         }
 
 
         /* =========================================
-           PLAYER PRÓPRIO
+           GRID DOS POSTOS
         ========================================== */
 
-        .player-controles {
+        .postos {
 
-            padding: 25px 24px;
+            display: grid;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #f8faf9,
-                    #ffffff
-                );
-
-        }
-
-
-        .player-principal {
-
-            display: flex;
-
-            align-items: center;
+            grid-template-columns:
+                repeat(2, 1fr);
 
             gap: 18px;
 
         }
 
 
-        .botao-play {
+        /* =========================================
+           CARD POSTO
+        ========================================== */
 
-            width: 64px;
-            height: 64px;
+        .posto {
 
-            border: 0;
+            background: #ffffff;
 
-            border-radius: 50%;
+            border:
+                1px solid #e2e9e4;
 
-            background: #0e6835;
+            border-radius: 19px;
 
-            color: #ffffff;
-
-            font-size: 25px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            cursor: pointer;
-
-            flex-shrink: 0;
+            overflow: hidden;
 
             box-shadow:
-                0 7px 20px
-                rgba(14,104,53,0.22);
-
-            transition:
-                transform 0.15s ease,
-                background 0.15s ease;
+                0 7px 24px
+                rgba(0,0,0,.045);
 
         }
 
 
-        .botao-play:hover {
+        .posto-topo {
 
-            background: #095429;
-
-            transform: scale(1.04);
-
-        }
-
-
-        .botao-play.pausado {
-
-            background: #e53935;
-
-        }
-
-
-        .informacao-player {
-
-            flex: 1;
-
-            min-width: 0;
-
-        }
-
-
-        .nome-radio {
-
-            font-size: 18px;
-
-            font-weight: 800;
-
-            color: #1f2937;
-
-        }
-
-
-        .descricao-radio {
-
-            margin-top: 5px;
-
-            font-size: 12px;
-
-            color: #737b76;
-
-        }
-
-
-        .controles-volume {
+            padding: 20px 22px;
 
             display: flex;
 
             align-items: center;
 
-            gap: 10px;
-
-            margin-top: 18px;
-
-        }
-
-
-        .icone-volume {
-
-            font-size: 18px;
-
-            width: 28px;
-
-            text-align: center;
-
-        }
-
-
-        .volume {
-
-            flex: 1;
-
-            height: 5px;
-
-            accent-color: #0e6835;
-
-            cursor: pointer;
-
-        }
-
-
-        .volume-valor {
-
-            width: 42px;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            color: #66706a;
-
-            text-align: right;
-
-        }
-
-
-        /* =========================================
-           BOTÃO INICIAR
-        ========================================== */
-
-        .botao-iniciar {
-
-            display: none;
-
-            width: 100%;
-
-            margin-top: 18px;
-
-            padding: 14px;
-
-            border: 0;
-
-            border-radius: 12px;
-
-            background: #0e6835;
-
-            color: #ffffff;
-
-            font-size: 13px;
-
-            font-weight: 800;
-
-            cursor: pointer;
-
-        }
-
-
-        .botao-iniciar.visivel {
-
-            display: block;
-
-        }
-
-
-        .botao-iniciar:hover {
-
-            background: #095429;
-
-        }
-
-
-        /* =========================================
-           MONITORAMENTO
-        ========================================== */
-
-        .monitoramento {
-
-            margin-top: 24px;
-
-            display: grid;
-
-            grid-template-columns:
-                auto 1fr;
+            justify-content: space-between;
 
             gap: 15px;
 
-            align-items: center;
-
-            padding: 18px 20px;
-
-            border-radius: 15px;
-
-            background: #f8faf9;
-
-            border:
-                1px solid #e5ebe7;
+            border-bottom:
+                1px solid #edf0ee;
 
         }
 
 
-        .monitor-icone {
+        .posto-nome {
 
-            width: 42px;
-            height: 42px;
+            display: flex;
 
-            border-radius: 12px;
+            align-items: center;
 
-            background: #e9f6ee;
+            gap: 12px;
+
+        }
+
+
+        .posto-icone {
+
+            width: 43px;
+
+            height: 43px;
+
+            border-radius: 13px;
+
+            background: #eef6f1;
 
             display: flex;
 
@@ -726,24 +443,249 @@
         }
 
 
-        .monitor-titulo {
+        .posto-titulo {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .posto-source {
+
+            font-size: 10px;
+
+            color: #8a938d;
+
+            margin-top: 4px;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================== */
+
+        .badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 7px 10px;
+
+            border-radius: 30px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            white-space: nowrap;
+
+        }
+
+
+        .badge-ponto {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+        }
+
+
+        .online {
+
+            color: #0e6835;
+
+            background: #eaf7ef;
+
+        }
+
+
+        .offline {
+
+            color: #c62828;
+
+            background: #ffeded;
+
+        }
+
+
+        .atencao {
+
+            color: #a27600;
+
+            background: #fff8df;
+
+        }
+
+
+        .aguardando {
+
+            color: #66706a;
+
+            background: #f0f2f1;
+
+        }
+
+
+        /* =========================================
+           PLAYER
+        ========================================== */
+
+        .player {
+
+            padding: 20px 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fbfcfb,
+                    #ffffff
+                );
+
+        }
+
+
+        .player-controles {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+        }
+
+
+        .play {
+
+            width: 53px;
+
+            height: 53px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: #0e6835;
+
+            color: #ffffff;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 5px 15px
+                rgba(14,104,53,.20);
+
+        }
+
+
+        .play:hover {
+
+            background: #095429;
+
+        }
+
+
+        .play.pausado {
+
+            background: #c62828;
+
+        }
+
+
+        .player-info {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+
+        .player-status {
 
             font-size: 13px;
 
             font-weight: 800;
 
-            margin-bottom: 5px;
+        }
+
+
+        .player-descricao {
+
+            font-size: 10px;
+
+            color: #7b847e;
+
+            margin-top: 5px;
 
         }
 
 
-        .monitor-texto {
+        /* =========================================
+           VOLUME
+        ========================================== */
 
-            font-size: 12px;
+        .volume-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-top: 17px;
+
+        }
+
+
+        .volume-icon {
+
+            font-size: 15px;
+
+            width: 20px;
+
+        }
+
+
+        .volume {
+
+            flex: 1;
+
+            height: 4px;
+
+            accent-color: #0e6835;
+
+            cursor: pointer;
+
+        }
+
+
+        .volume-percent {
+
+            width: 38px;
+
+            text-align: right;
+
+            font-size: 10px;
 
             color: #707873;
-
-            line-height: 1.5;
 
         }
 
@@ -754,42 +696,163 @@
 
         .evento {
 
-            margin-top: 15px;
+            padding:
+                14px 22px 17px;
 
-            padding: 15px 18px;
-
-            border-radius: 12px;
-
-            background: #ffffff;
-
-            border:
-                1px solid #e5ebe7;
+            border-top:
+                1px solid #edf0ee;
 
         }
 
 
-        .evento-titulo {
+        .evento-label {
 
-            font-size: 10px;
+            font-size: 9px;
 
             text-transform: uppercase;
 
             letter-spacing: 1px;
 
-            color: #7a827d;
+            color: #8a938d;
 
             font-weight: 700;
 
-            margin-bottom: 7px;
+            margin-bottom: 5px;
 
         }
 
 
         .evento-texto {
 
-            font-size: 12px;
+            font-size: 11px;
 
-            color: #374151;
+            color: #4b5563;
+
+        }
+
+
+        /* =========================================
+           HISTÓRICO
+        ========================================== */
+
+        .historico {
+
+            margin-top: 22px;
+
+            background: #ffffff;
+
+            border:
+                1px solid #e2e9e4;
+
+            border-radius: 19px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 7px 24px
+                rgba(0,0,0,.04);
+
+        }
+
+
+        .historico-topo {
+
+            padding: 20px 22px;
+
+            border-bottom:
+                1px solid #edf0ee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+
+        .historico-titulo {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .historico-subtitulo {
+
+            font-size: 10px;
+
+            color: #7b847e;
+
+            margin-top: 4px;
+
+        }
+
+
+        .historico-lista {
+
+            max-height: 360px;
+
+            overflow-y: auto;
+
+        }
+
+
+        .historico-item {
+
+            padding:
+                13px 22px;
+
+            border-bottom:
+                1px solid #f0f2f1;
+
+            display: grid;
+
+            grid-template-columns:
+                150px 1fr 90px;
+
+            align-items: center;
+
+            gap: 15px;
+
+            font-size: 11px;
+
+        }
+
+
+        .historico-item:last-child {
+
+            border-bottom: 0;
+
+        }
+
+
+        .historico-posto {
+
+            font-weight: 800;
+
+            color: #0e6835;
+
+        }
+
+
+        .historico-evento {
+
+            color: #4b5563;
+
+        }
+
+
+        .historico-hora {
+
+            text-align: right;
+
+            color: #89918c;
+
+            font-variant-numeric:
+                tabular-nums;
 
         }
 
@@ -800,22 +863,14 @@
 
         .rodape {
 
-            padding: 17px 32px;
+            padding:
+                22px 5px 5px;
 
-            border-top:
-                1px solid #e9edeb;
+            text-align: center;
 
-            display: flex;
+            color: #89918c;
 
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            color: #7b827e;
-
-            font-size: 11px;
+            font-size: 10px;
 
         }
 
@@ -831,7 +886,26 @@
            RESPONSIVO
         ========================================== */
 
-        @media (max-width: 700px) {
+        @media (max-width: 850px) {
+
+            .postos {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .resumo {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
 
             body {
 
@@ -851,59 +925,44 @@
             }
 
 
-            .status {
+            .relogio {
 
-                width: 100%;
-
-            }
-
-
-            .conteudo {
-
-                padding: 20px;
+                text-align: left;
 
             }
 
 
-            .informacoes {
+            .resumo {
+
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+
+            .historico-item {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 5px;
+
+            }
+
+
+            .historico-hora {
+
+                text-align: left;
+
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .resumo {
 
                 grid-template-columns: 1fr;
-
-            }
-
-
-            .player-principal {
-
-                align-items: flex-start;
-
-            }
-
-
-            .botao-play {
-
-                width: 56px;
-                height: 56px;
-
-                font-size: 21px;
-
-            }
-
-
-            .nome-radio {
-
-                font-size: 16px;
-
-            }
-
-
-            .rodape {
-
-                padding:
-                    16px 20px;
-
-                flex-direction: column;
-
-                align-items: flex-start;
 
             }
 
@@ -917,1243 +976,1191 @@
 <body>
 
 
-    <main class="pagina">
+<div class="container">
 
 
-        <!-- =====================================
-             CABEÇALHO
-        ====================================== -->
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
 
-        <header class="cabecalho">
-
-
-            <div class="marca">
+    <header class="cabecalho">
 
 
-                <div class="icone-radio">
-                    📻
+        <div class="marca">
+
+
+            <div class="icone">
+                📻
+            </div>
+
+
+            <div>
+
+                <div class="empresa">
+                    Postos Graciosa
                 </div>
 
 
-                <div>
-
-                    <div class="empresa">
-                        Postos Graciosa
-                    </div>
-
-
-                    <div class="titulo">
-                        Posto Graciosa
-                    </div>
-
-
-                    <div class="subtitulo">
-                        Monitoramento da rádio ambiente
-                    </div>
-
+                <div class="titulo">
+                    Monitoramento de Rádio
                 </div>
 
+
+                <div class="subtitulo">
+                    Controle das transmissões dos postos
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="relogio">
+
+            <span class="relogio-label">
+                Horário local
+            </span>
+
+
+            <div
+                id="hora"
+                class="hora"
+            >
+                --:--:--
             </div>
 
 
             <div
-                id="statusRadio"
-                class="status"
+                id="data"
+                class="data"
             >
-
-                <span
-                    class="status-ponto"
-                ></span>
-
-
-                <div class="status-info">
-
-                    <span class="status-label">
-                        Status
-                    </span>
-
-
-                    <span
-                        id="statusTexto"
-                        class="status-texto"
-                    >
-                        CONECTANDO...
-                    </span>
-
-                </div>
-
+                --/--/----
             </div>
 
+        </div>
 
-        </header>
 
-
-
-        <!-- =====================================
-             CONTEÚDO
-        ====================================== -->
-
-        <section class="conteudo">
-
-
-            <!-- =================================
-                 INFORMAÇÕES
-            ================================== -->
-
-            <div class="informacoes">
-
-
-                <div class="info-card">
-
-                    <span class="info-label">
-                        Posto
-                    </span>
-
-
-                    <span class="info-valor">
-                        Graciosa
-                    </span>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <span class="info-label">
-                        Data
-                    </span>
-
-
-                    <span
-                        id="dataAtual"
-                        class="info-valor"
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-                <div class="info-card">
-
-                    <span class="info-label">
-                        Horário
-                    </span>
-
-
-                    <span
-                        id="horaAtual"
-                        class="info-valor"
-                    >
-                        --
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- =================================
-                 PLAYER
-            ================================== -->
-
-            <section class="player-area">
-
-
-                <div class="player-cabecalho">
-
-
-                    <div class="player-nome">
-
-                        📻 Rádio Postos Graciosa
-
-                    </div>
-
-
-                    <span class="ao-vivo">
-
-                        ● AO VIVO
-
-                    </span>
-
-
-                </div>
-
-
-                <div class="player-controles">
-
-
-                    <div class="player-principal">
-
-
-                        <button
-                            id="botaoPlay"
-                            class="botao-play"
-                            type="button"
-                            title="Reproduzir"
-                        >
-
-                            ▶
-
-                        </button>
-
-
-                        <div class="informacao-player">
-
-                            <div class="nome-radio">
-
-                                Rádio Postos Graciosa
-
-                            </div>
-
-
-                            <div
-                                id="descricaoRadio"
-                                class="descricao-radio"
-                            >
-
-                                Preparando transmissão...
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="controles-volume">
-
-
-                        <div
-                            id="iconeVolume"
-                            class="icone-volume"
-                        >
-                            🔊
-                        </div>
-
-
-                        <input
-
-                            id="controleVolume"
-
-                            class="volume"
-
-                            type="range"
-
-                            min="0"
-
-                            max="1"
-
-                            step="0.01"
-
-                            value="1"
-
-                        >
-
-
-                        <div
-                            id="volumeValor"
-                            class="volume-valor"
-                        >
-                            100%
-                        </div>
-
-
-                    </div>
-
-
-                    <button
-                        id="botaoIniciar"
-                        class="botao-iniciar"
-                        type="button"
-                    >
-
-                        ▶ INICIAR RÁDIO
-
-                    </button>
-
-
-                </div>
-
-
-            </section>
-
-
-
-            <!-- =================================
-                 MONITORAMENTO
-            ================================== -->
-
-            <section class="monitoramento">
-
-
-                <div class="monitor-icone">
-                    🛡️
-                </div>
-
-
-                <div>
-
-                    <div class="monitor-titulo">
-
-                        Monitoramento 24 horas
-
-                    </div>
-
-
-                    <div
-                        id="monitoramentoTexto"
-                        class="monitor-texto"
-                    >
-
-                        Inicializando monitoramento...
-
-                    </div>
-
-                </div>
-
-
-            </section>
-
-
-
-            <!-- =================================
-                 ÚLTIMO EVENTO
-            ================================== -->
-
-            <section class="evento">
-
-
-                <div class="evento-titulo">
-
-                    Último evento
-
-                </div>
-
-
-                <div
-                    id="eventoTexto"
-                    class="evento-texto"
-                >
-
-                    Sistema iniciado.
-
-                </div>
-
-
-            </section>
-
-
-        </section>
-
-
-
-        <!-- =====================================
-             RODAPÉ
-        ====================================== -->
-
-        <footer class="rodape">
-
-
-            <span>
-
-                Postos Graciosa
-
-            </span>
-
-
-            <span>
-
-                Monitoramento:
-                <strong>24 horas</strong>
-
-            </span>
-
-
-        </footer>
-
-
-    </main>
+    </header>
 
 
 
     <!-- =========================================
-         ÁUDIO REAL DA RÁDIO
+         RESUMO
     ========================================== -->
 
-    <audio
-        id="radioAudio"
-        preload="none"
-        playsinline
-    ></audio>
+    <section class="resumo">
 
 
+        <div class="resumo-card">
 
-    <script>
+            <div class="resumo-label">
+                Total de postos
+            </div>
 
+            <div
+                id="totalPostos"
+                class="resumo-numero"
+            >
+                6
+            </div>
 
-        /* =========================================
-           CONFIGURAÇÃO
-        ========================================== */
+        </div>
 
-        const CONFIG = {
 
-            posto:
-                "Posto Graciosa",
+        <div class="resumo-card">
 
-            identificador:
-                "GRACIOSA",
+            <div class="resumo-label">
+                Online
+            </div>
 
-            source:
-                "7074",
+            <div
+                id="totalOnline"
+                class="resumo-numero"
+            >
+                0
+            </div>
 
-            stream:
-                "https://servidor33-2.brlogic.com:7200/live?source=7074",
+        </div>
 
-            email:
-                "administracao@postosgraciosa.com.br",
 
-            intervaloMonitor:
-                10000,
+        <div class="resumo-card">
 
-            tempoConfirmacaoOffline:
-                30000,
+            <div class="resumo-label">
+                Offline
+            </div>
 
-            tentativasReconexao:
-                3
+            <div
+                id="totalOffline"
+                class="resumo-numero"
+            >
+                0
+            </div>
 
-        };
+        </div>
 
 
+        <div class="resumo-card">
 
-        /* =========================================
-           ELEMENTOS
-        ========================================== */
+            <div class="resumo-label">
+                Aguardando
+            </div>
 
-        const audio =
-            document.getElementById(
-                "radioAudio"
-            );
+            <div
+                id="totalAguardando"
+                class="resumo-numero"
+            >
+                5
+            </div>
 
+        </div>
 
-        const botaoPlay =
-            document.getElementById(
-                "botaoPlay"
-            );
 
+    </section>
 
-        const botaoIniciar =
-            document.getElementById(
-                "botaoIniciar"
-            );
 
 
-        const controleVolume =
-            document.getElementById(
-                "controleVolume"
-            );
+    <!-- =========================================
+         TÍTULO
+    ========================================== -->
 
+    <div class="titulo-secao">
 
-        const volumeValor =
-            document.getElementById(
-                "volumeValor"
-            );
+        <h2>
+            Postos monitorados
+        </h2>
 
 
-        const iconeVolume =
-            document.getElementById(
-                "iconeVolume"
-            );
+        <span>
+            Monitoramento local do player
+        </span>
 
+    </div>
 
-        const statusRadio =
-            document.getElementById(
-                "statusRadio"
-            );
 
 
-        const statusTexto =
-            document.getElementById(
-                "statusTexto"
-            );
+    <!-- =========================================
+         POSTOS
+    ========================================== -->
 
+    <section
+        id="postos"
+        class="postos"
+    ></section>
 
-        const descricaoRadio =
-            document.getElementById(
-                "descricaoRadio"
-            );
 
 
-        const monitoramentoTexto =
-            document.getElementById(
-                "monitoramentoTexto"
-            );
+    <!-- =========================================
+         HISTÓRICO
+    ========================================== -->
 
+    <section class="historico">
 
-        const eventoTexto =
-            document.getElementById(
-                "eventoTexto"
-            );
 
+        <div class="historico-topo">
 
-        const dataAtual =
-            document.getElementById(
-                "dataAtual"
-            );
+            <div>
 
+                <div class="historico-titulo">
+                    Histórico de eventos
+                </div>
 
-        const horaAtual =
-            document.getElementById(
-                "horaAtual"
-            );
 
+                <div class="historico-subtitulo">
+                    Últimas alterações detectadas
+                </div>
 
+            </div>
 
-        /* =========================================
-           ESTADO
-        ========================================== */
+        </div>
 
-        let estadoRadio =
-            "iniciando";
 
+        <div
+            id="historicoLista"
+            class="historico-lista"
+        ></div>
 
-        let ultimoEstado =
-            "iniciando";
 
+    </section>
 
-        let inicioPossivelOffline =
-            null;
 
 
-        let contadorReconexao =
-            0;
+    <div class="rodape">
 
+        Postos Graciosa ·
+        <strong>
+            Monitoramento de Rádio
+        </strong>
 
-        let usuarioPausou =
-            false;
+    </div>
 
 
-        let wakeLock =
-            null;
+</div>
 
 
 
-        /* =========================================
-           RELÓGIO
-        ========================================== */
+<script>
 
-        function atualizarRelogio() {
 
-            const agora =
-                new Date();
+/* =====================================================
+   CONFIGURAÇÃO DOS POSTOS
+===================================================== */
 
+const POSTOS = [
 
-            dataAtual.textContent =
-                agora.toLocaleDateString(
-                    "pt-BR"
-                );
+    {
+        id: "graciosa",
+        nome: "POSTO GRACIOSA",
+        source: "7074",
+        ativo: true
+    },
 
+    {
+        id: "fatima",
+        nome: "POSTO FÁTIMA",
+        source: "",
+        ativo: false
+    },
 
-            horaAtual.textContent =
-                agora.toLocaleTimeString(
-                    "pt-BR",
-                    {
-                        hour:
-                            "2-digit",
+    {
+        id: "jariva",
+        nome: "POSTO JARIVA",
+        source: "",
+        ativo: false
+    },
 
-                        minute:
-                            "2-digit",
+    {
+        id: "bemer",
+        nome: "POSTO BEMER",
+        source: "",
+        ativo: false
+    },
 
-                        second:
-                            "2-digit"
-                    }
-                );
+    {
+        id: "graciosa-v",
+        nome: "POSTO GRACIOSA V",
+        source: "",
+        ativo: false
+    },
 
-        }
+    {
+        id: "pirai",
+        nome: "POSTO PIRAÍ",
+        source: "",
+        ativo: false
+    }
 
+];
 
-        atualizarRelogio();
 
 
-        setInterval(
-            atualizarRelogio,
-            1000
+/* =====================================================
+   CONFIGURAÇÃO GERAL
+===================================================== */
+
+const CONFIG = {
+
+    email:
+        "administracao@postosgraciosa.com.br",
+
+    intervaloMonitoramento:
+        5000,
+
+    confirmacaoOffline:
+        30000,
+
+    maxHistorico:
+        100
+
+};
+
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+const estados = {};
+
+
+
+/* =====================================================
+   RELÓGIO
+===================================================== */
+
+function atualizarRelogio() {
+
+    const agora =
+        new Date();
+
+
+    document.getElementById(
+        "hora"
+    ).textContent =
+        agora.toLocaleTimeString(
+            "pt-BR"
         );
 
 
+    document.getElementById(
+        "data"
+    ).textContent =
+        agora.toLocaleDateString(
+            "pt-BR",
+            {
+                weekday: "long",
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            }
+        );
 
-        /* =========================================
-           DATA/HORA FORMATADA
-        ========================================== */
-
-        function dataHoraAtual() {
-
-            const agora =
-                new Date();
+}
 
 
-            return (
-                agora.toLocaleDateString(
-                    "pt-BR"
-                ) +
-                " às " +
-                agora.toLocaleTimeString(
-                    "pt-BR"
+atualizarRelogio();
+
+
+setInterval(
+    atualizarRelogio,
+    1000
+);
+
+
+
+/* =====================================================
+   DATA/HORA
+===================================================== */
+
+function dataHora() {
+
+    const agora =
+        new Date();
+
+
+    return (
+
+        agora.toLocaleDateString(
+            "pt-BR"
+        )
+
+        +
+
+        " às "
+
+        +
+
+        agora.toLocaleTimeString(
+            "pt-BR"
+        )
+
+    );
+
+}
+
+
+
+/* =====================================================
+   HISTÓRICO
+===================================================== */
+
+let historico = [];
+
+
+function carregarHistorico() {
+
+    try {
+
+        historico =
+            JSON.parse(
+                localStorage.getItem(
+                    "monitor_radio_historico_v1"
                 )
+            ) || [];
+
+    }
+
+    catch (erro) {
+
+        historico = [];
+
+    }
+
+
+    renderizarHistorico();
+
+}
+
+
+
+function salvarHistorico() {
+
+    localStorage.setItem(
+
+        "monitor_radio_historico_v1",
+
+        JSON.stringify(
+            historico
+        )
+
+    );
+
+}
+
+
+
+/* =====================================================
+   REGISTRAR EVENTO
+===================================================== */
+
+function registrarEvento(
+    posto,
+    evento,
+    status
+) {
+
+    const registro = {
+
+        posto:
+            posto.nome,
+
+        id:
+            posto.id,
+
+        evento:
+            evento,
+
+        status:
+            status,
+
+        dataHora:
+            dataHora(),
+
+        timestamp:
+            Date.now()
+
+    };
+
+
+    historico.unshift(
+        registro
+    );
+
+
+    if (
+        historico.length >
+        CONFIG.maxHistorico
+    ) {
+
+        historico =
+            historico.slice(
+                0,
+                CONFIG.maxHistorico
             );
 
-        }
+    }
+
+
+    salvarHistorico();
+
+    renderizarHistorico();
+
+
+    console.log(
+        "[EVENTO]",
+        registro
+    );
+
+
+    /*
+       ================================================
+       FUTURO ENVIO DE E-MAIL
+
+       Aqui será conectado o sistema de alerta.
+
+       Exemplo:
+
+       enviarAlertaEmail(registro);
+
+       O registro já possui:
+
+       - posto
+       - evento
+       - status
+       - data
+       - horário
+
+       ================================================
+    */
+
+}
 
 
 
-        /* =========================================
-           ALTERAR STATUS
-        ========================================== */
+function renderizarHistorico() {
 
-        function definirStatus(
-            novoStatus,
-            mensagem
-        ) {
-
-            estadoRadio =
-                novoStatus;
+    const lista =
+        document.getElementById(
+            "historicoLista"
+        );
 
 
-            statusRadio.classList.remove(
-                "atencao",
-                "offline"
-            );
+    if (
+        !historico.length
+    ) {
+
+        lista.innerHTML =
+
+            '<div class="historico-item">' +
+
+            '<div class="historico-evento">' +
+
+            'Nenhum evento registrado ainda.'
+
+            +
+
+            '</div>' +
+
+            '</div>';
+
+        return;
+
+    }
+
+
+    lista.innerHTML =
+        historico
+        .map(
+            evento => {
+
+                let simbolo =
+                    "🟡";
+
+
+                if (
+                    evento.status ===
+                    "online"
+                ) {
+
+                    simbolo =
+                        "🟢";
+
+                }
+
+
+                if (
+                    evento.status ===
+                    "offline"
+                ) {
+
+                    simbolo =
+                        "🔴";
+
+                }
+
+
+                return (
+
+                    '<div class="historico-item">' +
+
+                    '<div class="historico-posto">' +
+
+                    simbolo +
+                    " " +
+                    evento.posto +
+
+                    '</div>' +
+
+                    '<div class="historico-evento">' +
+
+                    evento.evento +
+
+                    '</div>' +
+
+                    '<div class="historico-hora">' +
+
+                    evento.dataHora +
+
+                    '</div>' +
+
+                    '</div>'
+
+                );
+
+            }
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   CRIAR CARD DOS POSTOS
+===================================================== */
+
+function criarPostos() {
+
+    const container =
+        document.getElementById(
+            "postos"
+        );
+
+
+    container.innerHTML = "";
+
+
+    POSTOS.forEach(
+        posto => {
+
+            estados[posto.id] = {
+
+                audio:
+                    null,
+
+                estado:
+                    posto.ativo
+                        ? "iniciando"
+                        : "aguardando",
+
+                usuarioPausou:
+                    false,
+
+                inicioOffline:
+                    null,
+
+                reconectando:
+                    false
+
+            };
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "posto";
+
+
+            card.id =
+                "posto-" +
+                posto.id;
 
 
             if (
-                novoStatus ===
-                "online"
+                !posto.ativo
             ) {
 
-                statusTexto.textContent =
-                    "RÁDIO ONLINE";
-
-
-                descricaoRadio.textContent =
-                    "Transmissão reproduzindo normalmente.";
+                card.innerHTML =
+                    criarCardAguardando(
+                        posto
+                    );
 
             }
-
-
-            else if (
-                novoStatus ===
-                "pausada"
-            ) {
-
-                statusRadio.classList.add(
-                    "offline"
-                );
-
-
-                statusTexto.textContent =
-                    "RÁDIO PAUSADA";
-
-
-                descricaoRadio.textContent =
-                    "A reprodução foi pausada neste posto.";
-
-            }
-
-
-            else if (
-                novoStatus ===
-                "offline"
-            ) {
-
-                statusRadio.classList.add(
-                    "offline"
-                );
-
-
-                statusTexto.textContent =
-                    "RÁDIO OFFLINE";
-
-
-                descricaoRadio.textContent =
-                    "Não foi possível manter a transmissão.";
-
-            }
-
 
             else {
 
-                statusRadio.classList.add(
-                    "atencao"
-                );
-
-
-                statusTexto.textContent =
-                    "VERIFICANDO";
-
-
-                descricaoRadio.textContent =
-                    "Verificando transmissão...";
+                card.innerHTML =
+                    criarCardAtivo(
+                        posto
+                    );
 
             }
+
+
+            container.appendChild(
+                card
+            );
 
 
             if (
-                mensagem
+                posto.ativo
             ) {
 
-                monitoramentoTexto.innerHTML =
-                    mensagem;
+                inicializarPosto(
+                    posto
+                );
 
             }
 
         }
+    );
+
+
+    atualizarResumo();
+
+}
 
 
 
-        /* =========================================
-           REGISTRAR EVENTO
-        ========================================== */
+function criarCardAguardando(
+    posto
+) {
 
-        function registrarEvento(
-            texto
-        ) {
+    return `
 
-            eventoTexto.textContent =
-                texto;
+        <div class="posto-topo">
+
+            <div class="posto-nome">
+
+                <div class="posto-icone">
+                    📻
+                </div>
+
+                <div>
+
+                    <div class="posto-titulo">
+                        ${posto.nome}
+                    </div>
+
+                    <div class="posto-source">
+                        Source ainda não configurado
+                    </div>
+
+                </div>
+
+            </div>
+
+            <span class="badge aguardando">
+
+                <span class="badge-ponto"></span>
+
+                AGUARDANDO
+
+            </span>
+
+        </div>
 
 
-            console.log(
-                "[EVENTO]",
-                texto
-            );
+        <div class="player">
 
-        }
+            <div class="player-controles">
+
+                <button
+                    class="play"
+                    disabled
+                    style="opacity:.35;cursor:not-allowed;"
+                >
+                    ▶
+                </button>
+
+                <div class="player-info">
+
+                    <div class="player-status">
+                        Player aguardando configuração
+                    </div>
+
+                    <div class="player-descricao">
+                        Informe o source deste posto para ativar.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="evento">
+
+            <div class="evento-label">
+                Último evento
+            </div>
+
+            <div class="evento-texto">
+                Aguardando source da rádio.
+            </div>
+
+        </div>
+
+    `;
+
+}
 
 
 
-        /* =========================================
-           CONFIGURAR VOLUME
-        ========================================== */
+function criarCardAtivo(
+    posto
+) {
 
-        function atualizarVolume() {
+    return `
 
-            const valor =
+        <div class="posto-topo">
+
+            <div class="posto-nome">
+
+                <div class="posto-icone">
+                    📻
+                </div>
+
+                <div>
+
+                    <div class="posto-titulo">
+                        ${posto.nome}
+                    </div>
+
+                    <div class="posto-source">
+                        source=${posto.source}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <span
+                id="badge-${posto.id}"
+                class="badge atencao"
+            >
+
+                <span class="badge-ponto"></span>
+
+                INICIANDO
+
+            </span>
+
+        </div>
+
+
+        <div class="player">
+
+            <div class="player-controles">
+
+                <button
+                    id="play-${posto.id}"
+                    class="play"
+                    type="button"
+                >
+                    ▶
+                </button>
+
+
+                <div class="player-info">
+
+                    <div
+                        id="status-${posto.id}"
+                        class="player-status"
+                    >
+                        Conectando...
+                    </div>
+
+
+                    <div
+                        id="descricao-${posto.id}"
+                        class="player-descricao"
+                    >
+                        Preparando transmissão...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="volume-area">
+
+                <div
+                    id="volumeIcon-${posto.id}"
+                    class="volume-icon"
+                >
+                    🔊
+                </div>
+
+
+                <input
+                    id="volume-${posto.id}"
+                    class="volume"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                >
+
+
+                <div
+                    id="volumePercent-${posto.id}"
+                    class="volume-percent"
+                >
+                    100%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="evento">
+
+            <div class="evento-label">
+                Último evento
+            </div>
+
+            <div
+                id="evento-${posto.id}"
+                class="evento-texto"
+            >
+                Sistema iniciando...
+            </div>
+
+        </div>
+
+
+        <audio
+            id="audio-${posto.id}"
+            preload="none"
+            playsinline
+        ></audio>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   INICIALIZAR POSTO
+===================================================== */
+
+function inicializarPosto(
+    posto
+) {
+
+    const estado =
+        estados[posto.id];
+
+
+    const audio =
+        document.getElementById(
+            "audio-" +
+            posto.id
+        );
+
+
+    estado.audio =
+        audio;
+
+
+    audio.src =
+        "https://servidor33-2.brlogic.com:7200/live?source=" +
+        encodeURIComponent(
+            posto.source
+        );
+
+
+    const botao =
+        document.getElementById(
+            "play-" +
+            posto.id
+        );
+
+
+    const volume =
+        document.getElementById(
+            "volume-" +
+            posto.id
+        );
+
+
+    volume.addEventListener(
+        "input",
+        function () {
+
+            audio.volume =
                 Number(
-                    controleVolume.value
+                    volume.value
                 );
 
 
-            audio.volume =
-                valor;
+            document.getElementById(
+                "volumePercent-" +
+                posto.id
+            ).textContent =
 
-
-            volumeValor.textContent =
                 Math.round(
-                    valor * 100
+                    audio.volume * 100
                 ) +
                 "%";
 
 
+            const icon =
+                document.getElementById(
+                    "volumeIcon-" +
+                    posto.id
+                );
+
+
             if (
-                valor === 0
+                audio.volume === 0
             ) {
 
-                iconeVolume.textContent =
+                icon.textContent =
                     "🔇";
 
             }
 
             else if (
-                valor < 0.5
+                audio.volume < .5
             ) {
 
-                iconeVolume.textContent =
+                icon.textContent =
                     "🔉";
 
             }
 
             else {
 
-                iconeVolume.textContent =
+                icon.textContent =
                     "🔊";
 
             }
 
         }
+    );
 
 
-        controleVolume.addEventListener(
-            "input",
-            atualizarVolume
-        );
-
-
-        atualizarVolume();
-
-
-
-        /* =========================================
-           DEFINIR ÍCONE DO PLAY
-        ========================================== */
-
-        function atualizarBotaoPlay() {
+    botao.addEventListener(
+        "click",
+        function () {
 
             if (
-                !audio.paused &&
-                !audio.ended
+                audio.paused
             ) {
 
-                botaoPlay.textContent =
-                    "⏸";
-
-                botaoPlay.title =
-                    "Pausar";
-
-                botaoPlay.classList.remove(
-                    "pausado"
+                iniciarPosto(
+                    posto,
+                    "usuário"
                 );
 
             }
 
             else {
 
-                botaoPlay.textContent =
-                    "▶";
-
-                botaoPlay.title =
-                    "Reproduzir";
+                pausarPosto(
+                    posto
+                );
 
             }
 
         }
+    );
 
 
+    audio.addEventListener(
+        "playing",
+        function () {
 
-        /* =========================================
-           CARREGAR STREAM
-        ========================================== */
-
-        function carregarStream() {
-
-            console.log(
-                "Carregando stream:",
-                CONFIG.stream
-            );
-
-
-            audio.src =
-                CONFIG.stream;
-
-
-            audio.load();
-
-        }
-
-
-
-        /* =========================================
-           INICIAR RÁDIO
-        ========================================== */
-
-        async function iniciarRadio(
-            origem = "sistema"
-        ) {
-
-            usuarioPausou =
+            estado.usuarioPausou =
                 false;
 
+            estado.inicioOffline =
+                null;
 
-            definirStatus(
-                "verificando",
-                "🟡 <strong>Conectando à rádio...</strong>"
+            definirStatusPosto(
+                posto,
+                "online"
             );
 
 
-            try {
+            registrarEvento(
+                posto,
+                "Player iniciado / transmissão reproduzindo",
+                "online"
+            );
 
-                if (
-                    !audio.src
-                ) {
-
-                    carregarStream();
-
-                }
-
-
-                await audio.play();
+        }
+    );
 
 
-                contadorReconexao =
-                    0;
+    audio.addEventListener(
+        "play",
+        function () {
+
+            atualizarBotao(
+                posto
+            );
+
+        }
+    );
 
 
-                inicioPossivelOffline =
-                    null;
+    audio.addEventListener(
+        "pause",
+        function () {
+
+            atualizarBotao(
+                posto
+            );
 
 
-                botaoIniciar.classList.remove(
-                    "visivel"
-                );
+            if (
+                estado.usuarioPausou
+            ) {
 
-
-                atualizarBotaoPlay();
-
-
-                definirStatus(
-                    "online",
-                    "🟢 <strong>Rádio reproduzindo.</strong> " +
-                    "A transmissão está ativa neste posto."
-                );
-
-
-                registrarEvento(
-                    "Rádio iniciada em " +
-                    dataHoraAtual() +
-                    ". Origem: " +
-                    origem +
-                    "."
-                );
-
-
-                console.log(
-                    "RÁDIO INICIADA"
-                );
-
-            }
-
-            catch (erro) {
-
-                console.warn(
-                    "Não foi possível iniciar automaticamente:",
-                    erro
-                );
-
-
-                definirStatus(
-                    "verificando",
-                    "🟡 <strong>Aguardando início.</strong> " +
-                    "O navegador bloqueou o início automático com áudio."
-                );
-
-
-                botaoIniciar.classList.add(
-                    "visivel"
+                definirStatusPosto(
+                    posto,
+                    "offline"
                 );
 
 
                 registrarEvento(
-                    "Autoplay bloqueado pelo navegador em " +
-                    dataHoraAtual() +
-                    "."
+                    posto,
+                    "Player pausado manualmente",
+                    "offline"
                 );
 
             }
 
         }
+    );
 
 
-
-        /* =========================================
-           BOTÃO PLAY / PAUSE
-        ========================================== */
-
-        botaoPlay.addEventListener(
-            "click",
-            async function () {
-
-                if (
-                    audio.paused
-                ) {
-
-                    await iniciarRadio(
-                        "usuário"
-                    );
-
-                }
-
-                else {
-
-                    usuarioPausou =
-                        true;
-
-
-                    audio.pause();
-
-
-                    definirStatus(
-                        "pausada",
-                        "🔴 <strong>Rádio pausada.</strong> " +
-                        "A reprodução foi interrompida neste posto."
-                    );
-
-
-                    registrarEvento(
-                        "Rádio pausada manualmente em " +
-                        dataHoraAtual() +
-                        "."
-                    );
-
-
-                    botaoPlay.classList.add(
-                        "pausado"
-                    );
-
-
-                    atualizarBotaoPlay();
-
-                    /*
-                       FUTURO ALERTA:
-
-                       enviarAlertaEmail({
-                           tipo: "PAUSADA",
-                           posto: CONFIG.posto,
-                           dataHora: dataHoraAtual()
-                       });
-
-                    */
-
-                }
-
-            }
-        );
-
-
-
-        /* =========================================
-           BOTÃO INICIAR
-        ========================================== */
-
-        botaoIniciar.addEventListener(
-            "click",
-            async function () {
-
-                await iniciarRadio(
-                    "botão iniciar"
-                );
-
-            }
-        );
-
-
-
-        /* =========================================
-           EVENTO PLAY
-        ========================================== */
-
-        audio.addEventListener(
-            "play",
-            function () {
-
-                usuarioPausou =
-                    false;
-
-
-                atualizarBotaoPlay();
-
-            }
-        );
-
-
-
-        /* =========================================
-           EVENTO PLAYING
-        ========================================== */
-
-        audio.addEventListener(
-            "playing",
-            function () {
-
-                inicioPossivelOffline =
-                    null;
-
-                contadorReconexao =
-                    0;
-
-
-                definirStatus(
-                    "online",
-                    "🟢 <strong>Rádio online.</strong> " +
-                    "Áudio sendo recebido normalmente."
-                );
-
-
-                atualizarBotaoPlay();
-
-
-                registrarEvento(
-                    "Rádio reproduzindo normalmente em " +
-                    dataHoraAtual() +
-                    "."
-                );
-
-
-                console.log(
-                    "EVENTO PLAYING"
-                );
-
-            }
-        );
-
-
-
-        /* =========================================
-           EVENTO PAUSE
-        ========================================== */
-
-        audio.addEventListener(
-            "pause",
-            function () {
-
-                atualizarBotaoPlay();
-
-
-                if (
-                    usuarioPausou
-                ) {
-
-                    definirStatus(
-                        "pausada",
-                        "🔴 <strong>Rádio pausada.</strong> " +
-                        "A reprodução foi interrompida neste posto."
-                    );
-
-                }
-
-            }
-        );
-
-
-
-        /* =========================================
-           EVENTO WAITING
-        ========================================== */
-
-        audio.addEventListener(
-            "waiting",
-            function () {
-
-                if (
-                    !usuarioPausou
-                ) {
-
-                    definirStatus(
-                        "verificando",
-                        "🟡 <strong>Stream aguardando dados.</strong> " +
-                        "Verificando continuidade da transmissão."
-                    );
-
-                }
-
-
-                console.log(
-                    "EVENTO WAITING"
-                );
-
-            }
-        );
-
-
-
-        /* =========================================
-           EVENTO STALLED
-        ========================================== */
-
-        audio.addEventListener(
-            "stalled",
-            function () {
-
-                if (
-                    !usuarioPausou
-                ) {
-
-                    definirStatus(
-                        "verificando",
-                        "🟡 <strong>Stream sem novos dados.</strong> " +
-                        "Aguardando confirmação."
-                    );
-
-                }
-
-
-                console.log(
-                    "EVENTO STALLED"
-                );
-
-            }
-        );
-
-
-
-        /* =========================================
-           EVENTO ERRO
-        ========================================== */
-
-        audio.addEventListener(
-            "error",
-            function () {
-
-                if (
-                    usuarioPausou
-                ) {
-
-                    return;
-
-                }
-
-
-                contadorReconexao++;
-
-
-                definirStatus(
-                    "offline",
-                    "🔴 <strong>Falha na transmissão.</strong> " +
-                    "Tentativa de reconexão " +
-                    contadorReconexao +
-                    "."
-                );
-
-
-                if (
-                    !inicioPossivelOffline
-                ) {
-
-                    inicioPossivelOffline =
-                        Date.now();
-
-                }
-
-
-                registrarEvento(
-                    "Falha no stream detectada em " +
-                    dataHoraAtual() +
-                    "."
-                );
-
-
-                console.error(
-                    "ERRO DO ÁUDIO:",
-                    audio.error
-                );
-
-
-                tentarReconectar();
-
-            }
-        );
-
-
-
-        /* =========================================
-           RECONEXÃO
-        ========================================== */
-
-        function tentarReconectar() {
+    audio.addEventListener(
+        "waiting",
+        function () {
 
             if (
-                usuarioPausou
+                !estado.usuarioPausou
+            ) {
+
+                definirStatusPosto(
+                    posto,
+                    "atencao"
+                );
+
+            }
+
+        }
+    );
+
+
+    audio.addEventListener(
+        "stalled",
+        function () {
+
+            if (
+                !estado.usuarioPausou
+            ) {
+
+                definirStatusPosto(
+                    posto,
+                    "atencao"
+                );
+
+            }
+
+        }
+    );
+
+
+    audio.addEventListener(
+        "error",
+        function () {
+
+            if (
+                estado.usuarioPausou
             ) {
 
                 return;
@@ -2161,79 +2168,521 @@
             }
 
 
-            setTimeout(
-                async function () {
-
-                    console.log(
-                        "Tentando reconectar..."
-                    );
+            definirStatusPosto(
+                posto,
+                "offline"
+            );
 
 
-                    try {
+            if (
+                !estado.inicioOffline
+            ) {
 
-                        audio.src =
-                            "";
-
-                        audio.load();
-
-
-                        audio.src =
-                            CONFIG.stream;
-
-                        audio.load();
+                estado.inicioOffline =
+                    Date.now();
 
 
-                        await audio.play();
+                registrarEvento(
+                    posto,
+                    "Falha na transmissão detectada",
+                    "offline"
+                );
+
+            }
 
 
-                        contadorReconexao =
-                            0;
-
-
-                        inicioPossivelOffline =
-                            null;
-
-
-                        definirStatus(
-                            "online",
-                            "🟢 <strong>Rádio restabelecida.</strong> " +
-                            "A transmissão voltou."
-                        );
-
-
-                        registrarEvento(
-                            "Rádio restabelecida em " +
-                            dataHoraAtual() +
-                            "."
-                        );
-
-                    }
-
-                    catch (erro) {
-
-                        console.warn(
-                            "Reconexão falhou:",
-                            erro
-                        );
-
-                    }
-
-                },
-                5000
+            reconectarPosto(
+                posto
             );
 
         }
+    );
+
+
+    /*
+       Tentativa inicial de autoplay.
+    */
+
+    audio.load();
+
+
+    iniciarPosto(
+        posto,
+        "autoplay"
+    );
+
+}
 
 
 
-        /* =========================================
-           MONITORAMENTO LOCAL
-        ========================================== */
+/* =====================================================
+   INICIAR POSTO
+===================================================== */
 
-        function verificarEstadoLocal() {
+async function iniciarPosto(
+    posto,
+    origem
+) {
+
+    const estado =
+        estados[posto.id];
+
+
+    estado.usuarioPausou =
+        false;
+
+
+    try {
+
+        await estado.audio.play();
+
+
+        estado.inicioOffline =
+            null;
+
+
+        definirStatusPosto(
+            posto,
+            "online"
+        );
+
+
+        atualizarBotao(
+            posto
+        );
+
+
+    }
+
+    catch (erro) {
+
+        console.warn(
+            posto.nome +
+            ": autoplay bloqueado",
+            erro
+        );
+
+
+        definirStatusPosto(
+            posto,
+            "atencao"
+        );
+
+
+        document.getElementById(
+            "status-" +
+            posto.id
+        ).textContent =
+            "Aguardando início";
+
+
+        document.getElementById(
+            "descricao-" +
+            posto.id
+        ).textContent =
+            "Clique em ▶ para iniciar a rádio.";
+
+
+        atualizarBotao(
+            posto
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PAUSAR POSTO
+===================================================== */
+
+function pausarPosto(
+    posto
+) {
+
+    const estado =
+        estados[posto.id];
+
+
+    estado.usuarioPausou =
+        true;
+
+
+    estado.audio.pause();
+
+
+    definirStatusPosto(
+        posto,
+        "offline"
+    );
+
+
+    document.getElementById(
+        "status-" +
+        posto.id
+    ).textContent =
+        "Rádio pausada";
+
+
+    document.getElementById(
+        "descricao-" +
+        posto.id
+    ).textContent =
+        "Player pausado neste posto.";
+
+
+    atualizarEventoPosto(
+        posto,
+        "Player pausado manualmente em " +
+        dataHora()
+    );
+
+
+    atualizarBotao(
+        posto
+    );
+
+}
+
+
+
+/* =====================================================
+   STATUS DO POSTO
+===================================================== */
+
+function definirStatusPosto(
+    posto,
+    status
+) {
+
+    const estado =
+        estados[posto.id];
+
+
+    estado.estado =
+        status;
+
+
+    const badge =
+        document.getElementById(
+            "badge-" +
+            posto.id
+        );
+
+
+    const texto =
+        document.getElementById(
+            "status-" +
+            posto.id
+        );
+
+
+    const descricao =
+        document.getElementById(
+            "descricao-" +
+            posto.id
+        );
+
+
+    badge.className =
+        "badge";
+
+
+    if (
+        status ===
+        "online"
+    ) {
+
+        badge.classList.add(
+            "online"
+        );
+
+
+        badge.innerHTML =
+            '<span class="badge-ponto"></span> ONLINE';
+
+
+        texto.textContent =
+            "Rádio online";
+
+
+        descricao.textContent =
+            "Transmissão reproduzindo normalmente.";
+
+    }
+
+
+    else if (
+        status ===
+        "offline"
+    ) {
+
+        badge.classList.add(
+            "offline"
+        );
+
+
+        badge.innerHTML =
+            '<span class="badge-ponto"></span> OFFLINE';
+
+
+        texto.textContent =
+            "Rádio offline";
+
+
+        descricao.textContent =
+            "A transmissão foi interrompida.";
+
+    }
+
+
+    else {
+
+        badge.classList.add(
+            "atencao"
+        );
+
+
+        badge.innerHTML =
+            '<span class="badge-ponto"></span> VERIFICANDO';
+
+
+        texto.textContent =
+            "Verificando rádio";
+
+
+        descricao.textContent =
+            "Aguardando confirmação da transmissão.";
+
+    }
+
+
+    atualizarResumo();
+
+}
+
+
+
+/* =====================================================
+   ATUALIZAR EVENTO DO CARD
+===================================================== */
+
+function atualizarEventoPosto(
+    posto,
+    texto
+) {
+
+    const elemento =
+        document.getElementById(
+            "evento-" +
+            posto.id
+        );
+
+
+    if (
+        elemento
+    ) {
+
+        elemento.textContent =
+            texto;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   BOTÃO
+===================================================== */
+
+function atualizarBotao(
+    posto
+) {
+
+    const estado =
+        estados[posto.id];
+
+
+    const botao =
+        document.getElementById(
+            "play-" +
+            posto.id
+        );
+
+
+    if (
+        !botao
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !estado.audio.paused
+    ) {
+
+        botao.textContent =
+            "⏸";
+
+        botao.title =
+            "Pausar";
+
+        botao.classList.remove(
+            "pausado"
+        );
+
+    }
+
+    else {
+
+        botao.textContent =
+            "▶";
+
+        botao.title =
+            "Iniciar";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   RECONEXÃO
+===================================================== */
+
+function reconectarPosto(
+    posto
+) {
+
+    const estado =
+        estados[posto.id];
+
+
+    if (
+        estado.usuarioPausou ||
+        estado.reconectando
+    ) {
+
+        return;
+
+    }
+
+
+    estado.reconectando =
+        true;
+
+
+    setTimeout(
+        async function () {
 
             if (
-                usuarioPausou
+                estado.usuarioPausou
+            ) {
+
+                estado.reconectando =
+                    false;
+
+                return;
+
+            }
+
+
+            try {
+
+                estado.audio.pause();
+
+
+                estado.audio.src =
+                    "https://servidor33-2.brlogic.com:7200/live?source=" +
+                    encodeURIComponent(
+                        posto.source
+                    );
+
+
+                estado.audio.load();
+
+
+                await estado.audio.play();
+
+
+                estado.inicioOffline =
+                    null;
+
+
+                definirStatusPosto(
+                    posto,
+                    "online"
+                );
+
+
+                atualizarEventoPosto(
+                    posto,
+                    "Rádio restabelecida em " +
+                    dataHora()
+                );
+
+
+            }
+
+            catch (erro) {
+
+                console.warn(
+                    "Reconexão falhou:",
+                    posto.nome
+                );
+
+            }
+
+
+            estado.reconectando =
+                false;
+
+        },
+        5000
+    );
+
+}
+
+
+
+/* =====================================================
+   MONITORAMENTO LOCAL
+===================================================== */
+
+function monitorarPostos() {
+
+    POSTOS.forEach(
+        posto => {
+
+            if (
+                !posto.ativo
+            ) {
+
+                return;
+
+            }
+
+
+            const estado =
+                estados[posto.id];
+
+
+            if (
+                !estado.audio
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                estado.usuarioPausou
             ) {
 
                 return;
@@ -2242,340 +2691,182 @@
 
 
             /*
-               Se o áudio deveria estar tocando,
-               mas o elemento está pausado,
-               significa que a reprodução parou.
+               Se estava online e o áudio
+               ficou pausado inesperadamente.
             */
 
             if (
-                audio.paused &&
-                estadoRadio ===
-                "online"
+                estado.estado ===
+                "online" &&
+
+                estado.audio.paused
             ) {
 
-                definirStatus(
-                    "offline",
-                    "🔴 <strong>Rádio interrompida.</strong> " +
-                    "A reprodução parou inesperadamente."
+                definirStatusPosto(
+                    posto,
+                    "offline"
                 );
 
 
-                if (
-                    !inicioPossivelOffline
-                ) {
-
-                    inicioPossivelOffline =
-                        Date.now();
-
-                }
+                atualizarEventoPosto(
+                    posto,
+                    "Player interrompido inesperadamente em " +
+                    dataHora()
+                );
 
 
                 registrarEvento(
-                    "Reprodução interrompida inesperadamente em " +
-                    dataHoraAtual() +
-                    "."
+                    posto,
+                    "Player interrompido inesperadamente",
+                    "offline"
                 );
 
 
-                tentarReconectar();
+                estado.inicioOffline =
+                    Date.now();
+
+
+                reconectarPosto(
+                    posto
+                );
 
             }
 
         }
+    );
+
+}
 
 
-        setInterval(
-            verificarEstadoLocal,
-            CONFIG.intervaloMonitor
-        );
+setInterval(
+    monitorarPostos,
+    CONFIG.intervaloMonitoramento
+);
 
 
 
-        /* =========================================
-           VERIFICAÇÃO DE DURAÇÃO DA QUEDA
-        ========================================== */
+/* =====================================================
+   RESUMO
+===================================================== */
 
-        function verificarQuedaConfirmada() {
+function atualizarResumo() {
+
+    let online = 0;
+
+    let offline = 0;
+
+    let aguardando = 0;
+
+
+    POSTOS.forEach(
+        posto => {
 
             if (
-                !inicioPossivelOffline
+                !posto.ativo
             ) {
+
+                aguardando++;
 
                 return;
 
             }
 
 
-            const tempoOffline =
-                Date.now() -
-                inicioPossivelOffline;
+            const estado =
+                estados[posto.id];
 
 
             if (
-                tempoOffline >=
-                CONFIG.tempoConfirmacaoOffline
+                estado &&
+                estado.estado ===
+                "online"
             ) {
 
-                /*
-                   IMPORTANTE:
+                online++;
 
-                   Aqui NÃO enviamos o e-mail ainda.
+            }
 
-                   Esta função será substituída na próxima
-                   etapa pelo envio real para:
+            else if (
+                estado &&
+                estado.estado ===
+                "offline"
+            ) {
 
-                   administracao@postosgraciosa.com.br
-                */
-
-                console.warn(
-                    "QUEDA CONFIRMADA"
-                );
-
-
-                registrarEvento(
-                    "Interrupção confirmada em " +
-                    dataHoraAtual() +
-                    ". Alerta preparado para envio."
-                );
-
-
-                monitoramentoTexto.innerHTML =
-
-                    "🔴 <strong>Interrupção confirmada.</strong> " +
-
-                    "O sistema está preparado para gerar o alerta.";
+                offline++;
 
             }
 
         }
+    );
 
 
-        setInterval(
-            verificarQuedaConfirmada,
-            5000
-        );
+    document.getElementById(
+        "totalPostos"
+    ).textContent =
+        POSTOS.length;
 
 
+    document.getElementById(
+        "totalOnline"
+    ).textContent =
+        online;
 
-        /* =========================================
-           INTERNET
-        ========================================== */
 
-        window.addEventListener(
-            "online",
-            function () {
+    document.getElementById(
+        "totalOffline"
+    ).textContent =
+        offline;
 
-                console.log(
-                    "Internet restabelecida."
-                );
 
+    document.getElementById(
+        "totalAguardando"
+    ).textContent =
+        aguardando;
 
-                if (
-                    !usuarioPausou
-                ) {
+}
 
-                    tentarReconectar();
 
-                }
 
-            }
-        );
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
 
+carregarHistorico();
 
-        window.addEventListener(
-            "offline",
-            function () {
+criarPostos();
 
-                if (
-                    usuarioPausou
-                ) {
 
-                    return;
 
-                }
+/* =====================================================
+   LOG DE INICIALIZAÇÃO
+===================================================== */
 
+console.log(
+    "======================================"
+);
 
-                definirStatus(
-                    "offline",
-                    "🔴 <strong>Internet desconectada.</strong> " +
-                    "Aguardando conexão."
-                );
+console.log(
+    "MONITORAMENTO DE RÁDIO"
+);
 
+console.log(
+    "Postos cadastrados:",
+    POSTOS.length
+);
 
-                if (
-                    !inicioPossivelOffline
-                ) {
+console.log(
+    "E-mail preparado:",
+    CONFIG.email
+);
 
-                    inicioPossivelOffline =
-                        Date.now();
+console.log(
+    "======================================"
+);
 
-                }
 
-
-                registrarEvento(
-                    "Internet desconectada em " +
-                    dataHoraAtual() +
-                    "."
-                );
-
-            }
-        );
-
-
-
-        /* =========================================
-           WAKE LOCK
-        ========================================== */
-
-        async function ativarWakeLock() {
-
-            try {
-
-                if (
-                    "wakeLock" in navigator
-                ) {
-
-                    wakeLock =
-                        await navigator.wakeLock.request(
-                            "screen"
-                        );
-
-
-                    console.log(
-                        "Wake Lock ativado."
-                    );
-
-                }
-
-            }
-
-            catch (erro) {
-
-                console.log(
-                    "Wake Lock não disponível:",
-                    erro
-                );
-
-            }
-
-        }
-
-
-        ativarWakeLock();
-
-
-
-        /* =========================================
-           RETORNO À ABA
-        ========================================== */
-
-        document.addEventListener(
-            "visibilitychange",
-            async function () {
-
-                if (
-                    document.visibilityState ===
-                    "visible"
-                ) {
-
-                    await ativarWakeLock();
-
-                }
-
-            }
-        );
-
-
-
-        /* =========================================
-           INICIALIZAÇÃO
-        ========================================== */
-
-        console.log(
-            "======================================"
-        );
-
-        console.log(
-            "MONITORAMENTO DA RÁDIO"
-        );
-
-        console.log(
-            "Posto:",
-            CONFIG.posto
-        );
-
-        console.log(
-            "Identificador:",
-            CONFIG.identificador
-        );
-
-        console.log(
-            "Source:",
-            CONFIG.source
-        );
-
-        console.log(
-            "Stream:",
-            CONFIG.stream
-        );
-
-        console.log(
-            "E-mail preparado:",
-            CONFIG.email
-        );
-
-        console.log(
-            "======================================"
-        );
-
-
-        registrarEvento(
-            "Sistema iniciado em " +
-            dataHoraAtual() +
-            "."
-        );
-
-
-        carregarStream();
-
-
-        /*
-           Tenta iniciar automaticamente.
-
-           Se o Chrome bloquear o autoplay,
-           o botão será exibido.
-        */
-
-        iniciarRadio(
-            "autoplay"
-        );
-
-
-
-        /* =========================================
-           SEGURANÇA
-           RECARREGAMENTO A CADA 6 HORAS
-        ========================================== */
-
-        setInterval(
-            function () {
-
-                console.log(
-                    "Recarregamento preventivo."
-                );
-
-
-                location.reload();
-
-            },
-            6 * 60 * 60 * 1000
-        );
-
-
-    </script>
+</script>
 
 
 </body>
 
 </html>
-
