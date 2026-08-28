@@ -17,7 +17,7 @@ jobs:
 
           STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
 
-          APPS_SCRIPT="https://script.google.com/macros/s/AKfycbyTJwiUpNO1a3-u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec"
+          APPS_SCRIPT="https://script.google.com/macros/s/AKfycbyTJwiUpuNO1a3-u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec"
 
           POSTO="POSTO GRACIOSA"
 
