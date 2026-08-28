@@ -1,120 +1,82 @@
+
 name: Monitor Rádio Graciosa
 
 on:
-workflow_dispatch:
-schedule:
-- cron: "* * * * *"
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "*/5 * * * *"
+
 
 jobs:
-monitor:
-runs-on: ubuntu-latest
 
-steps:
-  - name: Verificar stream da Rádio Graciosa
-    shell: bash
-    run: |
-      STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
-      APPS_SCRIPT="https://script.google.com/macros/s/AKfycbyTJwiUpNO1a3-u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec"
-      POSTO="POSTO GRACIOSA"
+  monitor:
 
-      DATA=$(date '+%d/%m/%Y')
-      HORA=$(date '+%H:%M:%S')
+    runs-on: ubuntu-latest
 
-      echo "======================================"
-      echo "MONITORAMENTO DA RÁDIO"
-      echo "Posto: $POSTO"
-      echo "Data: $DATA"
-      echo "Horário: $HORA"
-      echo "======================================"
 
-      TEMP_FILE=$(mktemp)
-      ERROR_FILE=$(mktemp)
+    steps:
 
-      echo ""
-      echo "Conectando ao stream..."
+      - name: Verificar stream da Rádio Graciosa
+        shell: bash
+        run: |
 
-      curl \
-        -L \
-        -sS \
-        --connect-timeout 10 \
-        --max-time 15 \
-        -r 0-65535 \
-        -o "$TEMP_FILE" \
-        -w "%{http_code}" \
-        "$STREAM" \
-        2>"$ERROR_FILE" > /tmp/http_code.txt
+          STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
 
-      CURL_EXIT=$?
+          echo "======================================"
+          echo "MONITORAMENTO DA RÁDIO"
+          echo "Posto: Posto Graciosa"
+          echo "Data: $(date '+%d/%m/%Y')"
+          echo "Horário: $(date '+%H:%M:%S')"
+          echo "======================================"
 
-      HTTP_CODE=$(cat /tmp/http_code.txt 2>/dev/null || echo "000")
-      BYTES=$(wc -c < "$TEMP_FILE")
-      CURL_ERROR=$(cat "$ERROR_FILE" 2>/dev/null || true)
+          echo ""
+          echo "Conectando ao stream..."
 
-      echo ""
-      echo "Código CURL: $CURL_EXIT"
-      echo "HTTP: $HTTP_CODE"
-      echo "Bytes recebidos: $BYTES"
+          TEMP_FILE=$(mktemp)
 
-      if [ -n "$CURL_ERROR" ]; then
-        echo ""
-        echo "Mensagem CURL:"
-        echo "$CURL_ERROR"
-      fi
+          HTTP_CODE=$(curl \
+            -L \
+            -sS \
+            --connect-timeout 10 \
+            --max-time 15 \
+            -r 0-65535 \
+            -o "$TEMP_FILE" \
+            -w "%{http_code}" \
+            "$STREAM" || true)
 
-      echo ""
-      echo "Analisando resultado..."
 
-      STATUS="offline"
+          BYTES=$(wc -c < "$TEMP_FILE")
 
-      if [ "$CURL_EXIT" -eq 0 ] && \
-         [ "$HTTP_CODE" = "200" ] && \
-         [ "$BYTES" -gt 1024 ]; then
+          echo ""
+          echo "HTTP: $HTTP_CODE"
+          echo "Bytes recebidos: $BYTES"
 
-        STATUS="online"
 
-        echo ""
-        echo "🟢 STATUS: ONLINE"
-        echo "Stream respondeu corretamente."
-        echo "Dados recebidos: $BYTES bytes"
+          echo ""
+          echo "Analisando resultado..."
 
-      else
 
-        echo ""
-        echo "🔴 STATUS: OFFLINE"
-        echo "Não foi possível confirmar a entrega do stream."
+          if [ "$HTTP_CODE" = "200" ] && [ "$BYTES" -gt 1024 ]; then
 
-      fi
+              echo ""
+              echo "🟢 STATUS: ONLINE"
+              echo "Stream respondeu e entregou dados."
+              echo "Dados recebidos: $BYTES bytes"
 
-      rm -f "$TEMP_FILE"
-      rm -f "$ERROR_FILE"
-      rm -f /tmp/http_code.txt
+              rm -f "$TEMP_FILE"
 
-      echo ""
-      echo "Enviando resultado para o Google Apps Script..."
+              exit 0
 
-      RESPONSE=$(curl \
-        -L \
-        -sS \
-        --connect-timeout 10 \
-        --max-time 30 \
-        -G \
-        --data-urlencode "posto=$POSTO" \
-        --data-urlencode "status=$STATUS" \
-        --data-urlencode "data=$DATA" \
-        --data-urlencode "hora=$HORA" \
-        --data-urlencode "bytes=$BYTES" \
-        --data-urlencode "http=$HTTP_CODE" \
-        "$APPS_SCRIPT")
+          fi
 
-      echo ""
-      echo "Resposta do Apps Script:"
-      echo "$RESPONSE"
 
-      echo ""
-      echo "======================================"
-      echo "MONITORAMENTO CONCLUÍDO"
-      echo "Posto: $POSTO"
-      echo "Status: $STATUS"
-      echo "Data: $DATA"
-      echo "Horário: $HORA"
-      echo "======================================"
+          echo ""
+          echo "🔴 STATUS: OFFLINE"
+          echo "Não foi possível confirmar a entrega do stream."
+
+
+          rm -f "$TEMP_FILE"
+
+          exit 1
