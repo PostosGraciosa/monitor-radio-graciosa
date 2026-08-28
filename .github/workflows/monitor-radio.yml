@@ -1,83 +1,125 @@
-
 name: Monitor Rádio Graciosa
 
 on:
+workflow_dispatch:
 
-  workflow_dispatch:
-
-  schedule:
-    - cron: "*/5 * * * *"
-
+schedule:
+- cron: "* * * * *"
 
 jobs:
 
-  monitor:
-
-    runs-on: ubuntu-latest
+monitor:
 
 
-    steps:
+runs-on: ubuntu-latest
 
-      - name: Verificar stream da Rádio Graciosa
-        shell: bash
-        run: |
+steps:
 
-          STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
+  - name: Verificar stream da Rádio Graciosa
+    shell: bash
+    run: |
 
-          echo "======================================"
-          echo "MONITORAMENTO DA RÁDIO"
-          echo "Posto: Posto Graciosa"
-          echo "Data: $(date '+%d/%m/%Y')"
-          echo "Horário: $(date '+%H:%M:%S')"
-          echo "======================================"
+      STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
+
+      APPS_SCRIPT="https://script.google.com/macros/s/AKfycbyTJwiUpNO1a3-u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec"
+
+      POSTO="POSTO GRACIOSA"
+
+      DATA=$(date '+%d/%m/%Y')
+      HORA=$(date '+%H:%M:%S')
+
+      echo "======================================"
+      echo "MONITORAMENTO DA RÁDIO"
+      echo "Posto: $POSTO"
+      echo "Data: $DATA"
+      echo "Horário: $HORA"
+      echo "======================================"
+
+      echo ""
+      echo "Conectando ao stream..."
+
+      TEMP_FILE=$(mktemp)
+
+      HTTP_CODE=$(curl \
+        -L \
+        -sS \
+        --connect-timeout 10 \
+        --max-time 15 \
+        -r 0-65535 \
+        -o "$TEMP_FILE" \
+        -w "%{http_code}" \
+        "$STREAM" 2>/tmp/curl_error.txt)
+
+      CURL_EXIT=$?
+
+      BYTES=$(wc -c < "$TEMP_FILE")
+
+      CURL_ERROR=$(cat /tmp/curl_error.txt)
+
+      echo ""
+      echo "Código CURL: $CURL_EXIT"
+      echo "HTTP: $HTTP_CODE"
+      echo "Bytes recebidos: $BYTES"
+
+      if [ -n "$CURL_ERROR" ]; then
+        echo ""
+        echo "Mensagem CURL:"
+        echo "$CURL_ERROR"
+      fi
+
+      echo ""
+      echo "Analisando resultado..."
+
+      STATUS="offline"
+
+      if [ "$CURL_EXIT" -eq 0 ] && \
+         [ "$HTTP_CODE" = "200" ] && \
+         [ "$BYTES" -gt 1024 ]; then
+
+          STATUS="online"
 
           echo ""
-          echo "Conectando ao stream..."
+          echo "🟢 STATUS: ONLINE"
+          echo "Stream respondeu corretamente."
+          echo "Dados recebidos: $BYTES bytes"
 
-          TEMP_FILE=$(mktemp)
-
-          HTTP_CODE=$(curl \
-            -L \
-            -sS \
-            --connect-timeout 10 \
-            --max-time 15 \
-            -r 0-65535 \
-            -o "$TEMP_FILE" \
-            -w "%{http_code}" \
-            "$STREAM" || true)
-
-
-          BYTES=$(wc -c < "$TEMP_FILE")
-
-          echo ""
-          echo "HTTP: $HTTP_CODE"
-          echo "Bytes recebidos: $BYTES"
-
-
-          echo ""
-          echo "Analisando resultado..."
-
-
-          if [ "$HTTP_CODE" = "200" ] && [ "$BYTES" -gt 1024 ]; then
-
-              echo ""
-              echo "🟢 STATUS: ONLINE"
-              echo "Stream respondeu e entregou dados."
-              echo "Dados recebidos: $BYTES bytes"
-
-              rm -f "$TEMP_FILE"
-
-              exit 0
-
-          fi
-
+      else
 
           echo ""
           echo "🔴 STATUS: OFFLINE"
           echo "Não foi possível confirmar a entrega do stream."
 
+      fi
 
-          rm -f "$TEMP_FILE"
+      rm -f "$TEMP_FILE"
+      rm -f /tmp/curl_error.txt
 
-          exit 1
+      echo ""
+      echo "Enviando resultado para o Google Apps Script..."
 
+      RESPONSE=$(curl \
+        -L \
+        -sS \
+        --connect-timeout 10 \
+        --max-time 30 \
+        -G \
+        --data-urlencode "posto=$POSTO" \
+        --data-urlencode "status=$STATUS" \
+        --data-urlencode "data=$DATA" \
+        --data-urlencode "hora=$HORA" \
+        --data-urlencode "bytes=$BYTES" \
+        --data-urlencode "http=$HTTP_CODE" \
+        "$APPS_SCRIPT")
+
+      echo ""
+      echo "Resposta do Apps Script:"
+      echo "$RESPONSE"
+
+      echo ""
+      echo "======================================"
+      echo "MONITORAMENTO CONCLUÍDO"
+      echo "Posto: $POSTO"
+      echo "Status: $STATUS"
+      echo "Data: $DATA"
+      echo "Horário: $HORA"
+      echo "======================================"
