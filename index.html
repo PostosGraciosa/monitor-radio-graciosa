@@ -1,0 +1,1108 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Monitoramento da rádio - Posto Graciosa"
+    >
+
+    <title>Rádio | Posto Graciosa</title>
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+            min-height: 100%;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f4f6f5;
+
+            color: #1f2937;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        /* =========================================
+           CONTAINER PRINCIPAL
+        ========================================= */
+
+        .pagina {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        /* =========================================
+           CABEÇALHO
+        ========================================= */
+
+        .cabecalho {
+
+            background: #0e6835;
+
+            color: #ffffff;
+
+            padding: 24px 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        .identificacao {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+
+        }
+
+
+        .identificacao .empresa {
+
+            font-size: 13px;
+
+            opacity: 0.85;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .identificacao h1 {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+        }
+
+
+        .identificacao .descricao {
+
+            font-size: 14px;
+
+            opacity: 0.9;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================= */
+
+        .status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 10px 15px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.15);
+
+            white-space: nowrap;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .status-ponto {
+
+            width: 11px;
+
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #20c978;
+
+            box-shadow:
+                0 0 0 4px rgba(32, 201, 120, 0.18);
+
+        }
+
+
+        .status.offline .status-ponto {
+
+            background: #dc3545;
+
+            box-shadow:
+                0 0 0 4px rgba(220, 53, 69, 0.18);
+
+        }
+
+
+        .status.atencao .status-ponto {
+
+            background: #e7b91d;
+
+            box-shadow:
+                0 0 0 4px rgba(231, 185, 29, 0.18);
+
+        }
+
+
+        /* =========================================
+           CONTEÚDO
+        ========================================= */
+
+        .conteudo {
+
+            padding: 30px;
+
+        }
+
+
+        /* =========================================
+           RELÓGIO
+        ========================================= */
+
+        .informacoes {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .info-card {
+
+            background: #f7f9f8;
+
+            border: 1px solid #e5e9e7;
+
+            border-radius: 12px;
+
+            padding: 17px 20px;
+
+        }
+
+
+        .info-label {
+
+            display: block;
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .info-valor {
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: #0e6835;
+
+        }
+
+
+        /* =========================================
+           PLAYER
+        ========================================= */
+
+        .player-area {
+
+            border: 1px solid #e3e7e5;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            background: #ffffff;
+
+        }
+
+
+        .player-titulo {
+
+            padding: 15px 20px;
+
+            border-bottom: 1px solid #e8ecea;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+        }
+
+
+        .player-titulo strong {
+
+            font-size: 15px;
+
+        }
+
+
+        .player-titulo span {
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+        }
+
+
+        .player {
+
+            width: 100%;
+
+            height: 165px;
+
+            border: 0;
+
+            display: block;
+
+        }
+
+
+        /* =========================================
+           MONITORAMENTO
+        ========================================= */
+
+        .monitoramento {
+
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            border-radius: 12px;
+
+            background: #f7f9f8;
+
+            border: 1px solid #e5e9e7;
+
+        }
+
+
+        .monitoramento-titulo {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            color: #374151;
+
+        }
+
+
+        .monitoramento-texto {
+
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            color: #6b7280;
+
+        }
+
+
+        /* =========================================
+           RODAPÉ
+        ========================================= */
+
+        .rodape {
+
+            padding: 18px 30px;
+
+            border-top: 1px solid #e8ecea;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            font-size: 12px;
+
+            color: #6b7280;
+
+        }
+
+
+        .rodape strong {
+
+            color: #0e6835;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+
+        @media (max-width: 650px) {
+
+            body {
+
+                padding: 10px;
+
+            }
+
+
+            .cabecalho {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+
+            .status {
+
+                align-self: stretch;
+
+                justify-content: center;
+
+            }
+
+
+            .informacoes {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .conteudo {
+
+                padding: 20px;
+
+            }
+
+
+            .rodape {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 18px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="pagina">
+
+
+        <!-- =====================================
+             CABEÇALHO
+        ====================================== -->
+
+        <header class="cabecalho">
+
+
+            <div class="identificacao">
+
+                <span class="empresa">
+                    Postos Graciosa
+                </span>
+
+                <h1>
+                    Posto Graciosa
+                </h1>
+
+                <span class="descricao">
+                    Rádio ambiente
+                </span>
+
+            </div>
+
+
+            <div
+                id="statusRadio"
+                class="status"
+            >
+
+                <span class="status-ponto"></span>
+
+                <span id="statusTexto">
+                    RÁDIO ATIVA
+                </span>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             CONTEÚDO
+        ====================================== -->
+
+        <section class="conteudo">
+
+
+            <!-- INFORMAÇÕES -->
+
+            <div class="informacoes">
+
+
+                <div class="info-card">
+
+                    <span class="info-label">
+                        Data
+                    </span>
+
+                    <span
+                        id="dataAtual"
+                        class="info-valor"
+                    >
+                        --
+                    </span>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span class="info-label">
+                        Horário local
+                    </span>
+
+                    <span
+                        id="horaAtual"
+                        class="info-valor"
+                    >
+                        --
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================
+                 PLAYER
+            ================================== -->
+
+            <section class="player-area">
+
+
+                <div class="player-titulo">
+
+                    <strong>
+                        📻 Rádio Postos Graciosa
+                    </strong>
+
+                    <span>
+                        Transmissão online
+                    </span>
+
+                </div>
+
+
+                <iframe
+
+                    id="radioPlayer"
+
+                    class="player"
+
+                    src="https://public-player-widget.webradiosite.com/?cover=1&current_track=1&schedules=1&link=1&popup=1&share=1&embed=0&auto_play=1&source=7074&theme=light&color=0&identifier=ADM%20Player&info=https%3A%2F%2Fpublic-player-widget.webradiosite.com%2Fapp%2Fplayer%2Finfo%2F254029%3Fhash%3D64003997581a207b40b5673c010bcc7cc044bb7d&locale=pt-br"
+
+                    scrolling="no"
+
+                    frameborder="0"
+
+                    allow="autoplay; clipboard-write"
+
+                    allowtransparency="true"
+
+                >
+
+                </iframe>
+
+
+            </section>
+
+
+
+            <!-- =================================
+                 MONITORAMENTO
+            ================================== -->
+
+            <section class="monitoramento">
+
+
+                <div class="monitoramento-titulo">
+
+                    Monitoramento da rádio
+
+                </div>
+
+
+                <div
+                    id="monitoramentoTexto"
+                    class="monitoramento-texto"
+                >
+
+                    Sistema preparado para monitoramento
+                    contínuo da reprodução.
+
+                </div>
+
+
+            </section>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             RODAPÉ
+        ====================================== -->
+
+        <footer class="rodape">
+
+            <span>
+                Postos Graciosa
+            </span>
+
+            <span>
+                Monitoramento:
+                <strong>24 horas</strong>
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================================
+           CONFIGURAÇÃO DO POSTO
+        ========================================= */
+
+        const CONFIG = {
+
+            posto:
+                "Posto Graciosa",
+
+            email:
+                "administracao@postosgraciosa.com.br",
+
+            identificador:
+                "GRACIOSA",
+
+            tempoConfirmacao:
+                120000
+
+        };
+
+
+
+        /* =========================================
+           ELEMENTOS
+        ========================================= */
+
+        const dataAtual =
+            document.getElementById(
+                "dataAtual"
+            );
+
+
+        const horaAtual =
+            document.getElementById(
+                "horaAtual"
+            );
+
+
+        const statusRadio =
+            document.getElementById(
+                "statusRadio"
+            );
+
+
+        const statusTexto =
+            document.getElementById(
+                "statusTexto"
+            );
+
+
+        const monitoramentoTexto =
+            document.getElementById(
+                "monitoramentoTexto"
+            );
+
+
+
+        /* =========================================
+           RELÓGIO
+        ========================================= */
+
+        function atualizarRelogio() {
+
+            const agora =
+                new Date();
+
+
+            dataAtual.textContent =
+                agora.toLocaleDateString(
+                    "pt-BR"
+                );
+
+
+            horaAtual.textContent =
+                agora.toLocaleTimeString(
+                    "pt-BR",
+                    {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit"
+                    }
+                );
+
+        }
+
+
+        atualizarRelogio();
+
+
+        setInterval(
+            atualizarRelogio,
+            1000
+        );
+
+
+
+        /* =========================================
+           SISTEMA DE STATUS
+        ========================================= */
+
+        function definirStatus(
+            status
+        ) {
+
+            statusRadio.classList.remove(
+                "offline",
+                "atencao"
+            );
+
+
+            if (status === "online") {
+
+                statusTexto.textContent =
+                    "RÁDIO ATIVA";
+
+            }
+
+
+            if (status === "atencao") {
+
+                statusRadio.classList.add(
+                    "atencao"
+                );
+
+                statusTexto.textContent =
+                    "VERIFICANDO";
+
+            }
+
+
+            if (status === "offline") {
+
+                statusRadio.classList.add(
+                    "offline"
+                );
+
+                statusTexto.textContent =
+                    "RÁDIO PAUSADA";
+
+            }
+
+        }
+
+
+
+        /* =========================================
+           STATUS INICIAL
+        ========================================= */
+
+        definirStatus(
+            "online"
+        );
+
+
+
+        /* =========================================
+           MONITORAMENTO
+        ========================================= */
+
+        function registrarInterrupcao() {
+
+            const agora =
+                new Date();
+
+
+            const data =
+                agora.toLocaleDateString(
+                    "pt-BR"
+                );
+
+
+            const hora =
+                agora.toLocaleTimeString(
+                    "pt-BR"
+                );
+
+
+            monitoramentoTexto.innerHTML =
+
+                "🔴 <strong>Rádio pausada.</strong><br>" +
+
+                "Posto: " +
+                CONFIG.posto +
+                "<br>" +
+
+                "Data: " +
+                data +
+                "<br>" +
+
+                "Horário: " +
+                hora;
+
+        }
+
+
+
+        /* =========================================
+           PREPARAÇÃO PARA ALERTA POR E-MAIL
+        ========================================= */
+
+        function prepararAlertaEmail() {
+
+            const agora =
+                new Date();
+
+
+            return {
+
+                posto:
+                    CONFIG.posto,
+
+                identificador:
+                    CONFIG.identificador,
+
+                email:
+                    CONFIG.email,
+
+                data:
+                    agora.toLocaleDateString(
+                        "pt-BR"
+                    ),
+
+                horario:
+                    agora.toLocaleTimeString(
+                        "pt-BR"
+                    ),
+
+                assunto:
+                    "ALERTA - Rádio pausada | " +
+                    CONFIG.posto,
+
+                status:
+                    "RÁDIO PAUSADA"
+
+            };
+
+        }
+
+
+
+        /* =========================================
+           RECUPERAÇÃO DO PLAYER
+        ========================================= */
+
+        function tentarReconectar() {
+
+            const player =
+                document.getElementById(
+                    "radioPlayer"
+                );
+
+
+            const endereco =
+                player.src;
+
+
+            player.src =
+                endereco;
+
+        }
+
+
+
+        /* =========================================
+           CONEXÃO COM A INTERNET
+        ========================================= */
+
+        window.addEventListener(
+            "online",
+            function () {
+
+                monitoramentoTexto.textContent =
+                    "🟢 Internet restabelecida. " +
+                    "Verificando rádio...";
+
+
+                setTimeout(
+                    tentarReconectar,
+                    3000
+                );
+
+            }
+        );
+
+
+        window.addEventListener(
+            "offline",
+            function () {
+
+                definirStatus(
+                    "atencao"
+                );
+
+
+                monitoramentoTexto.textContent =
+                    "🟡 Conexão com a internet " +
+                    "interrompida. " +
+                    "Aguardando reconexão.";
+
+            }
+        );
+
+
+
+        /* =========================================
+           WAKE LOCK
+        ========================================= */
+
+        let wakeLock = null;
+
+
+        async function ativarWakeLock() {
+
+            try {
+
+                if (
+                    "wakeLock" in navigator
+                ) {
+
+                    wakeLock =
+                        await navigator.wakeLock.request(
+                            "screen"
+                        );
+
+                    console.log(
+                        "Wake Lock ativado."
+                    );
+
+                }
+
+            }
+
+            catch (erro) {
+
+                console.log(
+                    "Wake Lock não disponível.",
+                    erro
+                );
+
+            }
+
+        }
+
+
+        ativarWakeLock();
+
+
+
+        /* =========================================
+           QUANDO A ABA VOLTAR A FICAR ATIVA
+        ========================================= */
+
+        document.addEventListener(
+            "visibilitychange",
+            async function () {
+
+                if (
+                    document.visibilityState ===
+                    "visible"
+                ) {
+
+                    await ativarWakeLock();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================================
+           RECARGA DE SEGURANÇA
+        ========================================= */
+
+        setInterval(
+            function () {
+
+                tentarReconectar();
+
+            },
+            6 * 60 * 60 * 1000
+        );
+
+
+
+        /* =========================================
+           RECARGA DA PÁGINA
+        ========================================= */
+
+        setInterval(
+            function () {
+
+                window.location.reload();
+
+            },
+            24 * 60 * 60 * 1000
+        );
+
+
+
+        /* =========================================
+           LOG DE CONFIGURAÇÃO
+        ========================================= */
+
+        console.log(
+            "Monitoramento iniciado."
+        );
+
+        console.log(
+            "Posto:",
+            CONFIG.posto
+        );
+
+        console.log(
+            "E-mail de alerta:",
+            CONFIG.email
+        );
+
+    </script>
+
+
+</body>
+
+</html>
+
