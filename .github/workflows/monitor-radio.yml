@@ -19,6 +19,7 @@ jobs:
     steps:
 
       - name: Verificar stream da Rádio Graciosa
+        shell: bash
         run: |
 
           STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
@@ -26,36 +27,57 @@ jobs:
           echo "======================================"
           echo "MONITORAMENTO DA RÁDIO"
           echo "Posto: Posto Graciosa"
-          echo "Stream: $STREAM"
+          echo "Data: $(date '+%d/%m/%Y')"
+          echo "Horário: $(date '+%H:%M:%S')"
           echo "======================================"
 
           echo ""
-          echo "Testando conexão..."
+          echo "Conectando ao stream..."
+
+          TEMP_FILE=$(mktemp)
 
           HTTP_CODE=$(curl \
             -L \
-            -s \
-            -o /dev/null \
+            -sS \
+            --connect-timeout 10 \
+            --max-time 15 \
+            -r 0-65535 \
+            -o "$TEMP_FILE" \
             -w "%{http_code}" \
-            --max-time 20 \
-            "$STREAM")
+            "$STREAM" || true)
+
+
+          BYTES=$(wc -c < "$TEMP_FILE")
 
           echo ""
-          echo "Resposta HTTP: $HTTP_CODE"
+          echo "HTTP: $HTTP_CODE"
+          echo "Bytes recebidos: $BYTES"
 
-          if [ "$HTTP_CODE" = "200" ]; then
 
-            echo ""
-            echo "STATUS: ONLINE"
-            echo "Stream acessível."
+          echo ""
+          echo "Analisando resultado..."
 
-          else
 
-            echo ""
-            echo "STATUS: OFFLINE"
-            echo "Stream não respondeu corretamente."
+          if [ "$HTTP_CODE" = "200" ] && [ "$BYTES" -gt 1024 ]; then
 
-            exit 1
+              echo ""
+              echo "🟢 STATUS: ONLINE"
+              echo "Stream respondeu e entregou dados."
+              echo "Dados recebidos: $BYTES bytes"
+
+              rm -f "$TEMP_FILE"
+
+              exit 0
 
           fi
+
+
+          echo ""
+          echo "🔴 STATUS: OFFLINE"
+          echo "Não foi possível confirmar a entrega do stream."
+
+
+          rm -f "$TEMP_FILE"
+
+          exit 1
 
