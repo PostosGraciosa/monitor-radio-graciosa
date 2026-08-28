@@ -1,1048 +1,1051 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<meta
-    name="description"
-    content="Monitoramento da rádio - Postos Graciosa"
->
+    <meta
+        name="description"
+        content="Monitoramento da rádio - Postos Graciosa"
+    >
 
-<meta
-    name="theme-color"
-    content="#0e6835"
->
+    <meta
+        name="theme-color"
+        content="#0e6835"
+    >
 
-<title>Monitoramento de Rádio</title>
+    <title>Monitoramento de Rádio</title>
 
 
-<!-- =========================================
-     FAVICON
-========================================== -->
+    <!-- =========================================
+         FAVICON
+    ========================================== -->
 
-<link
-    rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230e6835'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white'/%3E%3Cpath d='M30 30c-12 12-12 28 0 40M70 30c12 12 12 28 0 40' fill='none' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E"
->
+    <link
+        rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230e6835'/%3E%3Ccircle cx='50' cy='50' r='8' fill='white'/%3E%3Cpath d='M30 30c-12 12-12 28 0 40M70 30c12 12 12 28 0 40' fill='none' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E"
+    >
 
 
-<style>
+    <style>
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
 
-    html,
-    body {
-        min-height: 100%;
-    }
+        html,
+        body {
+            min-height: 100%;
+        }
 
-
-    body {
-
-        font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
-        background:
-            linear-gradient(
-                135deg,
-                #eef5f0,
-                #f8faf9
-            );
-
-        color: #1f2937;
-
-        min-height: 100vh;
-
-        padding: 25px;
-
-    }
-
-
-    .container {
-
-        width: 100%;
-
-        max-width: 900px;
-
-        margin: 0 auto;
-
-    }
-
-
-    /* =========================================
-       CABEÇALHO
-    ========================================== */
-
-    .header {
-
-        background:
-            linear-gradient(
-                135deg,
-                #0e6835,
-                #075228
-            );
-
-        color: white;
-
-        border-radius: 22px;
-
-        padding: 28px 32px;
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        gap: 20px;
-
-        box-shadow:
-            0 15px 40px
-            rgba(14,104,53,.15);
-
-        margin-bottom: 20px;
-
-    }
-
-
-    .marca {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 15px;
-
-    }
-
-
-    .icone {
-
-        width: 56px;
-
-        height: 56px;
-
-        border-radius: 16px;
-
-        background:
-            rgba(255,255,255,.13);
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-size: 27px;
-
-    }
-
-
-    .empresa {
-
-        font-size: 10px;
-
-        text-transform: uppercase;
-
-        letter-spacing: 1.5px;
-
-        opacity: .72;
-
-        font-weight: 700;
-
-        margin-bottom: 5px;
-
-    }
-
-
-    .titulo {
-
-        font-size: 24px;
-
-        font-weight: 800;
-
-    }
-
-
-    .subtitulo {
-
-        font-size: 11px;
-
-        opacity: .72;
-
-        margin-top: 5px;
-
-    }
-
-
-    /* =========================================
-       RELÓGIO
-    ========================================== */
-
-    .clock {
-
-        text-align: right;
-
-    }
-
-
-    .clock-label {
-
-        font-size: 9px;
-
-        text-transform: uppercase;
-
-        letter-spacing: 1px;
-
-        opacity: .65;
-
-    }
-
-
-    .clock-time {
-
-        font-size: 25px;
-
-        font-weight: 800;
-
-        margin-top: 4px;
-
-        font-variant-numeric:
-            tabular-nums;
-
-    }
-
-
-    .clock-date {
-
-        font-size: 10px;
-
-        opacity: .7;
-
-        margin-top: 4px;
-
-    }
-
-
-    /* =========================================
-       POSTO
-    ========================================== */
-
-    .station {
-
-        background: white;
-
-        border:
-            1px solid #e1e9e4;
-
-        border-radius: 22px;
-
-        overflow: hidden;
-
-        box-shadow:
-            0 10px 35px
-            rgba(0,0,0,.05);
-
-    }
-
-
-    .station-header {
-
-        padding: 25px;
-
-        border-bottom:
-            1px solid #edf0ee;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 15px;
-
-    }
-
-
-    .station-name-area {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 13px;
-
-    }
-
-
-    .station-icon {
-
-        width: 48px;
-
-        height: 48px;
-
-        border-radius: 14px;
-
-        background: #eef7f1;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        font-size: 21px;
-
-    }
-
-
-    .station-name {
-
-        font-size: 19px;
-
-        font-weight: 800;
-
-    }
-
-
-    .station-code {
-
-        font-size: 10px;
-
-        color: #87918b;
-
-        margin-top: 4px;
-
-    }
-
-
-    /* =========================================
-       STATUS
-    ========================================== */
-
-    .status {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        gap: 7px;
-
-        padding: 8px 12px;
-
-        border-radius: 30px;
-
-        font-size: 9px;
-
-        font-weight: 800;
-
-        text-transform: uppercase;
-
-        white-space: nowrap;
-
-    }
-
-
-    .status-dot {
-
-        width: 7px;
-
-        height: 7px;
-
-        border-radius: 50%;
-
-        background: currentColor;
-
-    }
-
-
-    .status-online {
-
-        background: #eaf7ef;
-
-        color: #0e6835;
-
-    }
-
-
-    .status-offline {
-
-        background: #ffeded;
-
-        color: #c62828;
-
-    }
-
-
-    .status-waiting {
-
-        background: #fff8df;
-
-        color: #9a7500;
-
-    }
-
-
-    /* =========================================
-       PLAYER
-    ========================================== */
-
-    .player {
-
-        padding: 30px 25px;
-
-        background:
-            linear-gradient(
-                135deg,
-                #fbfcfb,
-                #ffffff
-            );
-
-    }
-
-
-    .player-box {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 18px;
-
-    }
-
-
-    .play-button {
-
-        width: 65px;
-
-        height: 65px;
-
-        border: 0;
-
-        border-radius: 50%;
-
-        background: #0e6835;
-
-        color: white;
-
-        font-size: 25px;
-
-        cursor: pointer;
-
-        flex-shrink: 0;
-
-        box-shadow:
-            0 7px 18px
-            rgba(14,104,53,.23);
-
-        transition:
-            transform .15s,
-            background .15s;
-
-    }
-
-
-    .play-button:hover {
-
-        transform: scale(1.04);
-
-        background: #075228;
-
-    }
-
-
-    .play-button.paused {
-
-        background: #c62828;
-
-    }
-
-
-    .player-info {
-
-        flex: 1;
-
-        min-width: 0;
-
-    }
-
-
-    .player-title {
-
-        font-size: 16px;
-
-        font-weight: 800;
-
-    }
-
-
-    .player-message {
-
-        font-size: 11px;
-
-        color: #7a837e;
-
-        margin-top: 5px;
-
-    }
-
-
-    /* =========================================
-       VOLUME
-    ========================================== */
-
-    .volume-area {
-
-        margin-top: 25px;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 10px;
-
-    }
-
-
-    .volume-icon {
-
-        width: 24px;
-
-        font-size: 17px;
-
-    }
-
-
-    .volume {
-
-        flex: 1;
-
-        accent-color: #0e6835;
-
-        cursor: pointer;
-
-    }
-
-
-    .volume-value {
-
-        width: 40px;
-
-        text-align: right;
-
-        font-size: 10px;
-
-        color: #7b847e;
-
-    }
-
-
-    /* =========================================
-       EVENTO
-    ========================================== */
-
-    .last-event {
-
-        border-top:
-            1px solid #edf0ee;
-
-        padding: 18px 25px;
-
-    }
-
-
-    .last-event-label {
-
-        font-size: 9px;
-
-        text-transform: uppercase;
-
-        letter-spacing: 1px;
-
-        color: #8b948f;
-
-        font-weight: 700;
-
-        margin-bottom: 6px;
-
-    }
-
-
-    .last-event-text {
-
-        font-size: 11px;
-
-        color: #4b5563;
-
-    }
-
-
-    /* =========================================
-       HISTÓRICO
-    ========================================== */
-
-    .history {
-
-        margin-top: 20px;
-
-        background: white;
-
-        border:
-            1px solid #e1e9e4;
-
-        border-radius: 22px;
-
-        overflow: hidden;
-
-        box-shadow:
-            0 8px 25px
-            rgba(0,0,0,.04);
-
-    }
-
-
-    .history-header {
-
-        padding: 20px 25px;
-
-        border-bottom:
-            1px solid #edf0ee;
-
-    }
-
-
-    .history-title {
-
-        font-size: 15px;
-
-        font-weight: 800;
-
-    }
-
-
-    .history-subtitle {
-
-        font-size: 10px;
-
-        color: #89918c;
-
-        margin-top: 4px;
-
-    }
-
-
-    .history-list {
-
-        max-height: 330px;
-
-        overflow-y: auto;
-
-    }
-
-
-    .history-item {
-
-        display: grid;
-
-        grid-template-columns:
-            170px 1fr 150px;
-
-        gap: 15px;
-
-        padding: 13px 25px;
-
-        border-bottom:
-            1px solid #f0f2f1;
-
-        font-size: 10px;
-
-        align-items: center;
-
-    }
-
-
-    .history-item:last-child {
-
-        border-bottom: 0;
-
-    }
-
-
-    .history-event {
-
-        color: #4b5563;
-
-    }
-
-
-    .history-time {
-
-        color: #89918c;
-
-        text-align: right;
-
-        font-variant-numeric:
-            tabular-nums;
-
-    }
-
-
-    /* =========================================
-       RODAPÉ
-    ========================================== */
-
-    .footer {
-
-        text-align: center;
-
-        padding: 22px 5px 5px;
-
-        font-size: 10px;
-
-        color: #89918c;
-
-    }
-
-
-    .footer strong {
-
-        color: #0e6835;
-
-    }
-
-
-    @media (max-width: 650px) {
 
         body {
 
-            padding: 10px;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eef5f0,
+                    #f8faf9
+                );
+
+            color: #1f2937;
+
+            min-height: 100vh;
+
+            padding: 25px;
 
         }
 
+
+        .container {
+
+            width: 100%;
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+        }
+
+
+        /* =========================================
+           CABEÇALHO
+        ========================================== */
 
         .header {
 
-            flex-direction: column;
+            background:
+                linear-gradient(
+                    135deg,
+                    #0e6835,
+                    #075228
+                );
 
-            align-items: flex-start;
+            color: white;
 
-            padding: 23px;
+            border-radius: 22px;
+
+            padding: 28px 32px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(14,104,53,.15);
+
+            margin-bottom: 20px;
 
         }
 
 
+        .marca {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+
+        .icone {
+
+            width: 56px;
+
+            height: 56px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(255,255,255,.13);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 27px;
+
+        }
+
+
+        .empresa {
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            opacity: .72;
+
+            font-weight: 700;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .titulo {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+        }
+
+
+        .subtitulo {
+
+            font-size: 11px;
+
+            opacity: .72;
+
+            margin-top: 5px;
+
+        }
+
+
+        /* =========================================
+           RELÓGIO
+        ========================================== */
+
         .clock {
 
-            text-align: left;
+            text-align: right;
+
+        }
+
+
+        .clock-label {
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            opacity: .65;
+
+        }
+
+
+        .clock-time {
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            margin-top: 4px;
+
+            font-variant-numeric:
+                tabular-nums;
+
+        }
+
+
+        .clock-date {
+
+            font-size: 10px;
+
+            opacity: .7;
+
+            margin-top: 4px;
+
+        }
+
+
+        /* =========================================
+           POSTO
+        ========================================== */
+
+        .station {
+
+            background: white;
+
+            border:
+                1px solid #e1e9e4;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,.05);
 
         }
 
 
         .station-header {
 
-            align-items: flex-start;
+            padding: 25px;
 
-            flex-direction: column;
+            border-bottom:
+                1px solid #edf0ee;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+        }
+
+
+        .station-name-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+        }
+
+
+        .station-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 14px;
+
+            background: #eef7f1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+        }
+
+
+        .station-name {
+
+            font-size: 19px;
+
+            font-weight: 800;
+
+        }
+
+
+        .station-code {
+
+            font-size: 10px;
+
+            color: #87918b;
+
+            margin-top: 4px;
+
+        }
+
+
+        /* =========================================
+           STATUS
+        ========================================== */
+
+        .status {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 8px 12px;
+
+            border-radius: 30px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            white-space: nowrap;
+
+        }
+
+
+        .status-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+        }
+
+
+        .status-online {
+
+            background: #eaf7ef;
+
+            color: #0e6835;
+
+        }
+
+
+        .status-offline {
+
+            background: #ffeded;
+
+            color: #c62828;
+
+        }
+
+
+        .status-waiting {
+
+            background: #fff8df;
+
+            color: #9a7500;
+
+        }
+
+
+        /* =========================================
+           PLAYER
+        ========================================== */
+
+        .player {
+
+            padding: 30px 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fbfcfb,
+                    #ffffff
+                );
+
+        }
+
+
+        .player-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+        }
+
+
+        .play-button {
+
+            width: 65px;
+
+            height: 65px;
+
+            border: 0;
+
+            border-radius: 50%;
+
+            background: #0e6835;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            flex-shrink: 0;
+
+            box-shadow:
+                0 7px 18px
+                rgba(14,104,53,.23);
+
+            transition:
+                transform .15s,
+                background .15s;
+
+        }
+
+
+        .play-button:hover {
+
+            transform: scale(1.04);
+
+            background: #075228;
+
+        }
+
+
+        .play-button.paused {
+
+            background: #c62828;
+
+        }
+
+
+        .player-info {
+
+            flex: 1;
+
+            min-width: 0;
+
+        }
+
+
+        .player-title {
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+        }
+
+
+        .player-message {
+
+            font-size: 11px;
+
+            color: #7a837e;
+
+            margin-top: 5px;
+
+        }
+
+
+        /* =========================================
+           VOLUME
+        ========================================== */
+
+        .volume-area {
+
+            margin-top: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .volume-icon {
+
+            width: 24px;
+
+            font-size: 17px;
+
+        }
+
+
+        .volume {
+
+            flex: 1;
+
+            accent-color: #0e6835;
+
+            cursor: pointer;
+
+        }
+
+
+        .volume-value {
+
+            width: 40px;
+
+            text-align: right;
+
+            font-size: 10px;
+
+            color: #7b847e;
+
+        }
+
+
+        /* =========================================
+           EVENTO
+        ========================================== */
+
+        .last-event {
+
+            border-top:
+                1px solid #edf0ee;
+
+            padding: 18px 25px;
+
+        }
+
+
+        .last-event-label {
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: #8b948f;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .last-event-text {
+
+            font-size: 11px;
+
+            color: #4b5563;
+
+        }
+
+
+        /* =========================================
+           HISTÓRICO
+        ========================================== */
+
+        .history {
+
+            margin-top: 20px;
+
+            background: white;
+
+            border:
+                1px solid #e1e9e4;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,.04);
+
+        }
+
+
+        .history-header {
+
+            padding: 20px 25px;
+
+            border-bottom:
+                1px solid #edf0ee;
+
+        }
+
+
+        .history-title {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .history-subtitle {
+
+            font-size: 10px;
+
+            color: #89918c;
+
+            margin-top: 4px;
+
+        }
+
+
+        .history-list {
+
+            max-height: 330px;
+
+            overflow-y: auto;
 
         }
 
 
         .history-item {
 
-            grid-template-columns:
-                1fr;
+            display: grid;
 
-            gap: 4px;
+            grid-template-columns:
+                170px 1fr 150px;
+
+            gap: 15px;
+
+            padding: 13px 25px;
+
+            border-bottom:
+                1px solid #f0f2f1;
+
+            font-size: 10px;
+
+            align-items: center;
+
+        }
+
+
+        .history-item:last-child {
+
+            border-bottom: 0;
+
+        }
+
+
+        .history-event {
+
+            color: #4b5563;
 
         }
 
 
         .history-time {
 
-            text-align: left;
+            color: #89918c;
+
+            text-align: right;
+
+            font-variant-numeric:
+                tabular-nums;
 
         }
 
-    }
 
-</style>
-```
+        /* =========================================
+           RODAPÉ
+        ========================================== */
+
+        .footer {
+
+            text-align: center;
+
+            padding: 22px 5px 5px;
+
+            font-size: 10px;
+
+            color: #89918c;
+
+        }
+
+
+        .footer strong {
+
+            color: #0e6835;
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            body {
+
+                padding: 10px;
+
+            }
+
+
+            .header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                padding: 23px;
+
+            }
+
+
+            .clock {
+
+                text-align: left;
+
+            }
+
+
+            .station-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+
+            .history-item {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 4px;
+
+            }
+
+
+            .history-time {
+
+                text-align: left;
+
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-```
-<!-- =========================================
-     CABEÇALHO
-========================================== -->
 
-<header class="header">
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
 
-    <div class="marca">
+    <header class="header">
 
-        <div class="icone">
-            📻
-        </div>
+        <div class="marca">
 
-        <div>
-
-            <div class="empresa">
-                Postos Graciosa
-            </div>
-
-            <div class="titulo">
-                Monitoramento de Rádio
-            </div>
-
-            <div class="subtitulo">
-                Monitoramento individual do player
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="clock">
-
-        <div class="clock-label">
-            Horário local
-        </div>
-
-        <div
-            id="clock"
-            class="clock-time"
-        >
-            --:--:--
-        </div>
-
-        <div
-            id="date"
-            class="clock-date"
-        >
-            --/--/----
-        </div>
-
-    </div>
-
-</header>
-
-
-
-<!-- =========================================
-     POSTO
-========================================== -->
-
-<main class="station">
-
-    <div class="station-header">
-
-        <div class="station-name-area">
-
-            <div class="station-icon">
-                ⛽
+            <div class="icone">
+                📻
             </div>
 
             <div>
 
-                <div
-                    id="stationName"
-                    class="station-name"
+                <div class="empresa">
+                    Postos Graciosa
+                </div>
+
+                <div class="titulo">
+                    Monitoramento de Rádio
+                </div>
+
+                <div class="subtitulo">
+                    Monitoramento individual do player
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="clock">
+
+            <div class="clock-label">
+                Horário local
+            </div>
+
+            <div
+                id="clock"
+                class="clock-time"
+            >
+                --:--:--
+            </div>
+
+            <div
+                id="date"
+                class="clock-date"
+            >
+                --/--/----
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         POSTO
+    ========================================== -->
+
+    <main class="station">
+
+        <div class="station-header">
+
+            <div class="station-name-area">
+
+                <div class="station-icon">
+                    ⛽
+                </div>
+
+                <div>
+
+                    <div
+                        id="stationName"
+                        class="station-name"
+                    >
+                        Carregando posto...
+                    </div>
+
+                    <div class="station-code">
+                        Monitoramento individual
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="statusBadge"
+                class="status status-waiting"
+            >
+
+                <span class="status-dot"></span>
+
+                INICIANDO
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             PLAYER
+        ====================================== -->
+
+        <section class="player">
+
+            <div class="player-box">
+
+                <button
+                    id="playButton"
+                    class="play-button"
+                    type="button"
+                    aria-label="Iniciar rádio"
                 >
-                    Carregando posto...
+                    ▶
+                </button>
+
+
+                <div class="player-info">
+
+                    <div
+                        id="playerTitle"
+                        class="player-title"
+                    >
+                        Rádio Postos Graciosa
+                    </div>
+
+
+                    <div
+                        id="playerMessage"
+                        class="player-message"
+                    >
+                        Preparando transmissão...
+                    </div>
+
                 </div>
 
-                <div class="station-code">
-                    Monitoramento individual
+            </div>
+
+
+            <div class="volume-area">
+
+                <div
+                    id="volumeIcon"
+                    class="volume-icon"
+                >
+                    🔊
                 </div>
 
+
+                <input
+                    id="volume"
+                    class="volume"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                >
+
+
+                <div
+                    id="volumeValue"
+                    class="volume-value"
+                >
+                    100%
+                </div>
+
+            </div>
+
+
+            <audio
+                id="radio"
+                preload="none"
+                playsinline
+            ></audio>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ÚLTIMO EVENTO
+        ====================================== -->
+
+        <section class="last-event">
+
+            <div class="last-event-label">
+                Último evento
+            </div>
+
+
+            <div
+                id="lastEvent"
+                class="last-event-text"
+            >
+                Sistema iniciando...
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         HISTÓRICO
+    ========================================== -->
+
+    <section class="history">
+
+        <div class="history-header">
+
+            <div class="history-title">
+                Histórico deste posto
+            </div>
+
+            <div class="history-subtitle">
+                Eventos registrados neste navegador
             </div>
 
         </div>
 
 
         <div
-            id="statusBadge"
-            class="status status-waiting"
-        >
-
-            <span class="status-dot"></span>
-
-            INICIANDO
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================
-         PLAYER
-    ====================================== -->
-
-    <section class="player">
-
-        <div class="player-box">
-
-            <button
-                id="playButton"
-                class="play-button"
-                type="button"
-                aria-label="Iniciar rádio"
-            >
-                ▶
-            </button>
-
-
-            <div class="player-info">
-
-                <div
-                    id="playerTitle"
-                    class="player-title"
-                >
-                    Rádio Postos Graciosa
-                </div>
-
-
-                <div
-                    id="playerMessage"
-                    class="player-message"
-                >
-                    Preparando transmissão...
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="volume-area">
-
-            <div
-                id="volumeIcon"
-                class="volume-icon"
-            >
-                🔊
-            </div>
-
-
-            <input
-                id="volume"
-                class="volume"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="1"
-            >
-
-
-            <div
-                id="volumeValue"
-                class="volume-value"
-            >
-                100%
-            </div>
-
-        </div>
-
-
-        <audio
-            id="radio"
-            preload="none"
-            playsinline
-        ></audio>
+            id="historyList"
+            class="history-list"
+        ></div>
 
     </section>
 
 
 
-    <!-- =====================================
-         ÚLTIMO EVENTO
-    ====================================== -->
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
 
-    <section class="last-event">
+    <footer class="footer">
 
-        <div class="last-event-label">
-            Último evento
-        </div>
+        Postos Graciosa ·
 
+        <strong>
+            Monitoramento de Rádio
+        </strong>
 
-        <div
-            id="lastEvent"
-            class="last-event-text"
-        >
-            Sistema iniciando...
-        </div>
+    </footer>
 
-    </section>
-
-</main>
-
-
-
-<!-- =========================================
-     HISTÓRICO
-========================================== -->
-
-<section class="history">
-
-    <div class="history-header">
-
-        <div class="history-title">
-            Histórico deste posto
-        </div>
-
-        <div class="history-subtitle">
-            Eventos registrados neste navegador
-        </div>
-
-    </div>
-
-
-    <div
-        id="historyList"
-        class="history-list"
-    ></div>
-
-</section>
-
-
-
-<!-- =========================================
-     RODAPÉ
-========================================== -->
-
-<footer class="footer">
-
-    Postos Graciosa ·
-
-    <strong>
-        Monitoramento de Rádio
-    </strong>
-
-</footer>
-```
 
 </div>
+
+
 
 <script>
 
@@ -1062,20 +1065,8 @@ const CONFIG = {
     historicoStorage:
         "monitor_radio_eventos_v3",
 
-    /*
-       Verificação do player a cada 5 segundos.
-    */
-
     intervaloMonitoramento:
-        5000,
-
-    /*
-       Tempo que o player pode ficar sem
-       atividade antes de ser considerado parado.
-    */
-
-    toleranciaParada:
-        15000,
+        3000,
 
     /*
        URL DO GOOGLE APPS SCRIPT
@@ -1255,33 +1246,6 @@ let primeiraExecucao =
 
 
 /*
-   Último momento em que sabemos que
-   o player estava funcionando.
-*/
-
-let ultimaAtividadePlayer =
-    0;
-
-
-/*
-   Controle de tolerância para
-   waiting/stalled.
-*/
-
-let iniciouInterrupcao =
-    false;
-
-
-/*
-   Controle para não disparar
-   vários alertas da mesma parada.
-*/
-
-let paradaJaDetectada =
-    false;
-
-
-/*
    Controle para não disparar
    o mesmo alerta repetidamente.
 */
@@ -1405,47 +1369,69 @@ function enviarAlertaEmail(
 
     /*
        Evita repetir exatamente
-       o mesmo evento enquanto
-       a situação não mudar.
+       o mesmo evento.
     */
 
     const chaveEvento =
-    POSTO.codigo +
-    "|" +
-    evento;
+        POSTO.codigo +
+        "|" +
+        evento;
 
-const agora =
-    Date.now();
 
-const INTERVALO_ANTI_DUPLICACAO =
-    10000; // 10 segundos
+    if (
+        ultimoEventoEnviado ===
+        chaveEvento
+    ) {
 
-if (
-    ultimoEventoEnviado &&
-    ultimoEventoEnviado.chave === chaveEvento &&
-    agora - ultimoEventoEnviado.timestamp <
-        INTERVALO_ANTI_DUPLICACAO
-) {
+        console.log(
+            "Alerta já enviado:",
+            evento
+        );
+
+        return;
+
+    }
+
+
+    ultimoEventoEnviado =
+        chaveEvento;
+
+
+    const dados = {
+
+        chave:
+            CONFIG.chave,
+
+        posto:
+            POSTO.nome,
+
+        codigo:
+            POSTO.codigo,
+
+        evento:
+            evento,
+
+        status:
+            status,
+
+        dataHora:
+            agoraTexto(),
+
+        timestamp:
+            Date.now()
+
+    };
+
 
     console.log(
-        "Alerta duplicado ignorado:",
-        evento
+        "Enviando alerta:",
+        dados
     );
 
-    return;
 
-}
-
-ultimoEventoEnviado = {
-
-    chave:
-        chaveEvento,
-
-    timestamp:
-        agora
-
-};
-
+    /*
+       text/plain evita preflight CORS.
+    */
 
     fetch(
         CONFIG.endpointEmail,
@@ -1492,7 +1478,7 @@ ultimoEventoEnviado = {
 
             /*
                Se houver erro de rede,
-               permite nova tentativa.
+               permite uma nova tentativa.
             */
 
             ultimoEventoEnviado =
@@ -1647,6 +1633,10 @@ function registrarEvento(
         "================================="
     );
 
+
+    /*
+       ENVIO DO E-MAIL
+    */
 
     if (
         enviarEmail
@@ -1884,14 +1874,6 @@ async function iniciarRadio(
         false;
 
 
-    paradaJaDetectada =
-        false;
-
-
-    iniciouInterrupcao =
-        false;
-
-
     definirStatus(
         "verificando"
     );
@@ -1899,32 +1881,13 @@ async function iniciarRadio(
 
     try {
 
-        /*
-           Se o stream já estiver atrasado,
-           recarrega o elemento antes de
-           iniciar novamente.
-
-           Isso faz o Play voltar para o
-           ponto atual da transmissão.
-        */
-
-        if (
-            origem === "manual"
-            &&
-            audio.paused
-        ) {
-
-            audio.load();
-
-        }
-
-
         await audio.play();
 
 
-        ultimaAtividadePlayer =
-            Date.now();
-
+        /*
+           O evento "playing"
+           confirmará o início real.
+        */
 
         atualizarBotao();
 
@@ -1963,14 +1926,6 @@ function pausarRadio() {
 
     usuarioPausou =
         true;
-
-
-    paradaJaDetectada =
-        false;
-
-
-    iniciouInterrupcao =
-        false;
 
 
     audio.pause();
@@ -2053,24 +2008,8 @@ audio.addEventListener(
             "offline";
 
 
-        const eraParada =
-            paradaJaDetectada;
-
-
         usuarioPausou =
             false;
-
-
-        iniciouInterrupcao =
-            false;
-
-
-        paradaJaDetectada =
-            false;
-
-
-        ultimaAtividadePlayer =
-            Date.now();
 
 
         definirStatus(
@@ -2088,22 +2027,15 @@ audio.addEventListener(
 
 
         /*
-           Envia e-mail quando:
-
-           1. é a primeira execução;
-
-           2. estava OFFLINE;
-
-           3. o watchdog confirmou
-              uma parada real.
+           Envia e-mail somente quando
+           o evento realmente representa
+           uma mudança.
         */
 
         if (
             primeiraExecucao
             ||
             eraOffline
-            ||
-            eraParada
         ) {
 
             registrarEvento(
@@ -2117,90 +2049,6 @@ audio.addEventListener(
 
         primeiraExecucao =
             false;
-
-    }
-);
-
-
-
-/* =====================================================
-   TIMEUPDATE
-===================================================== */
-
-/*
-   O evento timeupdate é importante
-   para streams ao vivo.
-
-   Enquanto o navegador estiver
-   recebendo e reproduzindo áudio,
-   o currentTime avança.
-
-   Assim conseguimos saber que a
-   transmissão realmente está viva.
-*/
-
-audio.addEventListener(
-    "timeupdate",
-    function () {
-
-        if (
-            usuarioPausou
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            !audio.paused
-        ) {
-
-            ultimaAtividadePlayer =
-                Date.now();
-
-
-            /*
-               Se estava em waiting/stalled
-               e voltou a avançar,
-               consideramos recuperado.
-            */
-
-            iniciouInterrupcao =
-                false;
-
-        }
-
-    }
-);
-
-
-
-/* =====================================================
-   PROGRESSO / DURATIONCHANGE
-===================================================== */
-
-audio.addEventListener(
-    "progress",
-    function () {
-
-        if (
-            usuarioPausou
-        ) {
-
-            return;
-
-        }
-
-
-        if (
-            !audio.paused
-        ) {
-
-            ultimaAtividadePlayer =
-                Date.now();
-
-        }
 
     }
 );
@@ -2227,24 +2075,21 @@ audio.addEventListener(
         }
 
 
-        /*
-           Não envia imediatamente.
-
-           O watchdog vai confirmar se
-           realmente houve uma parada.
-        */
-
-        iniciouInterrupcao =
-            true;
-
-
         definirStatus(
-            "verificando"
+            "offline"
         );
 
 
-        playerMessage.textContent =
-            "Verificando interrupção da transmissão...";
+        lastEvent.textContent =
+            "PLAYER PAROU INESPERADAMENTE em " +
+            agoraTexto();
+
+
+        registrarEvento(
+            "PLAYER PAROU INESPERADAMENTE",
+            "offline",
+            true
+        );
 
     }
 );
@@ -2268,17 +2113,9 @@ audio.addEventListener(
         }
 
 
-        iniciouInterrupcao =
-            true;
-
-
         definirStatus(
             "verificando"
         );
-
-
-        playerMessage.textContent =
-            "Aguardando dados da transmissão...";
 
     }
 );
@@ -2302,17 +2139,9 @@ audio.addEventListener(
         }
 
 
-        iniciouInterrupcao =
-            true;
-
-
         definirStatus(
             "verificando"
         );
-
-
-        playerMessage.textContent =
-            "Transmissão temporariamente sem dados...";
 
     }
 );
@@ -2336,17 +2165,21 @@ audio.addEventListener(
         }
 
 
-        iniciouInterrupcao =
-            true;
-
-
         definirStatus(
-            "verificando"
+            "offline"
         );
 
 
-        playerMessage.textContent =
-            "Erro detectado. Confirmando interrupção...";
+        lastEvent.textContent =
+            "ERRO NA TRANSMISSÃO em " +
+            agoraTexto();
+
+
+        registrarEvento(
+            "ERRO NA TRANSMISSÃO",
+            "offline",
+            true
+        );
 
     }
 );
@@ -2354,27 +2187,8 @@ audio.addEventListener(
 
 
 /* =====================================================
-   WATCHDOG DO PLAYER
+   MONITORAMENTO
 ===================================================== */
-
-/*
-   Esta é a parte principal da correção.
-
-   O navegador pode não disparar
-   pause/error de maneira confiável
-   em um stream ao vivo.
-
-   Por isso verificamos continuamente:
-
-   - se o áudio deveria estar tocando;
-   - se o currentTime continua avançando;
-   - se há muito tempo sem atividade;
-   - se a transmissão está em waiting/stalled;
-   - se o elemento ficou pausado sozinho.
-
-   Só depois da tolerância definida
-   enviamos o alerta.
-*/
 
 setInterval(
     function () {
@@ -2388,170 +2202,94 @@ setInterval(
         }
 
 
-        const agora =
-            Date.now();
-
-
-        /*
-           Caso o player esteja tocando
-           e o navegador esteja atualizando
-           normalmente, tudo está OK.
-        */
-
         if (
-            !audio.paused
+            estado ===
+            "online"
             &&
-            estado === "online"
-        ) {
-
-            const tempoSemAtividade =
-                agora -
-                ultimaAtividadePlayer;
-
-
-            /*
-               Se passou tempo demais
-               sem qualquer atividade,
-               começamos a confirmar
-               a parada.
-            */
-
-            if (
-                tempoSemAtividade >
-                CONFIG.toleranciaParada
-            ) {
-
-                if (
-                    !paradaJaDetectada
-                ) {
-
-                    paradaJaDetectada =
-                        true;
-
-
-                    definirStatus(
-                        "offline"
-                    );
-
-
-                    lastEvent.textContent =
-                        "PLAYER PAROU INESPERADAMENTE em " +
-                        agoraTexto();
-
-
-                    registrarEvento(
-                        "PLAYER PAROU INESPERADAMENTE",
-                        "offline",
-                        true
-                    );
-
-                }
-
-            }
-
-            return;
-
-        }
-
-
-
-        /*
-           Caso o player esteja pausado
-           sem o usuário ter clicado em
-           Pause, confirma a parada.
-        */
-
-        if (
             audio.paused
-            &&
-            !usuarioPausou
-            &&
-            estado === "online"
         ) {
 
-            if (
-                !paradaJaDetectada
-            ) {
-
-                paradaJaDetectada =
-                    true;
+            definirStatus(
+                "offline"
+            );
 
 
-                definirStatus(
-                    "offline"
-                );
+            lastEvent.textContent =
+                "PLAYER PAROU INESPERADAMENTE em " +
+                agoraTexto();
 
 
-                lastEvent.textContent =
-                    "PLAYER PAROU INESPERADAMENTE em " +
-                    agoraTexto();
-
-
-                registrarEvento(
-                    "PLAYER PAROU INESPERADAMENTE",
-                    "offline",
-                    true
-                );
-
-            }
-
-            return;
-
-        }
-
-
-
-        /*
-           Se estava em waiting/stalled,
-           damos tempo para recuperar.
-        */
-
-        if (
-            iniciouInterrupcao
-        ) {
-
-            const tempoSemAtividade =
-                agora -
-                ultimaAtividadePlayer;
-
-
-            if (
-                tempoSemAtividade >
-                CONFIG.toleranciaParada
-            ) {
-
-                if (
-                    !paradaJaDetectada
-                ) {
-
-                    paradaJaDetectada =
-                        true;
-
-
-                    definirStatus(
-                        "offline"
-                    );
-
-
-                    lastEvent.textContent =
-                        "PLAYER PAROU INESPERADAMENTE em " +
-                        agoraTexto();
-
-
-                    registrarEvento(
-                        "PLAYER PAROU INESPERADAMENTE",
-                        "offline",
-                        true
-                    );
-
-                }
-
-            }
+            registrarEvento(
+                "PLAYER PAROU INESPERADAMENTE",
+                "offline",
+                true
+            );
 
         }
 
     },
     CONFIG.intervaloMonitoramento
+);
+
+
+
+/* =====================================================
+   VOLUME
+===================================================== */
+
+audio.volume =
+    1;
+
+
+volume.addEventListener(
+    "input",
+    function () {
+
+        audio.volume =
+            Number(
+                volume.value
+            );
+
+
+        const porcentagem =
+            Math.round(
+                audio.volume * 100
+            );
+
+
+        volumeValue.textContent =
+            porcentagem +
+            "%";
+
+
+        if (
+            audio.volume ===
+            0
+        ) {
+
+            volumeIcon.textContent =
+                "🔇";
+
+        }
+
+        else if (
+            audio.volume <
+            .5
+        ) {
+
+            volumeIcon.textContent =
+                "🔉";
+
+        }
+
+        else {
+
+            volumeIcon.textContent =
+                "🔊";
+
+        }
+
+    }
 );
 
 
@@ -2709,6 +2447,7 @@ console.log(
 );
 
 </script>
+
 
 </body>
 
