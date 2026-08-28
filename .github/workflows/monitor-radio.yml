@@ -1,42 +1,58 @@
-
 name: Monitor Rádio Graciosa
 
 on:
-
   workflow_dispatch:
 
   schedule:
     - cron: "*/5 * * * *"
 
-
 jobs:
-
   monitor:
-
     runs-on: ubuntu-latest
 
-
     steps:
-
       - name: Verificar stream da Rádio Graciosa
         shell: bash
         run: |
 
           STREAM="https://servidor33-2.brlogic.com:7200/live?source=7074"
 
-          echo "======================================"
-          echo "MONITORAMENTO DA RÁDIO"
-          echo "Posto: Posto Graciosa"
-          echo "Data: $(date '+%d/%m/%Y')"
-          echo "Horário: $(date '+%H:%M:%S')"
+          APPS_SCRIPT="https://script.google.com/macros/s/AKfycbyTJwiUpNO1a3-u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec"
+
+          POSTO="POSTO GRACIOSA"
+
+
+          DATA=$(date '+%d/%m/%Y')
+
+          HORA=$(date '+%H:%M:%S')
+
+
           echo "======================================"
 
-          echo ""
-          echo "Conectando ao stream..."
+          echo "MONITORAMENTO DA RÁDIO"
+
+          echo "Posto: $POSTO"
+
+          echo "Data: $DATA"
+
+          echo "Horário: $HORA"
+
+          echo "======================================"
+
 
           TEMP_FILE=$(mktemp)
 
-          HTTP_CODE=$(curl \
+          ERROR_FILE=$(mktemp)
+
+          HTTP_FILE=$(mktemp)
+
+
+          echo ""
+
+          echo "Conectando ao stream..."
+
+
+          curl \
             -L \
             -sS \
             --connect-timeout 10 \
@@ -44,39 +60,190 @@ jobs:
             -r 0-65535 \
             -o "$TEMP_FILE" \
             -w "%{http_code}" \
-            "$STREAM" || true)
+            "$STREAM" \
+            > "$HTTP_FILE" \
+            2> "$ERROR_FILE"
 
 
-          BYTES=$(wc -c < "$TEMP_FILE")
+          CURL_EXIT=$?
+
+
+          HTTP_CODE=$(cat "$HTTP_FILE" 2>/dev/null || echo "000")
+
+          BYTES=$(wc -c < "$TEMP_FILE" 2>/dev/null || echo "0")
+
+          CURL_ERROR=$(cat "$ERROR_FILE" 2>/dev/null || true)
+
 
           echo ""
+
+          echo "Código CURL: $CURL_EXIT"
+
           echo "HTTP: $HTTP_CODE"
+
           echo "Bytes recebidos: $BYTES"
 
 
-          echo ""
-          echo "Analisando resultado..."
+          if [ -n "$CURL_ERROR" ]; then
 
+            echo ""
 
-          if [ "$HTTP_CODE" = "200" ] && [ "$BYTES" -gt 1024 ]; then
+            echo "Mensagem CURL:"
 
-              echo ""
-              echo "🟢 STATUS: ONLINE"
-              echo "Stream respondeu e entregou dados."
-              echo "Dados recebidos: $BYTES bytes"
-
-              rm -f "$TEMP_FILE"
-
-              exit 0
+            echo "$CURL_ERROR"
 
           fi
 
 
           echo ""
-          echo "🔴 STATUS: OFFLINE"
-          echo "Não foi possível confirmar a entrega do stream."
 
+          echo "Analisando resultado..."
+
+
+          STATUS="offline"
+
+
+          #
+          # STREAM ONLINE
+          #
+          # Consideramos ONLINE quando:
+          #
+          # - HTTP = 200
+          # - recebeu pelo menos 1 KB
+          #
+          # O CURL pode retornar timeout 28
+          # porque o stream é contínuo.
+          # Isso NÃO significa necessariamente
+          # que a rádio está offline.
+          #
+
+
+          if [ "$HTTP_CODE" = "200" ] && [ "$BYTES" -gt 1024 ]; then
+
+            STATUS="online"
+
+            echo ""
+
+            echo "🟢 STATUS: ONLINE"
+
+            echo "Stream respondeu e entregou dados."
+
+            echo "Dados recebidos: $BYTES bytes"
+
+          else
+
+            STATUS="offline"
+
+            echo ""
+
+            echo "🔴 STATUS: OFFLINE"
+
+            echo "Não foi possível confirmar a entrega do stream."
+
+          fi
+
+
+          echo ""
+
+          echo "======================================"
+
+          echo "RESULTADO"
+
+          echo "Posto: $POSTO"
+
+          echo "Status: $STATUS"
+
+          echo "Data: $DATA"
+
+          echo "Horário: $HORA"
+
+          echo "HTTP: $HTTP_CODE"
+
+          echo "Bytes: $BYTES"
+
+          echo "======================================"
+
+
+          #
+          # ENVIAR SEMPRE PARA O APPS SCRIPT
+          #
+          # IMPORTANTE:
+          # Este envio acontece tanto quando
+          # a rádio está ONLINE quanto OFFLINE.
+          #
+
+
+          echo ""
+
+          echo "Enviando resultado para o Google Apps Script..."
+
+
+          RESPONSE=$(curl \
+            -L \
+            -sS \
+            --connect-timeout 10 \
+            --max-time 30 \
+            -G \
+            --data-urlencode "posto=$POSTO" \
+            --data-urlencode "status=$STATUS" \
+            --data-urlencode "data=$DATA" \
+            --data-urlencode "hora=$HORA" \
+            --data-urlencode "bytes=$BYTES" \
+            --data-urlencode "http=$HTTP_CODE" \
+            "$APPS_SCRIPT" \
+            2>&1)
+
+
+          APPS_EXIT=$?
+
+
+          echo ""
+
+          echo "Código do Apps Script: $APPS_EXIT"
+
+          echo ""
+
+          echo "Resposta do Apps Script:"
+
+          echo "$RESPONSE"
+
+
+          #
+          # LIMPEZA
+          #
 
           rm -f "$TEMP_FILE"
 
-          exit 1
+          rm -f "$ERROR_FILE"
+
+          rm -f "$HTTP_FILE"
+
+
+          echo ""
+
+          echo "======================================"
+
+          echo "MONITORAMENTO CONCLUÍDO"
+
+          echo "Posto: $POSTO"
+
+          echo "Status: $STATUS"
+
+          echo "Data: $DATA"
+
+          echo "Horário: $HORA"
+
+          echo "======================================"
+
+
+          #
+          # NÃO USAR exit 1 AQUI
+          #
+          # Mesmo que a rádio esteja offline,
+          # o workflow termina normalmente porque
+          # OFFLINE é um resultado do monitoramento,
+          # e não uma falha do GitHub Actions.
+          #
+
+
+          exit 0
