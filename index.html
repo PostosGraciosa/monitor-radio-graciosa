@@ -1410,65 +1410,41 @@ function enviarAlertaEmail(
     */
 
     const chaveEvento =
-        POSTO.codigo +
-        "|" +
-        evento;
+    POSTO.codigo +
+    "|" +
+    evento;
 
+const agora =
+    Date.now();
 
-    if (
-        ultimoEventoEnviado ===
-        chaveEvento
-    ) {
+const INTERVALO_ANTI_DUPLICACAO =
+    10000; // 10 segundos
 
-        console.log(
-            "Alerta já enviado:",
-            evento
-        );
-
-        return;
-
-    }
-
-
-    const dados = {
-
-        chave:
-            CONFIG.chave,
-
-        posto:
-            POSTO.nome,
-
-        codigo:
-            POSTO.codigo,
-
-        evento:
-            evento,
-
-        status:
-            status,
-
-        dataHora:
-            agoraTexto(),
-
-        timestamp:
-            Date.now()
-
-    };
-
+if (
+    ultimoEventoEnviado &&
+    ultimoEventoEnviado.chave === chaveEvento &&
+    agora - ultimoEventoEnviado.timestamp <
+        INTERVALO_ANTI_DUPLICACAO
+) {
 
     console.log(
-        "Enviando alerta:",
-        dados
+        "Alerta duplicado ignorado:",
+        evento
     );
 
+    return;
 
-    /*
-       Marca somente depois de
-       preparar a solicitação.
-    */
+}
 
-    ultimoEventoEnviado =
-        chaveEvento;
+ultimoEventoEnviado = {
+
+    chave:
+        chaveEvento,
+
+    timestamp:
+        agora
+
+};
 
 
     fetch(
