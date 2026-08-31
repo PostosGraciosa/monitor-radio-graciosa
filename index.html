@@ -1234,35 +1234,11 @@ function gerarIdEvento() {
 
 }
 
+
 /* =====================================================
    ENVIAR ALERTA PARA GOOGLE APPS SCRIPT
+   VERSÃO CORRIGIDA
 ===================================================== */
-
-/*
-   IMPORTANTE:
-
-   NÃO usamos fetch() aqui.
-
-   O fetch() estava sendo bloqueado
-   pelo CORS do Google Apps Script.
-
-   Usamos uma imagem invisível para
-   fazer a requisição GET.
-
-   O navegador envia a requisição
-   normalmente sem precisar ler
-   a resposta do Apps Script.
-
-   Cada evento possui um ID novo.
-
-   PLAY = 1 chamada
-   PAUSE = 1 chamada
-   PLAY = 1 chamada
-   PAUSE = 1 chamada
-
-   Nunca usamos uma trava global
-   para impedir eventos diferentes.
-*/
 
 function enviarAlertaEmail(
     evento,
@@ -1270,18 +1246,17 @@ function enviarAlertaEmail(
     idEvento
 ) {
 
-    if (
-        !idEvento
-    ) {
+    if (!idEvento) {
 
         idEvento =
             gerarIdEvento();
 
     }
 
+
     /*
-       Proteção somente contra
-       duplicação da mesma chamada.
+       Proteção somente contra duplicação
+       da mesma ocorrência.
     */
 
     if (
@@ -1298,122 +1273,225 @@ function enviarAlertaEmail(
 
     }
 
+
     ultimoEventoId =
         idEvento;
 
-    const dados = {
-
-        chave:
-            CONFIG.chave,
-
-        posto:
-            POSTO.nome,
-
-        codigo:
-            POSTO.codigo,
-
-        evento:
-            evento,
-
-        status:
-            status,
-
-        dataHora:
-            agoraTexto(),
-
-        timestamp:
-            Date.now(),
-
-        idEvento:
-            idEvento
-
-    };
-
-    console.log(
-        "================================="
-    );
-
-    console.log(
-        "ENVIANDO ALERTA POR E-MAIL"
-    );
-
-    console.log(
-        "POSTO:",
-        dados.posto
-    );
-
-    console.log(
-        "EVENTO:",
-        dados.evento
-    );
-
-    console.log(
-        "STATUS:",
-        dados.status
-    );
-
-    console.log(
-        "ID:",
-        dados.idEvento
-    );
-
-    console.log(
-        "================================="
-    );
 
     const parametros =
         new URLSearchParams();
 
+
     parametros.set(
         "chave",
-        dados.chave
+        CONFIG.chave
     );
 
     parametros.set(
         "posto",
-        dados.posto
+        POSTO.nome
     );
 
     parametros.set(
         "codigo",
-        dados.codigo
+        POSTO.codigo
     );
 
     parametros.set(
         "evento",
-        dados.evento
+        evento
     );
 
     parametros.set(
         "status",
-        dados.status
+        status
     );
 
     parametros.set(
         "dataHora",
-        dados.dataHora
+        agoraTexto()
     );
 
     parametros.set(
         "timestamp",
         String(
-            dados.timestamp
+            Date.now()
         )
     );
 
     parametros.set(
         "idEvento",
-        dados.idEvento
+        idEvento
     );
+
+    /*
+       Identifica que esta chamada veio
+       diretamente do player.
+    */
+
+    parametros.set(
+        "origem",
+        "player"
+    );
+
 
     const url =
         CONFIG.endpointEmail +
         "?" +
         parametros.toString();
 
+
     console.log(
-        "URL do alerta preparada."
+        "================================="
     );
+
+    console.log(
+        "ENVIANDO ALERTA PARA APPS SCRIPT"
+    );
+
+    console.log(
+        "POSTO:",
+        POSTO.nome
+    );
+
+    console.log(
+        "EVENTO:",
+        evento
+    );
+
+    console.log(
+        "STATUS:",
+        status
+    );
+
+    console.log(
+        "ID:",
+        idEvento
+    );
+
+    console.log(
+        "ORIGEM:",
+        "player"
+    );
+
+    console.log(
+        "URL:",
+        url
+    );
+
+    console.log(
+        "================================="
+    );
+
+
+    /*
+       =================================================
+       SCRIPT DINÂMICO
+       =================================================
+
+       O navegador faz uma requisição GET
+       para o Google Apps Script sem CORS.
+
+       Não precisamos ler a resposta.
+
+       O timestamp/idEvento tornam cada
+       chamada única.
+    */
+
+    const script =
+        document.createElement(
+            "script"
+        );
+
+
+    script.async =
+        true;
+
+
+    script.src =
+        url;
+
+
+    script.onload =
+        function () {
+
+            console.log(
+                "🟢 Requisição enviada ao Apps Script."
+            );
+
+            /*
+               O Apps Script retorna JSON.
+               Como estamos usando script,
+               o navegador pode considerar isso
+               como erro de interpretação.
+
+               Isso NÃO significa que o GET
+               não foi realizado.
+            */
+
+            setTimeout(
+                function () {
+
+                    if (
+                        script.parentNode
+                    ) {
+
+                        script.parentNode
+                            .removeChild(
+                                script
+                            );
+
+                    }
+
+                },
+                1000
+            );
+
+        };
+
+
+    script.onerror =
+        function () {
+
+            console.log(
+                "🟡 Apps Script recebeu/redirectou a chamada, " +
+                "mas a resposta não é JavaScript executável."
+            );
+
+            /*
+               Mesmo com erro de interpretação,
+               a requisição GET já pode ter
+               chegado ao Apps Script.
+            */
+
+            setTimeout(
+                function () {
+
+                    if (
+                        script.parentNode
+                    ) {
+
+                        script.parentNode
+                            .removeChild(
+                                script
+                            );
+
+                    }
+
+                },
+                1000
+            );
+
+        };
+
+
+    document.body.appendChild(
+        script
+    );
+
+}
+
+
 
     /*
        =============================================
