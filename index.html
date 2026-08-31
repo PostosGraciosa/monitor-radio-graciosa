@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="pt-BR">
@@ -8,18 +7,21 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
 >
 
 <meta
-    name="description"
-    content="Monitoramento da rádio - Postos Graciosa"
+name="description"
+content="Monitoramento da rádio - Postos Graciosa"
+
 >
 
 <meta
-    name="theme-color"
-    content="#0e6835"
+name="theme-color"
+content="#0e6835"
+
 >
 
 <title>Monitoramento de Rádio</title>
@@ -36,20 +38,14 @@
 ===================================================== */
 
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
 }
 
 html,
 body {
-
     min-height: 100%;
-
 }
 
 body {
@@ -74,6 +70,10 @@ body {
 
 }
 
+/* =====================================================
+   CONTAINER
+===================================================== */
+
 .container {
 
     width: 100%;
@@ -83,7 +83,6 @@ body {
     margin: 0 auto;
 
 }
-
 
 /* =====================================================
    CABEÇALHO
@@ -185,7 +184,6 @@ body {
 
 }
 
-
 /* =====================================================
    RELÓGIO
 ===================================================== */
@@ -230,7 +228,6 @@ body {
     margin-top: 4px;
 
 }
-
 
 /* =====================================================
    POSTO
@@ -318,7 +315,6 @@ body {
 
 }
 
-
 /* =====================================================
    STATUS
 ===================================================== */
@@ -380,7 +376,6 @@ body {
     color: #9a7500;
 
 }
-
 
 /* =====================================================
    PLAYER
@@ -479,7 +474,6 @@ body {
 
 }
 
-
 /* =====================================================
    VOLUME
 ===================================================== */
@@ -526,7 +520,6 @@ body {
 
 }
 
-
 /* =====================================================
    EVENTO
 ===================================================== */
@@ -563,7 +556,6 @@ body {
     color: #4b5563;
 
 }
-
 
 /* =====================================================
    HISTÓRICO
@@ -666,7 +658,6 @@ body {
 
 }
 
-
 /* =====================================================
    RODAPÉ
 ===================================================== */
@@ -688,7 +679,6 @@ body {
     color: #0e6835;
 
 }
-
 
 /* =====================================================
    RESPONSIVO
@@ -747,312 +737,228 @@ body {
 
 </head>
 
-
 <body>
-
 
 <div class="container">
 
-
-<!-- =====================================================
-     CABEÇALHO
-===================================================== -->
-
 <header class="header">
 
+```
+<div class="marca">
 
-    <div class="marca">
-
-
-        <div class="icone">
-            📻
-        </div>
-
-
-        <div>
-
-
-            <div class="empresa">
-                Postos Graciosa
-            </div>
-
-
-            <div class="titulo">
-                Monitoramento de Rádio
-            </div>
-
-
-            <div class="subtitulo">
-                Monitoramento individual do player
-            </div>
-
-
-        </div>
-
-
+    <div class="icone">
+        📻
     </div>
 
+    <div>
 
-    <div class="clock">
-
-
-        <div class="clock-label">
-            Horário local
+        <div class="empresa">
+            Postos Graciosa
         </div>
 
-
-        <div
-            id="clock"
-            class="clock-time"
-        >
-            --:--:--
+        <div class="titulo">
+            Monitoramento de Rádio
         </div>
 
-
-        <div
-            id="date"
-            class="clock-date"
-        >
-            --/--/----
+        <div class="subtitulo">
+            Monitoramento individual do player
         </div>
-
 
     </div>
-
-
-</header>
-
-
-<!-- =====================================================
-     POSTO
-===================================================== -->
-
-<main class="station">
-
-
-    <div class="station-header">
-
-
-        <div class="station-name-area">
-
-
-            <div class="station-icon">
-                ⛽
-            </div>
-
-
-            <div>
-
-
-                <div
-                    id="stationName"
-                    class="station-name"
-                >
-                    Carregando posto...
-                </div>
-
-
-                <div class="station-code">
-                    Monitoramento individual
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-        <div
-            id="statusBadge"
-            class="status status-waiting"
-        >
-
-
-            <span class="status-dot"></span>
-
-
-            INICIANDO
-
-
-        </div>
-
-
-    </div>
-
-
-    <!-- =================================================
-         PLAYER
-    ================================================= -->
-
-    <section class="player">
-
-
-        <div class="player-box">
-
-
-            <button
-                id="playButton"
-                class="play-button"
-                type="button"
-                aria-label="Iniciar rádio"
-                title="Iniciar rádio"
-            >
-                ▶
-            </button>
-
-
-            <div class="player-info">
-
-
-                <div
-                    id="playerTitle"
-                    class="player-title"
-                >
-                    Rádio Postos Graciosa
-                </div>
-
-
-                <div
-                    id="playerMessage"
-                    class="player-message"
-                >
-                    Preparando transmissão...
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-        <!-- VOLUME -->
-
-        <div class="volume-area">
-
-
-            <div
-                id="volumeIcon"
-                class="volume-icon"
-            >
-                🔊
-            </div>
-
-
-            <input
-                id="volume"
-                class="volume"
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="1"
-            >
-
-
-            <div
-                id="volumeValue"
-                class="volume-value"
-            >
-                100%
-            </div>
-
-
-        </div>
-
-
-        <audio
-            id="radio"
-            preload="none"
-            playsinline
-        ></audio>
-
-
-    </section>
-
-
-    <!-- =================================================
-         ÚLTIMO EVENTO
-    ================================================= -->
-
-    <section class="last-event">
-
-
-        <div class="last-event-label">
-            Último evento
-        </div>
-
-
-        <div
-            id="lastEvent"
-            class="last-event-text"
-        >
-            Sistema iniciando...
-        </div>
-
-
-    </section>
-
-
-</main>
-
-
-<!-- =====================================================
-     HISTÓRICO
-===================================================== -->
-
-<section class="history">
-
-
-    <div class="history-header">
-
-
-        <div class="history-title">
-            Histórico deste posto
-        </div>
-
-
-        <div class="history-subtitle">
-            Eventos registrados neste navegador
-        </div>
-
-
-    </div>
-
-
-    <div
-        id="historyList"
-        class="history-list"
-    ></div>
-
-
-</section>
-
-
-<!-- =====================================================
-     RODAPÉ
-===================================================== -->
-
-<footer class="footer">
-
-
-    Postos Graciosa ·
-
-
-    <strong>
-        Monitoramento de Rádio
-    </strong>
-
-
-</footer>
-
 
 </div>
 
+<div class="clock">
+
+    <div class="clock-label">
+        Horário local
+    </div>
+
+    <div
+        id="clock"
+        class="clock-time"
+    >
+        --:--:--
+    </div>
+
+    <div
+        id="date"
+        class="clock-date"
+    >
+        --/--/----
+    </div>
+
+</div>
+```
+
+</header>
+
+<main class="station">
+
+```
+<div class="station-header">
+
+    <div class="station-name-area">
+
+        <div class="station-icon">
+            ⛽
+        </div>
+
+        <div>
+
+            <div
+                id="stationName"
+                class="station-name"
+            >
+                Carregando posto...
+            </div>
+
+            <div class="station-code">
+                Monitoramento individual
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        id="statusBadge"
+        class="status status-waiting"
+    >
+
+        <span class="status-dot"></span>
+
+        INICIANDO
+
+    </div>
+
+</div>
+
+<section class="player">
+
+    <div class="player-box">
+
+        <button
+            id="playButton"
+            class="play-button"
+            type="button"
+            aria-label="Iniciar rádio"
+        >
+            ▶
+        </button>
+
+        <div class="player-info">
+
+            <div
+                id="playerTitle"
+                class="player-title"
+            >
+                Rádio Postos Graciosa
+            </div>
+
+            <div
+                id="playerMessage"
+                class="player-message"
+            >
+                Preparando transmissão...
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="volume-area">
+
+        <div
+            id="volumeIcon"
+            class="volume-icon"
+        >
+            🔊
+        </div>
+
+        <input
+            id="volume"
+            class="volume"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+        >
+
+        <div
+            id="volumeValue"
+            class="volume-value"
+        >
+            100%
+        </div>
+
+    </div>
+
+    <audio
+        id="radio"
+        preload="none"
+        playsinline
+    ></audio>
+
+</section>
+
+<section class="last-event">
+
+    <div class="last-event-label">
+        Último evento
+    </div>
+
+    <div
+        id="lastEvent"
+        class="last-event-text"
+    >
+        Sistema iniciando...
+    </div>
+
+</section>
+```
+
+</main>
+
+<section class="history">
+
+```
+<div class="history-header">
+
+    <div class="history-title">
+        Histórico deste posto
+    </div>
+
+    <div class="history-subtitle">
+        Eventos registrados neste navegador
+    </div>
+
+</div>
+
+<div
+    id="historyList"
+    class="history-list"
+></div>
+```
+
+</section>
+
+<footer class="footer">
+
+```
+Postos Graciosa ·
+
+<strong>
+    Monitoramento de Rádio
+</strong>
+```
+
+</footer>
+
+</div>
 
 <script>
-
 
 /* =====================================================
    CONFIGURAÇÃO
@@ -1064,26 +970,20 @@ const STREAM_URL =
 
 const CONFIG = {
 
-
     email:
         "administracao@postosgraciosa.com.br",
 
-
     historicoStorage:
-        "monitor_radio_eventos_v4",
-
+        "monitor_radio_eventos_v5",
 
     intervaloMonitoramento:
         3000,
 
-
     endpointEmail:
         "https://script.google.com/macros/s/AKfycbyTJwiUpNO1a-3u5IGYL6V-sMPZweH4Ph-xT2KS8q9xt0nE0sCG4nnyH4ZrcdP9ZZK/exec",
 
-
     chave:
         "GRACIOSA_RADIO_2026"
-
 
 };
 
@@ -1094,30 +994,23 @@ const CONFIG = {
 
 const POSTOS = {
 
-
     "graciosa":
         "POSTO GRACIOSA",
-
 
     "fatima":
         "POSTO FÁTIMA",
 
-
     "jariva":
         "POSTO JARIVA",
-
 
     "bemer":
         "POSTO BEMER",
 
-
     "graciosa-v":
         "POSTO GRACIOSA V",
 
-
     "pirai":
         "POSTO PIRAÍ"
-
 
 };
 
@@ -1128,57 +1021,45 @@ const POSTOS = {
 
 function identificarPosto() {
 
-
     const parametros =
         new URLSearchParams(
             window.location.search
         );
 
-
     const codigo =
         (
-            parametros.get(
-                "posto"
-            ) || "graciosa"
+            parametros.get("posto")
+            ||
+            "graciosa"
         )
-        .toLowerCase();
-
+        .toLowerCase()
+        .trim();
 
     if (
         POSTOS[codigo]
     ) {
 
-
         return {
-
 
             codigo:
                 codigo,
 
-
             nome:
                 POSTOS[codigo]
 
-
         };
-
 
     }
 
-
     return {
-
 
         codigo:
             "graciosa",
 
-
         nome:
             POSTOS.graciosa
 
-
     };
-
 
 }
 
@@ -1196,48 +1077,40 @@ const audio =
         "radio"
     );
 
-
 const playButton =
     document.getElementById(
         "playButton"
     );
-
 
 const volume =
     document.getElementById(
         "volume"
     );
 
-
 const volumeValue =
     document.getElementById(
         "volumeValue"
     );
-
 
 const volumeIcon =
     document.getElementById(
         "volumeIcon"
     );
 
-
 const statusBadge =
     document.getElementById(
         "statusBadge"
     );
-
 
 const playerMessage =
     document.getElementById(
         "playerMessage"
     );
 
-
 const lastEvent =
     document.getElementById(
         "lastEvent"
     );
-
 
 const historyList =
     document.getElementById(
@@ -1252,23 +1125,18 @@ const historyList =
 let estado =
     "iniciando";
 
-
 let usuarioPausou =
     false;
-
 
 let primeiraExecucao =
     true;
 
 
 /*
-   ID do último evento enviado.
-
-   Impede somente o envio duplicado
-   da mesma ocorrência.
+   Guarda somente o último ID enviado.
 */
 
-let ultimoEventoId =
+let ultimoEventoIdEnviado =
     "";
 
 
@@ -1297,10 +1165,8 @@ audio.src =
 
 function atualizarRelogio() {
 
-
     const agora =
         new Date();
-
 
     document.getElementById(
         "clock"
@@ -1309,14 +1175,12 @@ function atualizarRelogio() {
             "pt-BR"
         );
 
-
     document.getElementById(
         "date"
     ).textContent =
         agora.toLocaleDateString(
             "pt-BR",
             {
-
                 weekday:
                     "long",
 
@@ -1328,10 +1192,8 @@ function atualizarRelogio() {
 
                 year:
                     "numeric"
-
             }
         );
-
 
 }
 
@@ -1351,10 +1213,8 @@ setInterval(
 
 function agoraTexto() {
 
-
     const agora =
         new Date();
-
 
     return (
 
@@ -1374,7 +1234,6 @@ function agoraTexto() {
 
     );
 
-
 }
 
 
@@ -1384,29 +1243,23 @@ function agoraTexto() {
 
 function gerarIdEvento() {
 
-
     return (
-
 
         Date.now() +
 
-
         "_" +
-
 
         Math.random()
             .toString(36)
             .substring(2, 11)
 
-
     );
-
 
 }
 
 
 /* =====================================================
-   ENVIAR ALERTA PARA GOOGLE APPS SCRIPT
+   ENVIAR ALERTA
 ===================================================== */
 
 function enviarAlertaEmail(
@@ -1415,55 +1268,37 @@ function enviarAlertaEmail(
     idEvento
 ) {
 
-
-    /*
-       Se não recebeu ID,
-       cria um novo.
-    */
-
-    if (
-        !idEvento
-    ) {
-
+    if (!idEvento) {
 
         idEvento =
             gerarIdEvento();
 
-
     }
 
 
     /*
-       Impede envio duplicado
-       da mesma ocorrência.
+       Não envia duas vezes
+       o mesmo ID.
     */
 
     if (
-        ultimoEventoId ===
+        ultimoEventoIdEnviado ===
         idEvento
     ) {
 
-
         console.log(
-            "Evento já enviado:",
+            "⚠️ Evento já enviado:",
             idEvento
         );
 
-
         return;
-
 
     }
 
 
-    ultimoEventoId =
+    ultimoEventoIdEnviado =
         idEvento;
 
-
-    /*
-       Parâmetros enviados
-       para o Google Apps Script.
-    */
 
     const parametros =
         new URLSearchParams();
@@ -1474,36 +1309,30 @@ function enviarAlertaEmail(
         CONFIG.chave
     );
 
-
     parametros.set(
         "posto",
         POSTO.nome
     );
-
 
     parametros.set(
         "codigo",
         POSTO.codigo
     );
 
-
     parametros.set(
         "evento",
         evento
     );
-
 
     parametros.set(
         "status",
         status
     );
 
-
     parametros.set(
         "dataHora",
         agoraTexto()
     );
-
 
     parametros.set(
         "timestamp",
@@ -1512,12 +1341,10 @@ function enviarAlertaEmail(
         )
     );
 
-
     parametros.set(
         "idEvento",
         idEvento
     );
-
 
     parametros.set(
         "origem",
@@ -1525,59 +1352,44 @@ function enviarAlertaEmail(
     );
 
 
-    /*
-       URL FINAL.
-    */
-
     const url =
         CONFIG.endpointEmail +
         "?" +
         parametros.toString();
 
 
-    /*
-       LOG.
-    */
-
     console.log(
         "================================="
     );
 
-
     console.log(
-        "ENVIANDO ALERTA PARA APPS SCRIPT"
+        "ENVIANDO ALERTA"
     );
-
 
     console.log(
         "POSTO:",
         POSTO.nome
     );
 
-
     console.log(
         "EVENTO:",
         evento
     );
-
 
     console.log(
         "STATUS:",
         status
     );
 
-
     console.log(
         "ID:",
         idEvento
     );
 
-
     console.log(
-        "ORIGEM:",
-        "player"
+        "URL:",
+        url
     );
-
 
     console.log(
         "================================="
@@ -1586,14 +1398,22 @@ function enviarAlertaEmail(
 
     /*
        =================================================
-       ENVIO REAL
+       ENVIO
        =================================================
 
-       Image realiza a requisição GET
-       sem necessidade de ler a resposta.
+       Utilizamos uma imagem invisível.
+
+       O navegador faz um GET para o Apps Script.
 
        Não usamos fetch.
+
+       Não usamos JSONP.
+
        Não usamos XMLHttpRequest.
+
+       Não tentamos ler a resposta.
+
+       Isso evita problemas de CORS.
     */
 
     const imagem =
@@ -1603,11 +1423,9 @@ function enviarAlertaEmail(
     imagem.onload =
         function () {
 
-
             console.log(
-                "🟢 Requisição do alerta realizada."
+                "🟢 Requisição enviada ao Apps Script."
             );
-
 
         };
 
@@ -1615,22 +1433,9 @@ function enviarAlertaEmail(
     imagem.onerror =
         function () {
 
-
-            /*
-               O Apps Script pode responder
-               com conteúdo que não seja uma
-               imagem.
-
-               Isso não significa necessariamente
-               que o GET falhou.
-
-               A chamada foi realizada.
-            */
-
             console.log(
-                "🟢 Chamada do alerta realizada."
+                "🟢 Requisição enviada ao Apps Script."
             );
-
 
         };
 
@@ -1638,6 +1443,22 @@ function enviarAlertaEmail(
     imagem.src =
         url;
 
+
+    /*
+       Mantém a referência por alguns segundos
+       para evitar que o navegador descarte
+       a requisição.
+    */
+
+    setTimeout(
+        function () {
+
+            imagem.src =
+                "";
+
+        },
+        10000
+    );
 
 }
 
@@ -1648,28 +1469,20 @@ function enviarAlertaEmail(
 
 function chaveHistorico() {
 
-
     return (
 
-
         CONFIG.historicoStorage +
-
         "_" +
-
         POSTO.codigo
 
-
     );
-
 
 }
 
 
 function carregarHistorico() {
 
-
     try {
-
 
         const dados =
             localStorage.getItem(
@@ -1677,13 +1490,9 @@ function carregarHistorico() {
             );
 
 
-        if (
-            !dados
-        ) {
-
+        if (!dados) {
 
             return [];
-
 
         }
 
@@ -1700,33 +1509,25 @@ function carregarHistorico() {
             )
         ) {
 
-
             return [];
-
 
         }
 
 
         return lista;
 
-
     }
 
-
     catch (erro) {
-
 
         console.warn(
             "Erro ao carregar histórico:",
             erro
         );
 
-
         return [];
 
-
     }
-
 
 }
 
@@ -1735,15 +1536,11 @@ function salvarHistorico(
     lista
 ) {
 
-
     try {
-
 
         localStorage.setItem(
 
-
             chaveHistorico(),
-
 
             JSON.stringify(
                 lista.slice(
@@ -1752,24 +1549,18 @@ function salvarHistorico(
                 )
             )
 
-
         );
-
 
     }
 
-
     catch (erro) {
-
 
         console.error(
             "Erro ao salvar histórico:",
             erro
         );
 
-
     }
-
 
 }
 
@@ -1784,10 +1575,9 @@ function registrarEvento(
     enviarEmail = true
 ) {
 
-
     /*
        Cada ocorrência recebe
-       seu próprio ID.
+       um ID novo.
     */
 
     const idEvento =
@@ -1796,34 +1586,26 @@ function registrarEvento(
 
     const registro = {
 
-
         idEvento:
             idEvento,
-
 
         posto:
             POSTO.nome,
 
-
         codigo:
             POSTO.codigo,
-
 
         evento:
             evento,
 
-
         status:
             status,
-
 
         dataHora:
             agoraTexto(),
 
-
         timestamp:
             Date.now()
-
 
     };
 
@@ -1855,41 +1637,34 @@ function registrarEvento(
         "================================="
     );
 
-
     console.log(
         "EVENTO REGISTRADO"
     );
-
 
     console.log(
         "POSTO:",
         POSTO.nome
     );
 
-
     console.log(
         "EVENTO:",
         evento
     );
-
 
     console.log(
         "STATUS:",
         status
     );
 
-
     console.log(
         "DATA/HORA:",
         registro.dataHora
     );
 
-
     console.log(
         "ID:",
         idEvento
     );
-
 
     console.log(
         "================================="
@@ -1900,16 +1675,13 @@ function registrarEvento(
         enviarEmail
     ) {
 
-
         enviarAlertaEmail(
             evento,
             status,
             idEvento
         );
 
-
     }
-
 
 }
 
@@ -1920,7 +1692,6 @@ function registrarEvento(
 
 function renderizarHistorico() {
 
-
     const lista =
         carregarHistorico();
 
@@ -1929,40 +1700,27 @@ function renderizarHistorico() {
         !lista.length
     ) {
 
-
         historyList.innerHTML =
 
-
-            `<div class="history-item">
-
+            `
+            <div class="history-item">
 
                 <div class="history-event">
-
-
                     Nenhum evento registrado.
-
-
                 </div>
 
-
-            </div>`;
-
+            </div>
+            `;
 
         return;
-
 
     }
 
 
     historyList.innerHTML =
-
-
         lista
-
-
         .map(
             item => {
-
 
                 let simbolo =
                     "🟡";
@@ -1973,10 +1731,8 @@ function renderizarHistorico() {
                     "online"
                 ) {
 
-
                     simbolo =
                         "🟢";
-
 
                 }
 
@@ -1986,62 +1742,47 @@ function renderizarHistorico() {
                     "offline"
                 ) {
 
-
                     simbolo =
                         "🔴";
 
+                }
+
+
+                if (
+                    item.status ===
+                    "pausado"
+                ) {
+
+                    simbolo =
+                        "🟠";
 
                 }
 
 
                 return `
 
-
                     <div class="history-item">
 
-
                         <div>
-
-
                             ${simbolo}
-
-
                             ${item.evento}
-
-
                         </div>
-
 
                         <div class="history-event">
-
-
                             ${item.posto}
-
-
                         </div>
-
 
                         <div class="history-time">
-
-
                             ${item.dataHora}
-
-
                         </div>
-
 
                     </div>
 
-
                 `;
-
 
             }
         )
-
-
         .join("");
-
 
 }
 
@@ -2057,7 +1798,6 @@ function definirStatus(
     novoStatus
 ) {
 
-
     estado =
         novoStatus;
 
@@ -2071,39 +1811,27 @@ function definirStatus(
         "online"
     ) {
 
-
         statusBadge.classList.add(
             "status-online"
         );
 
 
         statusBadge.innerHTML =
-
-
             `
-
-
             <span class="status-dot"></span>
-
-
             ONLINE
-
-
             `;
 
 
         playerMessage.textContent =
             "Transmissão reproduzindo normalmente.";
 
-
     }
-
 
     else if (
         novoStatus ===
         "offline"
     ) {
-
 
         statusBadge.classList.add(
             "status-offline"
@@ -2111,29 +1839,18 @@ function definirStatus(
 
 
         statusBadge.innerHTML =
-
-
             `
-
-
             <span class="status-dot"></span>
-
-
             OFFLINE
-
-
             `;
 
 
         playerMessage.textContent =
             "A transmissão foi interrompida.";
 
-
     }
 
-
     else {
-
 
         statusBadge.classList.add(
             "status-waiting"
@@ -2141,26 +1858,16 @@ function definirStatus(
 
 
         statusBadge.innerHTML =
-
-
             `
-
-
             <span class="status-dot"></span>
-
-
             VERIFICANDO
-
-
             `;
 
 
         playerMessage.textContent =
             "Verificando transmissão...";
 
-
     }
-
 
 }
 
@@ -2171,46 +1878,35 @@ function definirStatus(
 
 function atualizarBotao() {
 
-
     if (
         !audio.paused
     ) {
 
-
         playButton.textContent =
             "⏸";
 
-
         playButton.title =
             "Pausar rádio";
-
 
         playButton.classList.remove(
             "paused"
         );
 
-
     }
 
-
     else {
-
 
         playButton.textContent =
             "▶";
 
-
         playButton.title =
             "Iniciar rádio";
-
 
         playButton.classList.add(
             "paused"
         );
 
-
     }
-
 
 }
 
@@ -2223,7 +1919,6 @@ async function iniciarRadio(
     origem = "manual"
 ) {
 
-
     usuarioPausou =
         false;
 
@@ -2235,14 +1930,11 @@ async function iniciarRadio(
 
     try {
 
-
         if (
             audio.paused
         ) {
 
-
             audio.load();
-
 
         }
 
@@ -2255,9 +1947,7 @@ async function iniciarRadio(
 
     }
 
-
     catch (erro) {
-
 
         console.warn(
             "Não foi possível iniciar:",
@@ -2276,9 +1966,7 @@ async function iniciarRadio(
 
         atualizarBotao();
 
-
     }
-
 
 }
 
@@ -2289,12 +1977,8 @@ async function iniciarRadio(
 
 function pausarRadio() {
 
-
     /*
-       Marca ANTES do pause.
-
-       Assim o evento nativo "pause"
-       não cria outro alerta.
+       Marca antes do pause.
     */
 
     usuarioPausou =
@@ -2302,9 +1986,8 @@ function pausarRadio() {
 
 
     /*
-       PAUSE MANUAL:
-       gera somente UM evento
-       e UM alerta.
+       Gera exatamente UM alerta
+       para o clique de PAUSE.
     */
 
     registrarEvento(
@@ -2328,18 +2011,16 @@ function pausarRadio() {
 
     atualizarBotao();
 
-
 }
 
 
 /* =====================================================
-   BOTÃO PLAY / PAUSE
+   PLAY / PAUSE
 ===================================================== */
 
 playButton.addEventListener(
     "click",
     function () {
-
 
         console.log(
             "Clique no botão:",
@@ -2353,23 +2034,17 @@ playButton.addEventListener(
             audio.paused
         ) {
 
-
             iniciarRadio(
                 "manual"
             );
 
-
         }
-
 
         else {
 
-
             pausarRadio();
 
-
         }
-
 
     }
 );
@@ -2383,13 +2058,10 @@ audio.addEventListener(
     "playing",
     function () {
 
-
         const mensagem =
             primeiraExecucao
 
-
                 ? "PLAYER INICIADO"
-
 
                 : "PLAYER INICIADO / RÁDIO RESTABELECIDA";
 
@@ -2407,8 +2079,8 @@ audio.addEventListener(
 
 
         /*
-           PLAY efetivamente iniciado:
-           gera um novo evento e alerta.
+           O alerta acontece somente quando
+           o player realmente começou.
         */
 
         registrarEvento(
@@ -2420,7 +2092,6 @@ audio.addEventListener(
 
         primeiraExecucao =
             false;
-
 
     }
 );
@@ -2434,28 +2105,25 @@ audio.addEventListener(
     "pause",
     function () {
 
-
         atualizarBotao();
 
 
         /*
-           Pause provocado pelo usuário.
+           PAUSE manual já foi registrado.
         */
 
         if (
             usuarioPausou
         ) {
 
-
             return;
-
 
         }
 
 
         /*
-           Só considera parada inesperada
-           se o player estava ONLINE.
+           Só registra parada inesperada
+           quando estava realmente ONLINE.
         */
 
         if (
@@ -2463,9 +2131,7 @@ audio.addEventListener(
             "online"
         ) {
 
-
             return;
-
 
         }
 
@@ -2486,7 +2152,6 @@ audio.addEventListener(
             true
         );
 
-
     }
 );
 
@@ -2499,14 +2164,11 @@ audio.addEventListener(
     "waiting",
     function () {
 
-
         if (
             usuarioPausou
         ) {
 
-
             return;
-
 
         }
 
@@ -2514,7 +2176,6 @@ audio.addEventListener(
         definirStatus(
             "verificando"
         );
-
 
     }
 );
@@ -2528,14 +2189,11 @@ audio.addEventListener(
     "stalled",
     function () {
 
-
         if (
             usuarioPausou
         ) {
 
-
             return;
-
 
         }
 
@@ -2543,7 +2201,6 @@ audio.addEventListener(
         definirStatus(
             "verificando"
         );
-
 
     }
 );
@@ -2557,14 +2214,11 @@ audio.addEventListener(
     "error",
     function () {
 
-
         if (
             usuarioPausou
         ) {
 
-
             return;
-
 
         }
 
@@ -2574,9 +2228,7 @@ audio.addEventListener(
             "offline"
         ) {
 
-
             return;
-
 
         }
 
@@ -2597,7 +2249,6 @@ audio.addEventListener(
             true
         );
 
-
     }
 );
 
@@ -2609,7 +2260,6 @@ audio.addEventListener(
 setInterval(
     function () {
 
-
         /*
            Pause manual não é erro.
         */
@@ -2618,17 +2268,14 @@ setInterval(
             usuarioPausou
         ) {
 
-
             return;
-
 
         }
 
 
         /*
-           Se estava ONLINE e ficou pausado
-           sem ação do usuário, considera
-           parada inesperada.
+           Se estava online e o player
+           parou sem ação do usuário.
         */
 
         if (
@@ -2637,7 +2284,6 @@ setInterval(
             &&
             audio.paused
         ) {
-
 
             definirStatus(
                 "offline"
@@ -2655,9 +2301,7 @@ setInterval(
                 true
             );
 
-
         }
-
 
     },
     CONFIG.intervaloMonitoramento
@@ -2675,7 +2319,6 @@ audio.volume =
 volume.addEventListener(
     "input",
     function () {
-
 
         audio.volume =
             Number(
@@ -2699,36 +2342,27 @@ volume.addEventListener(
             0
         ) {
 
-
             volumeIcon.textContent =
                 "🔇";
 
-
         }
-
 
         else if (
             audio.volume <
             .5
         ) {
 
-
             volumeIcon.textContent =
                 "🔉";
 
-
         }
 
-
         else {
-
 
             volumeIcon.textContent =
                 "🔊";
 
-
         }
-
 
     }
 );
@@ -2742,40 +2376,38 @@ window.addEventListener(
     "load",
     function () {
 
-
         console.log(
             "======================================"
         );
 
-
         console.log(
             "MONITORAMENTO INICIADO"
         );
-
 
         console.log(
             "POSTO:",
             POSTO.nome
         );
 
+        console.log(
+            "CÓDIGO:",
+            POSTO.codigo
+        );
 
         console.log(
             "E-MAIL:",
             CONFIG.email
         );
 
-
         console.log(
             "STREAM:",
             STREAM_URL
         );
 
-
         console.log(
             "ENDPOINT:",
             CONFIG.endpointEmail
         );
-
 
         console.log(
             "======================================"
@@ -2785,16 +2417,13 @@ window.addEventListener(
         setTimeout(
             function () {
 
-
                 iniciarRadio(
                     "autoplay"
                 );
 
-
             },
             800
         );
-
 
     }
 );
@@ -2810,7 +2439,6 @@ let wakeLock =
 
 async function ativarWakeLock() {
 
-
     if (
         !(
             "wakeLock"
@@ -2819,15 +2447,16 @@ async function ativarWakeLock() {
         )
     ) {
 
+        console.log(
+            "Wake Lock não suportado."
+        );
 
         return;
-
 
     }
 
 
     try {
-
 
         wakeLock =
             await navigator.wakeLock.request(
@@ -2839,21 +2468,16 @@ async function ativarWakeLock() {
             "Wake Lock ativado."
         );
 
-
     }
 
-
     catch (erro) {
-
 
         console.warn(
             "Wake Lock não disponível:",
             erro
         );
 
-
     }
-
 
 }
 
@@ -2865,18 +2489,14 @@ document.addEventListener(
     "visibilitychange",
     function () {
 
-
         if (
             document.visibilityState ===
             "visible"
         ) {
 
-
             ativarWakeLock();
 
-
         }
-
 
     }
 );
@@ -2891,23 +2511,18 @@ console.log(
     POSTO.nome
 );
 
-
 console.log(
     "Código do posto:",
     POSTO.codigo
 );
-
 
 console.log(
     "E-mail de alerta:",
     CONFIG.email
 );
 
-
 </script>
-
 
 </body>
 
 </html>
-
